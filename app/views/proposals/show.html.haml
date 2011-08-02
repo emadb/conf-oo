@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Speaker name:
+  = @proposal.speaker_name
+%p
+  %b Speaker email:
+  = @proposal.speaker_email
+%p
+  %b Title:
+  = @proposal.title
+%p
+  %b Abstract:
+  = @proposal.abstract
+
+= link_to 'Edit', edit_proposal_path(@proposal)
+\|
+= link_to 'Back', proposals_path

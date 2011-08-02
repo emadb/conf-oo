@@ -1,6 +1,8 @@
 ConfOo::Application.routes.draw do
   resources :proposals
 
+  resources :proposals
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

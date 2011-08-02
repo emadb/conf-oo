@@ -30,38 +30,17 @@ class ProposalsController < ApplicationController
     end
   end
 
-  # GET /proposals/1/edit
-  def edit
-    @proposal = Proposal.find(params[:id])
-  end
-
   # POST /proposals
   # POST /proposals.json
   def create
     @proposal = Proposal.new(params[:proposal])
-
+    @proposal.submitted_on = DateTime.new
     respond_to do |format|
       if @proposal.save
         format.html { redirect_to @proposal, notice: 'Proposal was successfully created.' }
         format.json { render json: @proposal, status: :created, location: @proposal }
       else
         format.html { render action: "new" }
-        format.json { render json: @proposal.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PUT /proposals/1
-  # PUT /proposals/1.json
-  def update
-    @proposal = Proposal.find(params[:id])
-
-    respond_to do |format|
-      if @proposal.update_attributes(params[:proposal])
-        format.html { redirect_to @proposal, notice: 'Proposal was successfully updated.' }
-        format.json { head :ok }
-      else
-        format.html { render action: "edit" }
         format.json { render json: @proposal.errors, status: :unprocessable_entity }
       end
     end

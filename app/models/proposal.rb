@@ -4,4 +4,5 @@ class Proposal
   field :speaker_email
   field :title
   field :abstract
+  field :submitted_on, :type => Date  
 end

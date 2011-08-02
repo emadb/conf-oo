@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  speaker_name: MyString
+  speaker_email: MyString
+  title: MyString
+  abstract: MyText
+
+two:
+  speaker_name: MyString
+  speaker_email: MyString
+  title: MyString
+  abstract: MyText
