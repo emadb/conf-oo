@@ -1,6 +1,7 @@
 ConfOo::Application.routes.draw do
-  resources :proposals
+  root :to => "home#index"
 
+  devise_for :users
   resources :proposals
 
   # The priority is based upon order of creation:

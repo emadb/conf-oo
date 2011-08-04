@@ -1,10 +1,11 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.1.0.rc5'
-gem "mongoid", "~> 2.1"
-gem "bson_ext", "~> 1.3"
+gem 'mongoid', "~> 2.1"
+gem 'bson_ext', "~> 1.3"
 gem 'haml'
-gem "haml-rails"
+gem 'haml-rails'
+gem 'devise'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'

@@ -1,0 +1,3 @@
+#! /bin/bash
+# start mongodb server
+/usr/local/bin/mongod --dbpath=./data 
