@@ -2,10 +2,14 @@
 
 %div
 	%ul
+		%li
+			= link_to 'Nuova proposta', new_proposal_path
 		- if user_signed_in?
-			= link_to('Logout', destroy_user_session_path, :method => :delete) 
+			%li
+				= link_to('Logout', destroy_user_session_path, :method => :delete) 
+			%li
+				= link_to('Elenco proposte', proposals_path)
 		- else
-			= link_to('Login', new_user_session_path) 
-			
-%div
-	= link_to 'nuova proposta', new_proposal_path
+			%li
+				= link_to('Login', new_user_session_path) 
+	
