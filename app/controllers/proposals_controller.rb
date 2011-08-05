@@ -31,7 +31,7 @@ class ProposalsController < ApplicationController
     @proposal = Proposal.find(params[:id])
 
     if @proposal.update_attributes(params[:proposal])
-      redirect_to(proposals_path, :notice => 'Salvataggio effettuato.') 
+      redirect_to(proposals_path, :notice => 'Successfully updated.') 
     else
       render :action => "edit"
     end
@@ -41,5 +41,6 @@ class ProposalsController < ApplicationController
   def destroy
     @proposal = Proposal.find(params[:id])
     @proposal.destroy
+    render :json => {:status => 'success'}
   end
 end

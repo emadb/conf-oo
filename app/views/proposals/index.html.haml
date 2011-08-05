@@ -17,10 +17,10 @@
       %td= proposal.speaker_email
       %td= proposal.title
       %td= proposal.abstract
-      %td= proposal.submitted_on
+      %td= proposal.submitted_on.strftime('%d/%m/%Y %h:%m')
       %td= link_to 'Show', proposal
       %td= link_to 'Edit', edit_proposal_path(proposal)
-      %td= link_to 'Destroy', proposal, :confirm => 'Are you sure?', :method => :delete
+      %td= link_to 'Destroy', proposal, :method => :delete, :class => 'delete'
 
 %br
 
