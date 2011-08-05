@@ -1,0 +1,27 @@
+%h1 Listing speeches
+
+%table
+  %tr
+    %th From
+    %th To
+    %th Room
+    %th Title
+    %th Abstract
+    %th
+    %th
+    %th
+
+  - @speeches.each do |speech|
+    %tr
+      %td= speech.from
+      %td= speech.to
+      %td= speech.room
+      %td= speech.title
+      %td= speech.abstract
+      %td= link_to 'Show', speech
+      %td= link_to 'Edit', edit_speech_path(speech)
+      %td= link_to 'Destroy', speech, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Speech', new_speech_path

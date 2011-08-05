@@ -1,0 +1,25 @@
+= form_for @speech do |f|
+  -if @speech.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@speech.errors.count, "error")} prohibited this speech from being saved:"
+      %ul
+        - @speech.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :from
+    = f.datetime_select :from
+  .field
+    = f.label :to
+    = f.datetime_select :to
+  .field
+    = f.label :room
+    = f.text_field :room
+  .field
+    = f.label :title
+    = f.text_field :title
+  .field
+    = f.label :abstract
+    = f.text_area :abstract
+  .actions
+    = f.submit 'Save'

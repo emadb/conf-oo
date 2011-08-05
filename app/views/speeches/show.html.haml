@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b From:
+  = @speech.from
+%p
+  %b To:
+  = @speech.to
+%p
+  %b Room:
+  = @speech.room
+%p
+  %b Title:
+  = @speech.title
+%p
+  %b Abstract:
+  = @speech.abstract
+
+= link_to 'Edit', edit_speech_path(@speech)
+\|
+= link_to 'Back', speeches_path

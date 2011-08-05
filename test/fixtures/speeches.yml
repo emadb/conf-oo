@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  from: 2011-08-05 17:46:00
+  to: 2011-08-05 17:46:00
+  room: MyString
+  title: MyString
+  abstract: MyText
+
+two:
+  from: 2011-08-05 17:46:00
+  to: 2011-08-05 17:46:00
+  room: MyString
+  title: MyString
+  abstract: MyText
