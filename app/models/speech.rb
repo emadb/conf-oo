@@ -5,4 +5,5 @@ class Speech
   field :room
   field :title
   field :abstract
+  embeds_one :speaker
 end
