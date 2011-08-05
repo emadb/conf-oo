@@ -21,5 +21,15 @@
   .field
     = f.label :abstract
     = f.text_area :abstract
+  
+  = f.fields_for :speaker  do |s|
+    .field
+      = s.label :name
+      = s.text_field :name
+    .field
+      = s.label :bio
+      = s.text_area :bio  
+    
+
   .actions
     = f.submit 'Save'
