@@ -16,3 +16,7 @@
 	= @proposal.abstract
 
 = link_to 'Back', root_path
+- if @proposal.approved
+	= link_to 'Unapprove speech', unapprove_proposal_path(@proposal)
+- else
+	= link_to 'Approva speech', approve_proposal_path(@proposal)

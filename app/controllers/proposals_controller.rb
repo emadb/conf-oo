@@ -43,4 +43,19 @@ class ProposalsController < ApplicationController
     @proposal.destroy
     render :json => {:status => 'success'}
   end
+  
+  def approve
+     @proposal = Proposal.find(params[:id])
+     @proposal.approved = true;
+     @proposal.save()
+     render :action => 'show'
+  end
+  
+  def unapprove
+     @proposal = Proposal.find(params[:id])
+     @proposal.approved = false;
+     @proposal.save()
+     render :action => 'show'
+  end
+  
 end

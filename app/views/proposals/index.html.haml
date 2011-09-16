@@ -7,6 +7,7 @@
     %th Title
     %th Abstract
     %th Submitted on
+    %th Approved 
     %th
     %th
     %th
@@ -18,6 +19,7 @@
       %td= proposal.title
       %td= proposal.abstract
       %td= proposal.submitted_on.strftime('%d/%m/%Y %h:%m')
+      %td= proposal.approved
       %td= link_to 'Show', proposal
       %td= link_to 'Edit', edit_proposal_path(proposal)
       %td= link_to 'Destroy', proposal, :method => :delete, :class => 'delete'

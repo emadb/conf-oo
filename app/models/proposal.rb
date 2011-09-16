@@ -5,4 +5,5 @@ class Proposal
   field :title
   field :abstract
   field :submitted_on, :type => Date  
+  field :approved, :type => Boolean, :default => false
 end

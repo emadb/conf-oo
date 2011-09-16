@@ -2,6 +2,10 @@ ConfOo::Application.routes.draw do
   root :to => "home#index"
 
   devise_for :users
+  
+  match 'approve/:id', :to => 'proposals#approve', :as => "approve_proposal"
+  match 'unapprove/:id', :to => 'proposals#unapprove', :as => "unapprove_proposal"
+  
   resources :proposals
   resources :speeches
   
