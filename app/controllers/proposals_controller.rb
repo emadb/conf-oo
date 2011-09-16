@@ -48,6 +48,7 @@ class ProposalsController < ApplicationController
      @proposal = Proposal.find(params[:id])
      @proposal.approved = true;
      @proposal.save()
+     create_speech(@proposal)
      render :action => 'show'
   end
   
@@ -56,6 +57,21 @@ class ProposalsController < ApplicationController
      @proposal.approved = false;
      @proposal.save()
      render :action => 'show'
+  end
+  
+  def create_speech(proposal)
+    speech = Speech.new(title: proposal.title, abstract: proposal.abstract) do |doc|
+      doc.speaker = Speaker.new(name: proposal.speaker_name)
+    end
+    speech.save
+  end
+  
+  
+  def destroy_speech(proposal)
+    speech = Speech.new(title: proposal.title, proposal_id: proposal.id, abstract: proposal.abstract) do |doc|
+      doc.speaker = Speaker.new(name: proposal.speaker_name)
+    end
+    speech.save
   end
   
 end

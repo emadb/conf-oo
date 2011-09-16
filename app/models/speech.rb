@@ -5,5 +5,6 @@ class Speech
   field :room
   field :title
   field :abstract
+  field :proposal_id
   embeds_one :speaker
 end
