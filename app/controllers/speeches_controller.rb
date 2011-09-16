@@ -14,6 +14,7 @@ class SpeechesController < ApplicationController
 
   def edit
     @speech = Speech.find(params[:id])
+    @speech.speaker.bio = "lalalala"
   end
 
   def create
