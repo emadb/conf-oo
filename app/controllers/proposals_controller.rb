@@ -61,17 +61,20 @@ class ProposalsController < ApplicationController
   
   def create_speech(proposal)
     speech = Speech.new(title: proposal.title, abstract: proposal.abstract) do |doc|
-      doc.speaker = Speaker.new(name: proposal.speaker.name)
+      doc.speaker = create_speaker(proposal.speaker)
     end
+    speech.proposal_id = proposal._id
     speech.save
   end
   
   
   def destroy_speech(proposal)
-    speech = Speech.new(title: proposal.title, proposal_id: proposal.id, abstract: proposal.abstract) do |doc|
-      doc.speaker = Speaker.new(name: proposal.speaker.name)
-    end
-    speech.save
+    speech = Speech.find(proposal._id)
+    speech.destroy
+  end
+  
+  def create_speaker (speaker)
+    Speaker.new(name: speaker.name, bio: speaker.bio, email: speaker.email, twitter: speaker.twitter)
   end
   
 end

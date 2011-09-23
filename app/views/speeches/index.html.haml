@@ -2,6 +2,7 @@
 
 %table
   %tr
+    %th Speaker
     %th From
     %th To
     %th Room
@@ -14,6 +15,7 @@
 
   - @speeches.each do |speech|
     %tr
+      %td= "#{speech.speaker.name} (#{speech.speaker.email})"
       %td= speech.from
       %td= speech.to
       %td= speech.room

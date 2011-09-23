@@ -3,6 +3,11 @@ class SpeechesController < ApplicationController
   
   def index
     @speeches = Speech.all
+    @speeches.each do |s| 
+      logger.info s.title
+      logger.info s.speaker.name
+      logger.info s.speaker.twitter
+    end
   end
 
   def show

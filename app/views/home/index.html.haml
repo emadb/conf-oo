@@ -8,10 +8,10 @@
       %li
         = link_to('Proposal list', proposals_path)
       %li
+        = link_to('Speeches', speeches_path)
+      %li
         = link_to('Logout', destroy_user_session_path, :method => :delete) 
     - else
-      %li
-        = link_to('Speeches', speeches_path)
       %li
         = link_to('Login', new_user_session_path) 
   
