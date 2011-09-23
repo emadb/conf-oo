@@ -1,22 +1,30 @@
 %p#notice= notice
 
 %div
-	your proposal have been saved.
+  your proposal have been saved.
 %p
-	%b Speaker name:
-	= @proposal.speaker_name
+  %b Title:
+  = @proposal.title
 %p
-	%b Speaker email:
-	= @proposal.speaker_email
-%p
-	%b Title:
-	= @proposal.title
-%p
-	%b Abstract:
-	= @proposal.abstract
+  %b Abstract:
+  = @proposal.abstract
+%fieldset
+  %legend speaker info  
+  %p
+    %b Name:
+    = @proposal.speaker.name
+  %p
+    %b Email:
+    = @proposal.speaker.email
+  %p
+    %b Twitter:
+    = @proposal.speaker.twitter
+  %p
+    %b Blog:
+    = @proposal.speaker.blog
 
 = link_to 'Back', root_path
 - if @proposal.approved
-	= link_to 'Unapprove speech', unapprove_proposal_path(@proposal)
+  = link_to 'Unapprove speech', unapprove_proposal_path(@proposal)
 - else
-	= link_to 'Approve speech', approve_proposal_path(@proposal)
+  = link_to 'Approve speech', approve_proposal_path(@proposal)

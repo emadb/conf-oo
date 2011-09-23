@@ -6,17 +6,30 @@
       %ul
         - @proposal.errors.full_messages.each do |msg|
           %li= msg
-  .field
-    = f.label :speaker_name
-    = f.text_field :speaker_name
-  .field
-    = f.label :speaker_email
-    = f.text_field :speaker_email
+          
   .field
     = f.label :title
     = f.text_field :title
   .field
     = f.label :abstract
-    = f.text_area :abstract
+    = f.text_area :abstract, :rows => 5
+    %fieldset
+      %legend speaker info
+      = f.fields_for :speaker  do |s|
+        .field
+          = s.label :name
+          = s.text_field :name
+        .field
+          = s.label :email
+          = s.text_field :email
+        .field
+          = s.label :twitter
+          = s.text_field :twitter
+        .field
+          = s.label :blog
+          = s.text_field :blog
+        .field
+          = s.label :bio
+          = s.text_area :bio, :rows => 3
   .actions
     = f.submit 'Save'

@@ -5,7 +5,6 @@
     %th Speaker name
     %th Speaker email
     %th Title
-    %th Abstract
     %th Submitted on
     %th Approved 
     %th
@@ -14,10 +13,9 @@
 
   - @proposals.each do |proposal|
     %tr
-      %td= proposal.speaker_name
-      %td= proposal.speaker_email
+      %td= proposal.speaker.name
+      %td= proposal.speaker.email
       %td= proposal.title
-      %td= proposal.abstract
       %td= proposal.submitted_on.strftime('%d/%m/%Y %h:%m')
       %td= proposal.approved
       %td= link_to 'Show', proposal

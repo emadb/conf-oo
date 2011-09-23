@@ -6,5 +6,5 @@ class Speech
   field :title
   field :abstract
   field :proposal_id
-  embeds_one :speaker
+  embeds_one :speaker, as: :speaker1
 end
