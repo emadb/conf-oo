@@ -6,6 +6,6 @@ class Speaker
   field :blog
   field :twitter
   
-  embedded_in :speaker1, polymorphic: true
-  accepts_nested_attributes_for :speaker 
+  embedded_in :embedded_speaker, polymorphic: true
+  accepts_nested_attributes_for :speaker
 end

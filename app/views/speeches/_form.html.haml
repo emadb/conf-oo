@@ -20,15 +20,15 @@
     = f.text_field :title
   .field
     = f.label :abstract
-    = f.text_area :abstract
+    = f.text_area :abstract, :rows => 5
   
-  = f.fields_for :speaker  do |s|
+  = f.fields_for :speaker do |s|
     .field
       = s.label :name
       = s.text_field :name
     .field
       = s.label :bio
-      = s.text_area :bio  
+      = s.text_area :bio, :rows => 3 
     
 
   .actions

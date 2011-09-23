@@ -1,6 +1,6 @@
 class Proposal
   include Mongoid::Document
-  embeds_one :speaker, as: :speaker1
+  embeds_one :speaker, as: :embedded_speaker
   field :title
   field :abstract
   field :submitted_on, :type => Date  
