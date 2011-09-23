@@ -74,7 +74,7 @@ class ProposalsController < ApplicationController
   end
   
   def create_speaker (speaker)
-    Speaker.new(name: speaker.name, bio: speaker.bio, email: speaker.email, twitter: speaker.twitter)
+    Speaker.new(name: speaker.name, bio: speaker.bio, email: speaker.email, twitter: speaker.twitter, blog: speaker.blog)
   end
   
 end

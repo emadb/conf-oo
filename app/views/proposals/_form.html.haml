@@ -18,18 +18,18 @@
       = f.fields_for :speaker  do |s|
         .field
           = s.label :name
-          = s.text_field :name
+          = s.text_field :name, :value => @proposal.speaker.name  #does anybody knows how to remove the value attr?
         .field
           = s.label :email
-          = s.text_field :email
+          = s.text_field :email, :value => @proposal.speaker.email
         .field
           = s.label :twitter
-          = s.text_field :twitter
+          = s.text_field :twitter, :value => @proposal.speaker.twitter
         .field
           = s.label :blog
-          = s.text_field :blog
+          = s.text_field :blog, :value => @proposal.speaker.blog
         .field
           = s.label :bio
-          = s.text_area :bio, :rows => 3
+          = s.text_area :bio, :rows => 3, :value => @proposal.speaker.bio
   .actions
     = f.submit 'Save'

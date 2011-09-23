@@ -25,11 +25,19 @@
   = f.fields_for :speaker do |s|
     .field
       = s.label :name
-      = s.text_field :name
+      = s.text_field :name, :value => @speech.speaker.name
+    .field
+      = s.label :email
+      = s.text_field :email, :value => @speech.speaker.email
+    .field
+      = s.label :blog
+      = s.text_field :blog, :value => @speech.speaker.blog
+    .field
+      = s.label :twitter
+      = s.text_area :twitter, :rows => 3 , :value => @speech.speaker.twitter
     .field
       = s.label :bio
-      = s.text_area :bio, :rows => 3 
-    
+      = s.text_area :bio, :rows => 3 , :value => @speech.speaker.bio
 
   .actions
     = f.submit 'Save'
