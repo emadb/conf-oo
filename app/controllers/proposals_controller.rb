@@ -11,6 +11,7 @@ class ProposalsController < ApplicationController
 
   def new
     @proposal = Proposal.new
+    @proposal.speaker = Speaker.new
   end
 
   def create
