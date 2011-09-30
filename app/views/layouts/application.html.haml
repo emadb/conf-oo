@@ -12,29 +12,21 @@
     = csrf_meta_tags
     %body
       %header
-        %a(href='/') home
-        = yield
-      #container
-        #main
+        %a{:href => '/'}
           %img{:src => "assets/logo.png"}
           %img{:src => "assets/header-title.png"}
-          %p{:class => "big"} Back soon...
-          %div 
-            %a{:href => "http://tech.groups.yahoo.com/group/ugialtnet/"} mailing list
-
+        
+      #container
+        #main
+          = yield
+        %footer
+          Copyright UGIALT.net 2007-2011
           %p 
             %a{:href => "mailto:info@ugialt.net"}
               %img{:src => "assets/contact_us.png", :alt => "Inviaci una email"}
             %a{:href => "http://twitter.com/#!/ugialtnet"}
               %img{ :src => "assets/follow_twitter.png", :alt => "Seguici su Twitter"}
-        %footer
-          Copyright UGIALT.net 2007-2011
-        
-        
-      
-      %script{ :src =>"http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"}
-      
-
+                
       :javascript
         var _gaq = [['_setAccount', 'UA-156881-10'], ['_trackPageview']];
         (function(d, t) {
