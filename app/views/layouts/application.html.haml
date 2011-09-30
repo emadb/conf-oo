@@ -1,13 +1,47 @@
 <!DOCTYPE html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
 %html
   %head
-  %title Conf-oo
-  = stylesheet_link_tag    "application"
-  = javascript_include_tag "application"
-  = csrf_meta_tags 
+    %title UGIALT.net - Usergroup Italiano ALT.NET 
+    = stylesheet_link_tag    "application"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+    %body
+      %header
+        %a(href='/') home
+        = yield
+      #container
+        #main
+          %img{:src => "assets/logo.png"}
+          %img{:src => "assets/header-title.png"}
+          %p{:class => "big"} Back soon...
+          %div 
+            %a{:href => "http://tech.groups.yahoo.com/group/ugialtnet/"} mailing list
 
-  %body
-    %header
-      %a(href='/') home
-    = yield 
+          %p 
+            %a{:href => "mailto:info@ugialt.net"}
+              %img{:src => "assets/contact_us.png", :alt => "Inviaci una email"}
+            %a{:href => "http://twitter.com/#!/ugialtnet"}
+              %img{ :src => "assets/follow_twitter.png", :alt => "Seguici su Twitter"}
+        %footer
+          Copyright UGIALT.net 2007-2011
+        
+        
+      
+      %script{ :src =>"http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"}
+      
+
+      :javascript
+        var _gaq = [['_setAccount', 'UA-156881-10'], ['_trackPageview']];
+        (function(d, t) {
+          var g = d.createElement(t),
+            s = d.getElementsByTagName(t)[0];
+          g.async = true;
+          g.src = ('https:' == location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          s.parentNode.insertBefore(g, s);
+          })(document, 'script');
 
