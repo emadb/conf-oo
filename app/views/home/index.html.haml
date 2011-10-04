@@ -1,14 +1,19 @@
-%p{:class => "big"} 
-  Stiamo lavorando alla prossima conferenza.
-  Per maggiori informazioni puoi seguirci sulla <a href="http://tech.groups.yahoo.com/group/ugialtnet/">mailing list</a>
+%h2
+  VI UgiALT.net conference
+%h4
+  21 Gennaio 2012, Milano
+
 %p
-  La call for paper è aperta e puoi inviarci la tua proposta compilando l'apposito <a href="proposals/new">form</a>
+  La call for paper è aperta e puoi inviarci la tua proposta compilando l'apposito <a href="proposals/new">form</a>.
+%p
+  Per maggiori informazioni puoi contattarci tramite la <a href="http://tech.groups.yahoo.com/group/ugialtnet/">mailing list</a>
+  oppure all'indirizzo email <a href="mailto:info@ugialt.net">info@ugialt.net</a>
   
 
 %div
   %ul
     %li
-      = link_to 'New proposal', new_proposal_path
+      = link_to 'Inviaci la tua proposta', new_proposal_path
     - if user_signed_in?
       %li
         = link_to('Proposal list', proposals_path)
