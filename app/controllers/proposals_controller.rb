@@ -57,6 +57,7 @@ class ProposalsController < ApplicationController
      @proposal = Proposal.find(params[:id])
      @proposal.approved = false;
      @proposal.save()
+     destroy_speech(@proposal)
      render :action => 'show'
   end
   
@@ -70,8 +71,10 @@ class ProposalsController < ApplicationController
   
   
   def destroy_speech(proposal)
-    speech = Speech.find(proposal._id)
-    speech.destroy
+    if Speech.exists?(conditions: { proposal_id: proposal._id })
+      speech = Speech.first(conditions: { proposal_id: proposal._id })
+      speech.destroy
+    end
   end
   
   def create_speaker (speaker)
