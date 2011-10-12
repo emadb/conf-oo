@@ -1,27 +1,28 @@
 <!DOCTYPE html>
-%html
+%html{:lang => 'it'}
   %head
-    %title UGIALT.net - Usergroup Italiano ALT.NET 
+    %title UGIALT.net Conference - Milano ~ 21 Gennaio 2011
     = stylesheet_link_tag    "application"
     = javascript_include_tag "application"
     = csrf_meta_tags
-    %body
-      %header
-        %a{:href => '/'}
-          %img{:src => "assets/logo.png"}
-          %img{:src => "assets/header-title.png"}
+    <link href='http://fonts.googleapis.com/css?family=Terminal+Dosis:400,500,700,600,800,200,300' rel='stylesheet' type='text/css'>
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    %body.home
+      %div#boxRoot
+        %header
+          %h1 UGIALT.net Conference
+          %h2
+            %span.c1 6° Edizione
+            -
+            %span.c4 Milano ~ 21 Gennaio 2011
+            %a{:href => 'about'} about
+       
+        = yield
+      
+      %div#boxScroll
         
-      #container
-        #main
-          = yield
-        %footer
-          Copyright UGIALT.net 2007-2011
-          %p 
-            %a{:href => "mailto:info@ugialt.net"}
-              %img{:src => "assets/contact_us.png", :alt => "Inviaci una email"}
-            %a{:href => "http://twitter.com/#!/ugialtnet"}
-              %img{ :src => "assets/follow_twitter.png", :alt => "Seguici su Twitter"}
-                
       :javascript
         var _gaq = [['_setAccount', 'UA-156881-10'], ['_trackPageview']];
         (function(d, t) {

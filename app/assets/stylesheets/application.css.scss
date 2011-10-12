@@ -1,3 +1,423 @@
-body {
-   
+/* ************************************************* 
+
+	UGIALT.net Conf - v0.1
+
+	Web Design & Development (HTML5/CSS3/JS):
+	Cristiano Rastelli - Area Web
+	http://www.didoo.net/
+	
+	Last update: October 2011
+
+*************************************************** */
+
+
+/*////////////////// CSS RESET //////////////////////
+___________________________________________________*/
+
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,input,textarea,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;outline:0;font-size:100%;font:inherit;vertical-align:baseline;background:transparent;}
+article,aside,command,details,summary,figure,figcaption,footer,header,hgroup,mark,meter,nav,progress,ruby,rt,rp,section,time,wbr{display:block;}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}
+ol,ul,li{list-style:none;}
+
+
+
+/*////////////////// OVERALL DEFINITIONS ////////////
+___________________________________________________*/
+
+
+html {
+    margin: 0px;
+    padding: 0px;
 }
+
+body {
+	/* formatting
+	------------------ */
+	font-family: Helvetica, Arial, sans-serif;
+    font-size: 16px;
+	text-align: center;
+	color: #999999;
+	background: #FFFFFF;
+	/* css3
+	------------------ */
+	/*
+	background-image: url(/media/img/interface/background_toplight.png), -webkit-gradient(linear, 0 0, 0 100%, from(rgba(0,0,0,0.12)), to(rgba(0,0,0,0))), url(/media/img/interface/background_tile.png);
+	background-image: url(/media/img/interface/background_toplight.png), -moz-linear-gradient(rgba(0,0,0,0.12), rgba(0,0,0,0)), url(/media/img/interface/background_tile.png);
+	background-repeat: no-repeat, repeat-x, repeat;
+	background-position: 50% top, left top, left top;
+	-webkit-background-size: 1200px 375px, 100px 460px, 200px 200px;
+	-moz-background-size: 1200px 375px, 100px 460px, 200px 200px;
+	*/
+	}
+
+
+
+/*////////////////// COMMON DEFINITIONS ////////////
+___________________________________________________*/
+
+
+/*............................... CLEARFIX ........*/
+
+.clearfix:before { content:""; display:table; }
+.clearfix:after { content:""; display:table; clear:both; }
+.clearfix { zoom:1; } /* IE6/7 */
+
+
+/*............................... LINKS ........*/
+
+a, a:hover, a:active, a:visited { color: #73BE1E; }
+
+/* avoid borders on images contained in links */
+a img, :link img, :visited img { border: none; }
+
+
+/*............................... SELECTIONS ..........*/
+
+::-moz-selection { background: #CC0000; color: #fff; text-shadow: none; }
+::selection { background: #CC0000; color: #fff; text-shadow: none; }
+
+
+/*............................... IMAGES ..........*/
+
+/* img interpolation with IE7 */
+img { -ms-interpolation-mode: bicubic; }
+
+
+/*............................... COLORS ..........*/
+
+.c1 { color: #FFC719; } /* = giallo logo */
+.c2 { color: #73BE1E; } /* = verde logo */
+.c3 { color: #017ABB; } /* = azzurro logo */
+.c4 { color: #970F00; } /* = rosso logo */
+
+.bc1 { color: #FFFFFF; background-color: #FFC719; } /* = giallo logo */
+.bc2 { color: #FFFFFF; background-color: #73BE1E; } /* = verde logo */
+.bc3 { color: #FFFFFF; background-color: #017ABB; } /* = azzurro logo */
+.bc4 { color: #FFFFFF; background-color: #970F00; } /* = rosso logo */
+
+
+/*/////////////////////////////////////////////////////// COMMON BOXES DEFINITIONS //////////////
+_______________________________________________________________________________________________________ */
+
+#boxRoot {
+	/* layout
+	------------------ */
+	position: relative;
+	width: 800px;
+	margin: 0px auto;
+}
+	
+
+/*||||||||||||||||||||||||||||||| HEADER |||||||||||
+__________________________________________________________ */
+
+header {
+	/* layout
+	------------------ */
+	position: absolute;
+	top: 50px;
+	left: 50%;
+	width: 800px;
+	height: 150px;
+	margin-left: -400px;
+	z-index: 2;
+	}
+
+	header h1 {
+	/* layout
+	------------------ */
+		position: absolute;
+		top: 0px;
+		left: 50%;
+		width: 540px;
+		height: 100px;
+		margin-left: -270px;
+		/* formatting
+		------------------ */
+		text-indent: -9999px; overflow: hidden;
+		background: url(/assets/logo_big.png) no-repeat 0px top;
+	}
+
+	header h2 {
+		/* layout
+		------------------ */
+		position: absolute;
+		top: 115px;
+		left: 265px;
+		width: 350px;
+		/* formatting
+		------------------ */
+		font-family: 'Terminal Dosis', sans-serif;	/* 200 300 400 500 600 700 800 */
+		font-size: 18px;
+		line-height: 21px;
+		font-weight: 500;
+		text-align: left;
+		color: #666666;
+		}
+
+		header h2 span { /*padding: 0px 6px;*/ }
+
+		header h2 a {
+			position: absolute;
+			top: 0px;
+			right: 0px;
+			color: #CCCCCC !important;
+			}
+
+			header h2 a:hover { color: #666666 !important; }
+
+
+/*||||||||||||||||||||||||||||||| MAIN |||||||||||
+__________________________________________________________ */
+
+section {
+	/* layout
+	------------------ */
+	position: relative;
+	width: 600px;
+	height: auto;
+	margin: 0px auto;
+	padding: 250px 0px 100px;
+	z-index: 1;
+	}
+	
+	section h1 {
+		/* layout
+		------------------ */
+		margin: 0px auto 30px;
+		/* formatting
+		------------------ */
+		font-family: 'Terminal Dosis', sans-serif;	/* 200 300 400 500 600 700 800 */
+		font-size: 60px;
+		line-height: 1em;
+		font-weight: 700;
+		text-align: center;
+		color: #222222;
+	}
+
+	section h2 {
+		/* layout
+		------------------ */
+		margin: 60px auto 20px;
+		padding-bottom: 10px;
+		/* formatting
+		------------------ */
+		font-family: 'Terminal Dosis', sans-serif;	/* 200 300 400 500 600 700 800 */
+		font-size: 22px;
+		line-height: 1em;
+		font-weight: 700;
+		text-align: center;
+		color: #444444;
+		border-bottom: 1px dotted #E4E4E4;
+	}
+
+	section p {
+		/* layout
+		------------------ */
+		margin-bottom: 10px;
+		/* formatting
+		------------------ */
+		font-size: 16px;
+		line-height: 20px;
+		text-align: left;
+		color: #555555;
+	}
+	
+
+/*////////////////// CUSTOM PAGES ///////////////////
+___________________________________________________*/
+
+
+/*||||||||||||||||||||||||||||||| HOME |||||||||||
+__________________________________________________________ */
+
+body.home {}
+
+body.home #boxRoot { position: fixed; width: 100%; height: 100%; overflow: hidden; }
+body.home #boxScroll { height: 4000px; }
+
+body.home aside {
+	/* layout
+	------------------ */
+	position: absolute;
+	top: 250px;
+	left: 50%;
+	width: 250px;
+	margin-left: -125px;
+	text-align: center;
+	vertical-align: bottom;
+	/*border: 1px solid lime;*/
+	}
+
+	body.home aside img {
+		/* layout
+		------------------ */
+		max-width: 100%;
+		max-height: 100%;
+		margin: 0px auto;
+		display: inline-block;
+	}
+
+	body.home aside span {
+		/* layout
+		------------------ */
+		margin-top: 10px;
+		display: block;
+		/* formatting
+		------------------ */
+		font-family: 'Terminal Dosis', sans-serif;	/* 200 300 400 500 600 700 800 */
+		font-size: 24px;
+		line-height: 24px;
+		font-weight: 700;
+		text-align: center;
+		color: #666666;
+	}
+
+body.home section {
+	/* layout
+	------------------ */
+	position: absolute;
+	top: 100%;
+	left: 0px;
+	width: 100%;
+	height: 130px;
+	margin: 0px;
+	padding: 0px;
+	}
+
+	body.home section h3 ,
+	body.home section p {
+		/* layout
+		------------------ */
+		margin: 0px;
+		padding: 0px;
+		/* formatting
+		------------------ */
+		font-family: 'Terminal Dosis', sans-serif;	/* 200 300 400 500 600 700 800 */
+		font-size: 21px;
+		line-height: 24px;
+		text-align: center;
+		color: #222222;
+		}
+	
+		body.home section h3 { margin-bottom: 5px; font-weight: 700; }
+		body.home section p { margin-bottom: 20px; font-weight: 400; }
+
+	body.home section a {
+		/* layout
+		------------------ */
+		width: 156px;
+		height: 46px;
+		margin: 0px auto;
+		display: block;
+		/* formatting
+		------------------ */
+		text-indent: -9999px; overflow: hidden;
+		background: url(/assets/home_cfp_button.png) no-repeat left top;
+		}
+		body.home section a:hover { background-position: left center; }
+		body.home section a:active { background-position: left bottom; }
+
+
+/*||||||||||||||||||||||||||||||| PROPOSAL |||||||||||
+__________________________________________________________ */
+
+body.proposal form {
+	/* layout
+	------------------ */
+	width: 600px;
+	margin: 25px auto;
+	padding: 1px;
+	}
+	
+	body.proposal form fieldset {
+		/* layout
+		------------------ */
+		position: relative;
+		margin: 20px 40px 0px;
+		padding: 15px 20px 0px 20px;
+		text-align: left;
+		/* formatting
+		------------------ */
+		border-top: 1px dotted #E5E5E5;
+		}
+
+		body.proposal form fieldset legend {
+			/* layout
+			------------------ */
+			padding: 2px 6px 6px;
+			/* formatting
+			------------------ */
+			font-family: 'Terminal Dosis', sans-serif;	/* 200 300 400 500 600 700 800 */
+			font-size: 21px;
+			line-height: 21px;
+			font-weight: 700;
+		}
+	
+		body.proposal form fieldset .field {
+			/* layout
+			------------------ */
+			position: relative;
+			display: inline-block;
+			padding: 5px;
+			}
+			/* clearfix */ body.proposal form fieldset .field:after { visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; } *:first-child+html body.proposal form fieldset .field { zoom: 1; }
+	
+			body.proposal form fieldset .field > label {
+				/* layout
+				------------------ */
+				width: 110px;
+				margin-right: 20px;
+				display: block;
+				float: left;
+				/* formatting
+				------------------ */
+				font-size: 12px;
+				line-height: 20px;
+				font-weight: bold;
+				text-transform: uppercase;
+				text-align: right;
+				color: #999999;
+			}
+			
+			body.proposal form fieldset .field > input,
+			body.proposal form fieldset .field > textarea {
+				/* layout
+				------------------ */
+				width: 325px;
+				margin: 0px;
+				padding: 2px; 
+				display: block;
+				float: left;
+				/* formatting
+				------------------ */
+				background: #FFFFFF;
+				border: 1px solid #CCCCCC; 
+			}
+			
+			body.proposal form div.actions {
+				/* layout
+				------------------ */
+				margin: 20px 73px 20px 193px;
+				}
+	
+				body.proposal form div.actions input {
+					/* layout
+					------------------ */
+					width: 136px;
+					height: 46px;
+					margin: 0px auto;
+					display: block;
+					/* formatting
+					------------------ */
+					text-indent: -9999px; overflow: hidden;
+					background: url(/assets/form_submit_button.png) no-repeat left top;
+					}
+					body.proposal form div.actions input:hover { background-position: left center; }
+					body.proposal form div.actions input:active { background-position: left bottom; }
+
+
+/*||||||||||||||||||||||||||||||| ABOUT |||||||||||
+__________________________________________________________ */
+
+body.about { }
