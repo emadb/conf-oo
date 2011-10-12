@@ -10,6 +10,7 @@ class ProposalsController < ApplicationController
   end
 
   def new
+    @page_class = 'proposal'
     @proposal = Proposal.new
     @proposal.speaker = Speaker.new
   end

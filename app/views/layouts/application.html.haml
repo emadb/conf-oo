@@ -9,15 +9,16 @@
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    %body.home
+    %body{:class => @page_class}
       %div#boxRoot
         %header
           %h1 UGIALT.net Conference
           %h2
-            %span.c1 6° Edizione
-            -
+            %span.c1 
+              6° Edizione
+            \-
             %span.c4 Milano ~ 21 Gennaio 2011
-            %a{:href => 'about'} about
+            %a{:href => '/about.html'} about
        
         = yield
       

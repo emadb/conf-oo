@@ -1,4 +1,3 @@
-
 =form_for @proposal do |f|
   -if @proposal.errors.any?
     #error_explanation
@@ -6,30 +5,31 @@
       %ul
         - @proposal.errors.full_messages.each do |msg|
           %li= msg
-          
-  .field
-    = f.label :title
-    = f.text_field :title
-  .field
-    = f.label :abstract
-    = f.text_area :abstract, :rows => 5
-    %fieldset
-      %legend speaker info
-      = f.fields_for :speaker  do |s|
-        .field
-          = s.label :name
-          = s.text_field :name, :value => @proposal.speaker.name  #does anybody knows how to remove the value attr?
-        .field
-          = s.label :email
-          = s.text_field :email, :value => @proposal.speaker.email
-        .field
-          = s.label :twitter
-          = s.text_field :twitter, :value => @proposal.speaker.twitter
-        .field
-          = s.label :blog
-          = s.text_field :blog, :value => @proposal.speaker.blog
-        .field
-          = s.label :bio
-          = s.text_area :bio, :rows => 3, :value => @proposal.speaker.bio
+  %fieldset
+    %legend.c3 speech details        
+    .field
+      = f.label :title
+      = f.text_field :title
+    .field
+      = f.label :abstract
+      = f.text_area :abstract, :rows => 5
+  %fieldset.c2
+    %legend speaker info
+    = f.fields_for :speaker  do |s|
+      .field
+        = s.label :name
+        = s.text_field :name, :value => @proposal.speaker.name  #does anybody knows how to remove the value attr?
+      .field
+        = s.label :email
+        = s.text_field :email, :value => @proposal.speaker.email
+      .field
+        = s.label :twitter
+        = s.text_field :twitter, :value => @proposal.speaker.twitter
+      .field
+        = s.label :blog
+        = s.text_field :blog, :value => @proposal.speaker.blog
+      .field
+        = s.label :bio
+        = s.text_area :bio, :rows => 3, :value => @proposal.speaker.bio
   .actions
     = f.submit 'Save'
