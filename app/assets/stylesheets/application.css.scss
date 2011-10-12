@@ -10,6 +10,11 @@
 
 *************************************************** */
 
+$yellow_logo: #FFC719; 	/* = giallo logo */
+$green_logo: #73BE1E; 	/* = verde logo */
+$blue_logo: #017ABB; 	/* = azzurro logo */
+$red_logo: #970F00; 	/* = rosso logo */
+
 
 /*////////////////// CSS RESET //////////////////////
 ___________________________________________________*/
@@ -65,7 +70,7 @@ ___________________________________________________*/
 
 /*............................... LINKS ........*/
 
-a, a:hover, a:active, a:visited { color: #73BE1E; }
+a, a:hover, a:active, a:visited { color: $green_logo; }
 
 /* avoid borders on images contained in links */
 a img, :link img, :visited img { border: none; }
@@ -85,15 +90,15 @@ img { -ms-interpolation-mode: bicubic; }
 
 /*............................... COLORS ..........*/
 
-.c1 { color: #FFC719; } /* = giallo logo */
-.c2 { color: #73BE1E; } /* = verde logo */
-.c3 { color: #017ABB; } /* = azzurro logo */
-.c4 { color: #970F00; } /* = rosso logo */
+.c1 { color: $yellow_logo; } 
+.c2 { color: $green_logo; } 
+.c3 { color: $blue_logo; } 
+.c4 { color: $red_logo; }
 
-.bc1 { color: #FFFFFF; background-color: #FFC719; } /* = giallo logo */
-.bc2 { color: #FFFFFF; background-color: #73BE1E; } /* = verde logo */
-.bc3 { color: #FFFFFF; background-color: #017ABB; } /* = azzurro logo */
-.bc4 { color: #FFFFFF; background-color: #970F00; } /* = rosso logo */
+.bc1 { color: #FFFFFF; background-color: $yellow_logo; }
+.bc2 { color: #FFFFFF; background-color: $green_logo; }
+.bc3 { color: #FFFFFF; background-color: $blue_logo; }
+.bc4 { color: #FFFFFF; background-color: $red_logo; }
 
 
 /*/////////////////////////////////////////////////////// COMMON BOXES DEFINITIONS //////////////
