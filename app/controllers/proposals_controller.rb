@@ -1,6 +1,11 @@
 class ProposalsController < ApplicationController
   before_filter :authenticate_user!, :except => [:new, :create, :show]
+  before_filter :set_body_class
   
+  def set_body_class
+    @page_class = 'proposal'
+  end
+
   def index
     @proposals = Proposal.all
   end
@@ -10,7 +15,6 @@ class ProposalsController < ApplicationController
   end
 
   def new
-    @page_class = 'proposal'
     @proposal = Proposal.new
     @proposal.speaker = Speaker.new
   end
@@ -19,10 +23,14 @@ class ProposalsController < ApplicationController
     @proposal = Proposal.new(params[:proposal])
     @proposal.submitted_on = DateTime.new
     if @proposal.save
-      redirect_to @proposal, notice: 'Proposal was successfully created.' 
+      render action: 'confirm' 
     else
-      render action: "new" 
+      render action: 'new' 
     end
+  end
+
+  def confirm
+    
   end
   
   def edit

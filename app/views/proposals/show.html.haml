@@ -1,27 +1,24 @@
-%p#notice= notice
-
-%div
-  your proposal have been saved.
-%p
-  %b Title:
-  = @proposal.title
-%p
-  %b Abstract:
-  = @proposal.abstract
-%fieldset
-  %legend speaker info  
+%section
   %p
-    %b Name:
-    = @proposal.speaker.name
+    %b Title:
+    = @proposal.title
   %p
-    %b Email:
-    = @proposal.speaker.email
-  %p
-    %b Twitter:
-    = @proposal.speaker.twitter
-  %p
-    %b Blog:
-    = @proposal.speaker.blog
+    %b Abstract:
+    = @proposal.abstract
+  %fieldset
+    %legend speaker info  
+    %p
+      %b Name:
+      = @proposal.speaker.name
+    %p
+      %b Email:
+      = @proposal.speaker.email
+    %p
+      %b Twitter:
+      = @proposal.speaker.twitter
+    %p
+      %b Blog:
+      = @proposal.speaker.blog
 
 = link_to 'Back', root_path
 - if user_signed_in?
