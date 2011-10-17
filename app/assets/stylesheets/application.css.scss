@@ -126,9 +126,7 @@ header {
 	height: 150px;
 	margin-left: -400px;
 	z-index: 2;
-	}
-
-	header h1 {
+	h1 {
 	/* layout
 	------------------ */
 		position: absolute;
@@ -143,7 +141,7 @@ header {
 		background: url(/assets/logo_big.png) no-repeat 0px top;
 	}
 
-	header h2 {
+	h2 {
 		/* layout
 		------------------ */
 		position: absolute;
@@ -158,18 +156,16 @@ header {
 		font-weight: 500;
 		text-align: left;
 		color: #666666;
-		}
-
-		header h2 span { /*padding: 0px 6px;*/ }
-
-		header h2 a {
+		span { /*padding: 0px 6px;*/ }
+		a {
 			position: absolute;
 			top: 0px;
 			right: 0px;
 			color: #CCCCCC !important;
-			}
-
-			header h2 a:hover { color: #666666 !important; }
+		}
+		a:hover { color: #666666 !important; }
+	}
+}
 
 
 /*||||||||||||||||||||||||||||||| MAIN |||||||||||
@@ -184,9 +180,7 @@ section {
 	margin: 0px auto;
 	padding: 250px 0px 100px;
 	z-index: 1;
-	}
-	
-	section h1 {
+	h1 {
 		/* layout
 		------------------ */
 		margin: 0px auto 30px;
@@ -200,7 +194,7 @@ section {
 		color: #222222;
 	}
 
-	section h2 {
+	h2 {
 		/* layout
 		------------------ */
 		margin: 60px auto 20px;
@@ -216,7 +210,7 @@ section {
 		border-bottom: 1px dotted #E4E4E4;
 	}
 
-	section p {
+	p {
 		/* layout
 		------------------ */
 		margin-bottom: 10px;
@@ -227,6 +221,8 @@ section {
 		text-align: left;
 		color: #555555;
 	}
+}
+
 	
 
 /*////////////////// CUSTOM PAGES ///////////////////
