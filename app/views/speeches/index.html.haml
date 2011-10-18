@@ -1,31 +1,32 @@
-%h1 Listing speeches
+%section
+  %h1 Listing speeches
 
-%table
-  %tr
-    %th Speaker
-    %th From
-    %th To
-    %th Room
-    %th Title
-    %th Abstract
-    %th
-    - if user_signed_in?
-      %th
-      %th
-
-  - @speeches.each do |speech|
+  %table
     %tr
-      %td= "#{speech.speaker.name} (#{speech.speaker.email})"
-      %td= speech.from
-      %td= speech.to
-      %td= speech.room
-      %td= speech.title
-      %td= speech.abstract
-      %td= link_to 'Show', speech
+      %th Speaker
+      %th From
+      %th To
+      %th Room
+      %th Title
+      %th Abstract
+      %th
       - if user_signed_in?
-        %td= link_to 'Edit', edit_speech_path(speech)
-        %td= link_to 'Destroy', speech, :confirm => 'Are you sure?', :method => :delete
+        %th
+        %th
 
-%br
-- if user_signed_in?
-  = link_to 'New Speech', new_speech_path
+    - @speeches.each do |speech|
+      %tr
+        %td= "#{speech.speaker.name} (#{speech.speaker.email})"
+        %td= speech.from
+        %td= speech.to
+        %td= speech.room
+        %td= speech.title
+        %td= speech.abstract
+        %td= link_to 'Show', speech
+        - if user_signed_in?
+          %td= link_to 'Edit', edit_speech_path(speech)
+          %td= link_to 'Destroy', speech, :confirm => 'Are you sure?', :method => :delete
+
+  %br
+  - if user_signed_in?
+    = link_to 'New Speech', new_speech_path

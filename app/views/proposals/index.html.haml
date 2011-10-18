@@ -1,28 +1,28 @@
 %section
-  %h1 Listing proposals
+  %h2 Listing proposals
 
-%table
-  %tr
-    %th Speaker name
-    %th Speaker email
-    %th Title
-    %th Submitted on
-    %th Approved 
-    %th
-    %th
-    %th
-
-  - @proposals.each do |proposal|
+  %table
     %tr
-      %td= proposal.speaker.name
-      %td= proposal.speaker.email
-      %td= proposal.title
-      %td= proposal.submitted_on.strftime('%d/%m/%Y %h:%m')
-      %td= proposal.approved
-      %td= link_to 'Show', proposal
-      %td= link_to 'Edit', edit_proposal_path(proposal)
-      %td= link_to 'Destroy', proposal, :method => :delete, :class => 'delete'
+      %th Speaker name
+      %th Speaker email
+      %th Title
+      %th Submitted on
+      %th Approved 
+      %th
+      %th
+      %th
 
-%br
+    - @proposals.each do |proposal|
+      %tr
+        %td= proposal.speaker.name
+        %td= proposal.speaker.email
+        %td= proposal.title
+        %td= proposal.submitted_on.strftime('%d/%m/%Y %h:%m')
+        %td= proposal.approved
+        %td= link_to 'Show', proposal
+        %td= link_to 'Edit', edit_proposal_path(proposal)
+        %td= link_to 'Destroy', proposal, :method => :delete, :class => 'delete'
 
-= link_to 'New Proposal', new_proposal_path
+  %br
+
+  = link_to 'New Proposal', new_proposal_path

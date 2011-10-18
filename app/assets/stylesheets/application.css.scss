@@ -422,3 +422,33 @@ body.proposal form {
 __________________________________________________________ */
 
 body.about { }
+
+
+/*||||||||||||||||||||||||||||||| Tables ||||||||||||
+__________________________________________________________ */
+
+table {
+	border-spacing: 0px;
+	width: 800px;
+	margin-left: -60px;
+	tr{
+		td {
+			text-align:left;
+			padding: 4px;
+			border: 1px dotted #AAAAAA;
+		}
+	}
+	tr:nth-child(odd) {
+		th {
+			text-align:left;
+			color: $red_logo;
+			padding: 4px;
+			line-height: 30px;
+			background: $yellow_logo;
+			border: 1px dotted #AAAAAA;
+		}
+		background: #CCCCCC;
+		
+	}
+
+}
