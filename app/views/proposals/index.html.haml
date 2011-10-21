@@ -17,7 +17,7 @@
         %td= proposal.speaker.name
         %td= proposal.speaker.email
         %td= proposal.title
-        %td= proposal.submitted_on.strftime('%d/%m/%Y %h:%m')
+        %td= proposal.submitted_on.strftime('%d/%m/%Y')
         %td= proposal.approved
         %td= link_to 'Show', proposal
         %td= link_to 'Edit', edit_proposal_path(proposal)
