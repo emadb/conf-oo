@@ -4,6 +4,6 @@ class Proposal
   embeds_one :speaker, as: :embedded_speaker
   field :title
   field :abstract
-  field :submitted_on, :type => Date  
+  field :submitted_on, :type => DateTime
   field :approved, :type => Boolean, :default => false
 end
