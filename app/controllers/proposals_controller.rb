@@ -21,7 +21,7 @@ class ProposalsController < ApplicationController
 
   def create
     @proposal = Proposal.new(params[:proposal])
-    @proposal.submitted_on = DateTime.new
+    @proposal.submitted_on = DateTime.now
     if @proposal.save
       render action: 'confirm' 
     else
