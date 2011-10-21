@@ -1,7 +1,6 @@
 
 $(function() {
 	$('.delete').click(function(evt) {
-
 		if (confirm('Are you sure?')) {
 			var url = $(this).attr('href');
 			var row = $(this).parent().parent();
@@ -13,4 +12,6 @@ $(function() {
 		}
 		return false;
 	});
+
+	$("form").validate();
 })

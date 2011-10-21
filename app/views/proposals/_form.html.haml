@@ -9,19 +9,19 @@
     %legend.c3 speech details        
     .field
       = f.label :title
-      = f.text_field :title
+      = f.text_field :title, :class => 'required'
     .field
       = f.label :abstract
-      = f.text_area :abstract, :rows => 5
+      = f.text_area :abstract, :rows => 5, :class => 'required'
   %fieldset.c2
     %legend speaker info
     = f.fields_for :speaker  do |s|
       .field
         = s.label :name
-        = s.text_field :name, :value => @proposal.speaker.name  #does anybody knows how to remove the value attr?
+        = s.text_field :name, :value => @proposal.speaker.name, :class => 'required'  #does anybody knows how to remove the value attr?
       .field
         = s.label :email
-        = s.text_field :email, :value => @proposal.speaker.email
+        = s.text_field :email, :value => @proposal.speaker.email, :class => 'required'
       .field
         = s.label :twitter
         = s.text_field :twitter, :value => @proposal.speaker.twitter
@@ -30,6 +30,6 @@
         = s.text_field :blog, :value => @proposal.speaker.blog
       .field
         = s.label :bio
-        = s.text_area :bio, :rows => 3, :value => @proposal.speaker.bio
+        = s.text_area :bio, :rows => 3, :value => @proposal.speaker.bio, :class => 'required'
   .actions
     = f.submit 'Save'

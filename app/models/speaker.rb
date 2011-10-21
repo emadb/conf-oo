@@ -1,5 +1,6 @@
 class Speaker
   include Mongoid::Document
+  validates_presence_of :name, :bio, :email
   field :name
   field :bio
   field :email
