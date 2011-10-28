@@ -1,5 +1,5 @@
 class ProposalsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:new, :create, :show]
+  before_filter :authenticate_user!, :except => [:new, :create]
   before_filter :set_body_class
   
   def set_body_class
