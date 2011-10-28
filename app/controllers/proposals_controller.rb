@@ -7,7 +7,7 @@ class ProposalsController < ApplicationController
   end
 
   def index
-    @proposals = Proposal.all
+    @proposals = Proposal.all.order_by([:submitted_on, :asc])
   end
 
   def show
