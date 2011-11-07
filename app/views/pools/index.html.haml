@@ -4,5 +4,6 @@
 			- @proposals.each do |f|
 				%li
 					=f.title
-					=check_box_tag f.id
+					=check_box_tag 'proposals[]', f.id
+					
 		%input{:type => 'submit', :value => 'save'}
