@@ -8,6 +8,9 @@ ConfOo::Application.routes.draw do
   
   resources :proposals
   resources :speeches
+  resources :pools
+
+  match 'pools/save', :to => 'pools#save'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
