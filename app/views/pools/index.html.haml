@@ -1,0 +1,8 @@
+%section
+	%form{:action => '/pools/save', :method => 'post'}
+		%ul
+			- @proposals.each do |f|
+				%li
+					=f.title
+					=check_box_tag f.id
+		%input{:type => 'submit', :value => 'save'}
