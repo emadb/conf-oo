@@ -8,6 +8,7 @@ class PoolsController < ApplicationController
 		#user = ...
 		
 		proposals.each do |p|
+			# if user has not voted yet
 			# save result
 		end
 
