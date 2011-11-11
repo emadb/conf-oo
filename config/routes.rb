@@ -11,11 +11,14 @@ ConfOo::Application.routes.draw do
   match '/signout' => 'sessions#destroy', :as => :signout
   match '/signin' => 'sessions#new', :as => :signin
 
+  match 'pools/save', :to => 'pools#save'
+  match 'pools/login', :to => 'pools#login'
+
   resources :proposals
   resources :speeches
   resources :pools
 
-  match 'pools/save', :to => 'pools#save'
+
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
