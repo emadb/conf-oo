@@ -6,6 +6,8 @@ gem 'bson_ext', "~> 1.3"
 gem 'haml'
 gem 'haml-rails'
 gem 'devise'
+gem "omniauth", ">= 1.0.0"
+gem "omniauth-twitter"
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
