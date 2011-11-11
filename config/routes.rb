@@ -5,12 +5,20 @@ ConfOo::Application.routes.draw do
   
   match 'approve/:id', :to => 'proposals#approve', :as => "approve_proposal"
   match 'unapprove/:id', :to => 'proposals#unapprove', :as => "unapprove_proposal"
-  
+
+  match '/auth/:provider/callback' => 'sessions#create'
+  match '/auth/failure' => 'sessions#failure'
+  match '/signout' => 'sessions#destroy', :as => :signout
+  match '/signin' => 'sessions#new', :as => :signin
+
+  match 'pools/save', :to => 'pools#save'
+  match 'pools/login', :to => 'pools#login'
+
   resources :proposals
   resources :speeches
   resources :pools
 
-  match 'pools/save', :to => 'pools#save'
+
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

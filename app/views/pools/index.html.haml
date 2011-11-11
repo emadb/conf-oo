@@ -1,4 +1,10 @@
 %section
+	%div.authentication
+		-if user_signed_in?
+			=current_user.name
+		-else
+			=link_to('Login con twitter', signin_path)
+		
 	%form{:action => '/pools/save', :method => 'post'}
 		%ul
 			- @proposals.each do |f|
