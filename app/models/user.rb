@@ -7,10 +7,10 @@ class User
   field :name
   field :provider
   field :uid
-  field :email, :type => String
+  field :email
 
   validates_presence_of :name
-  validates_uniqueness_of :name, :email, :case_sensitive => false
+  validates_uniqueness_of :name, :case_sensitive => false
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :email, :provider, :uid
   attr_protected :provider, :uid, :name, :email
 
