@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
 
     def user_is_admin?
       unless current_user && current_user.is_admin?
-        redirect_to error_path
+        redirect_to error_path, :alert => 'You need to sign in for access to this page.'
       end
     end
 end
