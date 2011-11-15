@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   helper_method :user_signed_in?
   helper_method :correct_user?
+  helper_method :user_is_admin?
 
   private
     def current_user
@@ -21,13 +22,19 @@ class ApplicationController < ActionController::Base
     def correct_user?
       @user = User.find(params[:id])
       unless current_user == @user
-        redirect_to pools_login_url, :alert => "Access denied."
+        redirect_to error_path, :alert => "Access denied."
       end
     end
 
     def authenticate_user!
       if !current_user
-        redirect_to pools_login_url, :alert => 'You need to sign in for access to this page.'
+        redirect_to error_path, :alert => 'You need to sign in for access to this page.'
+      end
+    end
+
+    def user_is_admin?
+      unless current_user && current_user.is_admin?
+        redirect_to error_path
       end
     end
 end

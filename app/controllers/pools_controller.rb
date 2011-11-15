@@ -8,6 +8,8 @@ class PoolsController < ApplicationController
 
 	def index
 		@proposals = Proposal.all
+
+		logger.info "***** Sono un ADMIN? : " + current_user.is_admin?.to_s
 	end
 
 	def save
