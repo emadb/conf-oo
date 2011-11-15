@@ -2,6 +2,10 @@ ConfOo::Application.routes.draw do
   root :to => "home#index"
 
   devise_for :users
+
+  devise_scope :user do
+    get "/login" => "sessions#new"
+  end
   
   match 'approve/:id', :to => 'proposals#approve', :as => "approve_proposal"
   match 'unapprove/:id', :to => 'proposals#unapprove', :as => "unapprove_proposal"
@@ -13,6 +17,8 @@ ConfOo::Application.routes.draw do
 
   match 'pools/save', :to => 'pools#save'
   match 'pools/login', :to => 'pools#login'
+
+  match 'error', :to => 'home#error'
 
   resources :proposals
   resources :speeches

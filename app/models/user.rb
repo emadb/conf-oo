@@ -32,8 +32,8 @@ class User
 	  end
 	end
 
-  def is_admin
-    true
+  def is_admin?
+    ['simonech', 'jitidea', 'emadb'].include? nickname
   end
 
 end
