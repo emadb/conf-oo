@@ -1,0 +1,12 @@
+%section
+	%h1
+		= "Welcome to the admin area #{current_user.name}"
+	%p
+		= flash[:alert]
+	%ul
+		%li
+			= link_to('Proposals', '/proposals')
+		%li
+			= link_to('Signout', signout_path)
+	%h2
+		= link_to('home', root_path)

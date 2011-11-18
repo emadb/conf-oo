@@ -18,11 +18,13 @@ ConfOo::Application.routes.draw do
   match 'pools/save', :to => 'pools#save'
   match 'pools/login', :to => 'pools#login'
 
-  match 'error', :to => 'home#error'
+  match 'authenticate', :to => 'home#authenticate'
+  match 'admin_area', :to => 'home#admin_area'
 
   resources :proposals
   resources :speeches
   resources :pools
+  resources :attendees
 
 
   
