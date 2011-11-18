@@ -10,8 +10,11 @@ class SessionsController < ApplicationController
 	                    :uid => auth['uid']).first || User.create_with_omniauth(auth)
 	  session[:user_id] = user.id
 
-    redirect_to pools_url, :notice => "Signed in!"
-
+    if current_user.is_admin?
+      redirect_to admin_area_url
+    else
+      redirect_to pools_url, :notice => "Signed in!"
+    end
 	end
 
 	def destroy
@@ -20,7 +23,7 @@ class SessionsController < ApplicationController
   end
 
   def failure
-    redirect_to error_url, :alert => "Authentication error: #{params[:message].humanize}"
+    redirect_to authenticate_url, :alert => "Authentication error: #{params[:message].humanize}"
   end
 
 end

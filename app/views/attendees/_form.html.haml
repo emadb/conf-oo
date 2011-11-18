@@ -1,0 +1,30 @@
+=form_for @attendee do |f|
+  -if @attendee.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@attendee.errors.count, "error")} prohibited this proposal from being saved:"
+      %ul
+        - @attendee.errors.full_messages.each do |msg|
+          %li= msg
+  = f.hidden_field :uid
+  = f.hidden_field :provider
+  %fieldset
+    %legend.c3 compila la form con i tuoi dati        
+    .field
+      = f.label :name
+      = f.text_field :name, :class => 'required'    
+    .field
+      = f.label :email
+      = f.text_field :email, :class => 'required'
+    .field
+      = f.label :twitter
+      = f.text_field :twitter
+    .field
+      = f.label :t_shirt
+      
+      = f.select( :t_shirt, {"Nessuna maglietta" => "None", "XL" => "XL", "L" => "L", "M" => "M"})
+    .field
+      = f.label :launch
+      = f.check_box :launch
+    
+  .actions
+    = f.submit 'Save'

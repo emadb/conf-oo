@@ -5,11 +5,27 @@
 		-else
 			=link_to('Login con twitter', signin_path)
 		
-	%form{:action => '/pools/save', :method => 'post'}
+	%form{:action => '/pools/save', :method => 'post', :id => 'pools'}
 		%ul
-			- @proposals.each do |f|
+			- @proposals.each do |p|
 				%li
-					=f.title
-					=check_box_tag 'proposals[]', f.id
+					%table
+						%tr
+							%td
+								%strong
+									=p.speaker.name
+						%tr
+							%td
+								%strong
+									=p.title
+						%tr
+							%td
+								=p.abstract
+						%tr
+							%td	
+								=check_box_tag 'proposals[]', p.id
+						%tr
+							%td
+								%hr
 					
 		%input{:type => 'submit', :value => 'save'}

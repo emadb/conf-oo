@@ -1,15 +1,12 @@
 class PoolsController < ApplicationController
 	before_filter :authenticate_user!, :except =>[:login]
-	#before_filter :correct_user?, :except =>[:login]
-
+	
 	def login
 
 	end
 
 	def index
 		@proposals = Proposal.all
-
-		logger.info "***** Sono un ADMIN? : " + current_user.is_admin?.to_s
 	end
 
 	def save
