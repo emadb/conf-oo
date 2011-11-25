@@ -7,7 +7,7 @@ class Attendee
   field :t_shirt
   field :provider
   field :uid
-  field :launch, :type => Boolean, :default => false
+  field :lunch, :type => Boolean, :default => false
   field :is_in_wait_list, :type => Boolean, :default => false
 
   def is_new
