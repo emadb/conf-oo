@@ -13,10 +13,10 @@
 					.proposal-title
 						.c1
 							=p.title
-							%a abstract
+							%a{:class=>'butt', :id =>'a-'+p.id.to_s} abstract
 						.c2
 							=p.speaker.name
-							%a bio
+							%a{:class=>'butt', :id =>'b-'+p.id.to_s} bio
 							- if(p.speaker.twitter!='')
 								- if(p.speaker.twitter.starts_with? 'http')
 									= link_to('Twitter', p.speaker.twitter)
@@ -24,12 +24,9 @@
 									= link_to('Twitter', 'http://twitter.com/#!/'+p.speaker.twitter)
 							- if(p.speaker.blog!='')
 								= link_to('Blog', p.speaker.blog)
-					.details
-						%p
-							Abstract:
-							=p.abstract
-						%p
-							Bio speaker:
-							=p.speaker.bio
+					.abstract{:class=>'details', :id =>'va-'+p.id.to_s}
+						=p.abstract
+					.bio{:class=>'details', :id =>'vb-'+p.id.to_s}
+						=p.speaker.bio
 					
 		%input{:type => 'submit', :value => 'save'}
