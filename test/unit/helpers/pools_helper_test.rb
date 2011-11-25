@@ -1,4 +1,4 @@
 require 'test_helper'
 
-class PoolsHelperTest < ActionView::TestCase
+class pollsHelperTest < ActionView::TestCase
 end

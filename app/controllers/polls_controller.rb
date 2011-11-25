@@ -1,4 +1,4 @@
-class PoolsController < ApplicationController
+class PollsController < ApplicationController
 	before_filter :authenticate_user!, :except =>[:login]
 	
 	def login

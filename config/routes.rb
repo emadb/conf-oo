@@ -15,15 +15,15 @@ ConfOo::Application.routes.draw do
   match '/signout' => 'sessions#destroy', :as => :signout
   match '/signin' => 'sessions#new', :as => :signin
 
-  match 'pools/save', :to => 'pools#save'
-  match 'pools/login', :to => 'pools#login'
+  match 'polls/save', :to => 'polls#save'
+  match 'polls/login', :to => 'polls#login'
 
   match 'authenticate', :to => 'home#authenticate'
   match 'admin_area', :to => 'home#admin_area'
 
   resources :proposals
   resources :speeches
-  resources :pools
+  resources :polls
   resources :attendees
 
   match 'attendees/already_registered', :to =>'attendees#already_registered'

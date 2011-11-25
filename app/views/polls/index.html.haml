@@ -5,7 +5,7 @@
 		-else
 			=link_to('Login con twitter', signin_path)
 		
-	%form{:action => '/pools/save', :method => 'post', :id => 'pools'}
+	%form{:action => '/polls/save', :method => 'post', :id => 'polls'}
 		%ul
 			- @proposals.each do |p|
 				%li
