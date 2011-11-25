@@ -26,6 +26,8 @@ class AttendeesController < ApplicationController
 				if @attendee.is_in_wait_list 
 					render :action => 'sold_out'
 				else
+					#send mail
+					mail(@attendee)
 					render :action => 'confirm' 
 				end
 			else
