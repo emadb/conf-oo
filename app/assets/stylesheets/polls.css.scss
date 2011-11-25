@@ -1,3 +1,24 @@
 // Place all the styles related to the polls controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+ul {
+    text-align:left;
+    li {
+        font-family: 'Terminal Dosis', sans-serif;
+        font-size:22px;
+    }
+}
+
+input[type="checkbox"]{
+float:left;
+}
+
+.proposal-title {
+    padding-left:20px;
+    padding-bottom: 15px;
+}
+
+.details {
+    display:none;
+}
