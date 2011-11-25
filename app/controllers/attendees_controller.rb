@@ -16,11 +16,24 @@ class AttendeesController < ApplicationController
 
 	def create
 		@attendee = Attendee.new(params[:attendee])
-		if @attendee.save
-			render :action => 'confirm' 
-		else
-			render :action => 'new'
-		end
-	end
 
+		if Attendee.count > 100
+			@attendee.is_in_wait_list = true
+		end	
+
+		if @attendee.is_new
+			if @attendee.save
+				if @attendee.is_in_wait_list 
+					render :action => 'sold_out'
+				else
+					render :action => 'confirm' 
+				end
+			else
+				render :action => 'new'
+			end
+		else
+			render :action => 'already_registered'
+		end
+
+	end
 end

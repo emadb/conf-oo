@@ -26,6 +26,9 @@ ConfOo::Application.routes.draw do
   resources :pools
   resources :attendees
 
+  match 'attendees/already_registered', :to =>'attendees#already_registered'
+  match 'attendees/confirm', :to =>'attendees#confirm'
+
 
   
   # The priority is based upon order of creation:
