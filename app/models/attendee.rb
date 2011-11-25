@@ -9,4 +9,8 @@ class Attendee
   field :uid
   field :launch, :type => Boolean, :default => false
   field :is_in_wait_list, :type => Boolean, :default => false
+
+  def is_new
+      return ! Attendee.exists?(conditions: { uid: uid })
+  end
 end

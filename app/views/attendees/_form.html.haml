@@ -24,7 +24,7 @@
       = f.select( :t_shirt, {"Nessuna maglietta" => "None", "XL" => "XL", "L" => "L", "M" => "M"})
     .field
       = f.label :launch
-      = f.check_box :launch
+      = f.select( :launch, {'Si' => true, 'No' => false})
     
   .actions
     = f.submit 'Save'
