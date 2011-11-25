@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
     if current_user.is_admin?
       redirect_to admin_area_url
     else
-      redirect_to pools_url, :notice => "Signed in!"
+      redirect_to polls_url, :notice => "Signed in!"
     end
 	end
 

@@ -1,6 +1,6 @@
 $(function (){
 	
-	if ($('form#pools').length > 0) {
+	if ($('form#polls').length > 0) {
 		$("input[type='submit']").click(function (evt){
 			evt.preventDefault();
 			var selections = $("input:checked").length
