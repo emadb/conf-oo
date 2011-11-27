@@ -14,6 +14,7 @@ $yellow_logo: #FFC719; 	/* = giallo logo */
 $green_logo: #73BE1E; 	/* = verde logo */
 $blue_logo: #017ABB; 	/* = azzurro logo */
 $red_logo: #970F00; 	/* = rosso logo */
+$speaker: #668049;
 
 
 /*////////////////// CSS RESET //////////////////////
@@ -450,5 +451,15 @@ table {
 		background: #EEEEEE;
 		
 	}
+}
 
+.speaker
+{
+	color: $blue_logo;
+	font-size: 16px;
+}
+
+.abstract
+{
+	font-size: 80%;
 }
