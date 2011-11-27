@@ -1,5 +1,5 @@
 %section
-	%div.authentication
+	%h2
 		-if user_signed_in?
 			=current_user.name
 		-else
@@ -9,23 +9,24 @@
 		%ul
 			- @proposals.each do |p|
 				%li
-					%table
-						%tr
-							%td
-								%strong
-									=p.speaker.name
-						%tr
-							%td
-								%strong
-									=p.title
-						%tr
-							%td
-								=p.abstract
-						%tr
-							%td	
-								=check_box_tag 'proposals[]', p.id
-						%tr
-							%td
-								%hr
+					=check_box_tag 'proposals[]', p.id
+					.proposal-title
+						.c1
+							=p.title
+							%a{:class=>'butt', :id =>'a-'+p.id.to_s} abstract
+						.c2
+							=p.speaker.name
+							%a{:class=>'butt', :id =>'b-'+p.id.to_s} bio
+							- if(p.speaker.twitter!='')
+								- if(p.speaker.twitter.starts_with? 'http')
+									= link_to('Twitter', p.speaker.twitter)
+								- else
+									= link_to('Twitter', 'http://twitter.com/#!/'+p.speaker.twitter)
+							- if(p.speaker.blog!='')
+								= link_to('Blog', p.speaker.blog)
+					.abstract{:class=>'details', :id =>'va-'+p.id.to_s}
+						=p.abstract
+					.bio{:class=>'details', :id =>'vb-'+p.id.to_s}
+						=p.speaker.bio
 					
 		%input{:type => 'submit', :value => 'save'}
