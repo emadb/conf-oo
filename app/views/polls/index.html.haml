@@ -20,8 +20,8 @@
 							%br
 							%span.speaker
 								=p.speaker.name
-								=raw "<a href='#{p.speaker.twitter_link}'><img src='assets/twitter.gif' /></a>"
-								=raw "<a href='#{p.speaker.blog}'><img src='assets/rss.png' /></a>"
+								=image_link p.speaker.twitter_link, 'assets/twitter.gif'
+								=image_link p.speaker.blog, 'assets/rss.png'
 						.abstract
 							=p.abstract
-		%input{:type => 'submit', :value => 'save'}
+		%input{:type => 'submit', :value => 'salva le mie preferenze'}
