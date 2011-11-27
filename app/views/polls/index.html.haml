@@ -1,7 +1,11 @@
 %section
 	%h2
 		-if user_signed_in?
-			=current_user.name
+			%p
+				=current_user.name
+			%p
+				Abbiamo ricevuto molte proposte per la conferenza ma purtroppo non abbiamo spazio per tutti, quindi dobbiamo scegliere le sessioni che verranno accettate.
+				Esprimi la tua preferenza scegliendo le 5 sessioni che non vorresti assolutamente perdere.
 		-else
 			=link_to('Login con twitter', signin_path)
 		
@@ -11,22 +15,13 @@
 				%li
 					=check_box_tag 'proposals[]', p.id
 					.proposal-title
-						.c1
-							=p.title
-							%a{:class=>'butt', :id =>'a-'+p.id.to_s} abstract
 						.c2
-							=p.speaker.name
-							%a{:class=>'butt', :id =>'b-'+p.id.to_s} bio
-							- if(p.speaker.twitter!='')
-								- if(p.speaker.twitter.starts_with? 'http')
-									= link_to('Twitter', p.speaker.twitter)
-								- else
-									= link_to('Twitter', 'http://twitter.com/#!/'+p.speaker.twitter)
-							- if(p.speaker.blog!='')
-								= link_to('Blog', p.speaker.blog)
-					.abstract{:class=>'details', :id =>'va-'+p.id.to_s}
-						=p.abstract
-					.bio{:class=>'details', :id =>'vb-'+p.id.to_s}
-						=p.speaker.bio
-					
+							=p.title
+							%br
+							%span.speaker
+								=p.speaker.name
+								=raw "<a href='#{p.speaker.twitter}'><img src='assets/twitter.gif' /></a>"
+								=raw "<a href='#{p.speaker.blog}'><img src='assets/rss.png' /></a>"
+						.abstract
+							=p.abstract
 		%input{:type => 'submit', :value => 'save'}
