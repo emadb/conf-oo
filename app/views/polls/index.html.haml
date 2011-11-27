@@ -2,10 +2,10 @@
 	%h2
 		-if user_signed_in?
 			%p
-				=current_user.name
+				="Ciao #{current_user.name}"
 			%p
-				Abbiamo ricevuto molte proposte per la conferenza ma purtroppo non abbiamo spazio per tutti, quindi dobbiamo scegliere le sessioni che verranno accettate.
-				Esprimi la tua preferenza scegliendo le 5 sessioni che non vorresti assolutamente perdere.
+				Abbiamo ricevuto molte proposte per la conferenza ma purtroppo non abbiamo spazio per tutti, quindi dobbiamo scegliere le sessioni che verranno presentate alla conferenza.
+				Esprimi la tua preferenza scegliendo le <span class="c2">5 sessioni</span> che non vorresti assolutamente perdere.
 		-else
 			=link_to('Login con twitter', signin_path)
 		
@@ -24,4 +24,7 @@
 								=image_link p.speaker.blog, 'assets/rss.png'
 						.abstract
 							=p.abstract
-		%input{:type => 'submit', :value => 'salva le mie preferenze'}
+		.actions
+			%input.button{:type => 'submit', :value => 'salva'} 
+		.error{:style =>'display:none'}
+			Attenzione! Devi scegliere 5 sessioni.
