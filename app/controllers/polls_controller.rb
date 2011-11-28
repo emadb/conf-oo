@@ -6,7 +6,7 @@ class PollsController < ApplicationController
 	end
 
 	def index
-		@proposals = Proposal.all
+		@proposals = Proposal.all.shuffle!
 	end
 
 	def save
