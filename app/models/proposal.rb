@@ -6,4 +6,6 @@ class Proposal
   field :abstract
   field :submitted_on, :type => DateTime
   field :approved, :type => Boolean, :default => false
+
+  attr_accessor :votes
 end

@@ -1,5 +1,6 @@
 class PollsController < ApplicationController
 	before_filter :authenticate_user!, :except =>[:login]
+	before_filter :user_is_admin?, :except => [:index, :save]
 	
 	def login
 
@@ -27,5 +28,15 @@ class PollsController < ApplicationController
 		else
 			render 'already_voted'
 		end
+	end
+
+	def results
+		@proposals = Proposal.all
+		
+		@proposals = @proposals.map do |p|
+			[p.title, p.votes = Vote.where(proposal_id: "#{p._id.to_s}").count]
+		end
+
+		render 'results'
 	end
 end
