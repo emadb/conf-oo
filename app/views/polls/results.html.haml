@@ -7,7 +7,7 @@
 				Sessione
 			%th
 				Voti	
-		- @proposals.sort_by{ |k,v| v }.each do |p|
+		- @proposals.each do |p|
 			%tr
 				%td
 					= p[0]
