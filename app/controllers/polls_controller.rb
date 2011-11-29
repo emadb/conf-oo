@@ -36,7 +36,7 @@ class PollsController < ApplicationController
 			
 		end
 
-		@proposals = @proposals.sort_by{ |k,v| v }
+		@proposals = @proposals.sort_by{ |k,v| -v }
 		render 'results'
 	end
 end
