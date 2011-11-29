@@ -31,12 +31,12 @@ class PollsController < ApplicationController
 	end
 
 	def results
-		@proposals = Proposal.all
-		
-		@proposals = @proposals.map do |p|
-			[p.title, p.votes = Vote.where(proposal_id: "#{p._id.to_s}").count]
+		@proposals = Proposal.all.map do |p|
+			["#{p.title} (#{p.speaker.name})", p.votes = Vote.where(proposal_id: "#{p._id.to_s}").count]
+			
 		end
 
+		@proposals = @proposals.sort_by{ |k,v| v }
 		render 'results'
 	end
 end
