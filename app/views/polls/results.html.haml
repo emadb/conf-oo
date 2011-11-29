@@ -1,0 +1,15 @@
+%section
+	%h2
+		Risultati
+	%table
+		%tr
+			%th
+				Sessione
+			%th
+				Voti	
+		- @proposals.each do |p|
+			%tr
+				%td
+					= p[0]
+				%td
+					= p[1]

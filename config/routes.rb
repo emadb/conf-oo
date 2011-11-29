@@ -21,6 +21,8 @@ ConfOo::Application.routes.draw do
   match 'authenticate', :to => 'home#authenticate'
   match 'admin_area', :to => 'home#admin_area'
 
+  match 'polls/results', :to => 'polls#results'
+
   resources :proposals
   resources :speeches
   resources :polls
@@ -28,7 +30,6 @@ ConfOo::Application.routes.draw do
 
   match 'attendees/already_registered', :to =>'attendees#already_registered'
   match 'attendees/confirm', :to =>'attendees#confirm'
-
 
   
   # The priority is based upon order of creation:

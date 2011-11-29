@@ -29,8 +29,8 @@ ConfOo::Application.configure do
   config.action_mailer.smtp_settings = {
     :address              => "smtp.gmail.com",
     :port                 => 587,
-    :domain               => 'baci.lindsaar.net',
-    :user_name            => '<username>',
+    :domain               => 'ugial.net',
+    :user_name            => 'info@ugialt.net',
     :password             => '<password>',
     :authentication       => 'plain',
     :enable_starttls_auto => true  }
