@@ -4,11 +4,15 @@
 	%table
 		%tr
 			%th
+				#
+			%th
 				Sessione
 			%th
 				Voti	
-		- @proposals.each do |p|
+		- @proposals.each_with_index do |p, i|
 			%tr
+				%td
+					= i
 				%td
 					= p[0]
 				%td
