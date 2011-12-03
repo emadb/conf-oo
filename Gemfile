@@ -8,6 +8,7 @@ gem 'haml-rails'
 gem 'devise'
 gem "omniauth", ">= 1.0.0"
 gem "omniauth-twitter"
+gem "omniauth-facebook"
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
