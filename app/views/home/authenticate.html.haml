@@ -1,9 +1,11 @@
 %section
 	%p
-		Per accedere all'area richiesta devi essere autenticato con Twitter!
+		Per accedere all'area richiesta devi essere autenticato con Twitter con con Facebook!
 	%p
 		= flash[:alert]
 	%h2
 		= link_to('Autenticati con Twitter', '/auth/twitter')
+	%h2
+		= link_to('Autenticati con Facebook', '/auth/facebook')
 	%h2
 		= link_to('home', root_path)

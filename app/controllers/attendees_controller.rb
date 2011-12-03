@@ -1,6 +1,8 @@
 class AttendeesController < ApplicationController
 	before_filter :set_body_class
-			
+	before_filter :authenticate_user!
+	before_filter :user_is_admin?, :except => [:new, :create]
+
 	def set_body_class
     @page_class = 'proposal'
   end
@@ -27,7 +29,7 @@ class AttendeesController < ApplicationController
 					render :action => 'sold_out'
 				else
 					#send mail
-					mail(@attendee)
+					#mail(@attendee)
 					render :action => 'confirm' 
 				end
 			else

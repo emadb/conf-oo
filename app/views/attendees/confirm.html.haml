@@ -2,4 +2,7 @@
 	%h2 Grazie per esserti registrato. Ti arriverà un'email con i dettagli della registrazione.
 	%h3
 		Come sai la conferenza è autofinanziata, quindi se vuoi fare una donazione puoi usare il link sotto.
+	%paypal
+		= render :partial => 'paypal_button'
+
 = link_to 'Home', root_path

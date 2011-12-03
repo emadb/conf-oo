@@ -33,8 +33,13 @@ class PollsController < ApplicationController
 	def results
 		@proposals = Proposal.all.map do |p|
 			["#{p.title} (#{p.speaker.name})", p.votes = Vote.where(proposal_id: "#{p._id.to_s}").count]
-			
 		end
+		
+		#TODO: Why this doesn't work?
+		#@proposals = Proposal.all
+		#@proposals.map! do |p|
+		#		p.votes = Vote.where(proposal_id: "#{p._id.to_s}").count
+		#end
 
 		@proposals = @proposals.sort_by{ |k,v| -v }
 		render 'results'
