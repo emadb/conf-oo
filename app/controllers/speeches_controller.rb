@@ -1,12 +1,22 @@
 class SpeechesController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
-  
+  before_filter :set_body_class
+
+
+  def set_body_class
+    @page_class = 'proposal'
+  end
+
   def index
     @speeches = Speech.all
     @speeches.each do |s| 
       logger.info s.title
       logger.info s.speaker.name
       logger.info s.speaker.twitter
+    end
+    respond_to do |format|
+       format.json { render :json=> @speeches.to_json }
+       format.html { render 'index'}
     end
   end
 
