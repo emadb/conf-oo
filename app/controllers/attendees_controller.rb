@@ -19,7 +19,7 @@ class AttendeesController < ApplicationController
 	def create
 		@attendee = Attendee.new(params[:attendee])
 
-		if Attendee.count > 100
+		if Attendee.count > 150
 			@attendee.is_in_wait_list = true
 		end	
 
