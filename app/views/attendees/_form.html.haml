@@ -19,12 +19,13 @@
       = f.label :twitter
       = f.text_field :twitter
     .field
-      = f.label :t_shirt
-      
-      = f.select( :t_shirt, {"Nessuna maglietta" => "None", "XL" => "XL", "L" => "L", "M" => "M"})
+      %label
+        t-shirt*
+      = f.select( :t_shirt, {"XL" => "XL", "L" => "L", "M" => "M", "S" => "S"})
     .field
       = f.label :lunch
       = f.select( :lunch, {'Si' => true, 'No' => false})
-    
+    .notes
+      * la t-shirt verrà consegnata ai primi 120 che si registreranno il giorno della conferenza!
   .actions
     = f.submit 'Save'
