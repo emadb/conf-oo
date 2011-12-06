@@ -8,7 +8,7 @@ class AttendeesController < ApplicationController
   end
 	
 	def new
-		if (Time.now < ConfOo::Application.config.open_registration_date)
+		if (Time.now < APP_CONFIG['open_registration_date'])
 			redirect_to root_url
 		end
 		@attendee = Attendee.new
@@ -22,7 +22,7 @@ class AttendeesController < ApplicationController
 	def create
 		@attendee = Attendee.new(params[:attendee])
 
-		if Attendee.count > ConfOo::Application.config.max_attendees
+		if Attendee.count > APP_CONFIG['max_attendees']
 			@attendee.is_in_wait_list = true
 		end	
 

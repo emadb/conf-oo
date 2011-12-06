@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
     if current_user.is_admin?
       redirect_to admin_area_url
     else
-      if (Time.now < ConfOo::Application.config.open_registration_date)
+      if (Time.now < APP_CONFIG['open_registration_date'])
         redirect_to polls_url
       else
         redirect_to new_attendee_url
