@@ -31,7 +31,7 @@ ConfOo::Application.configure do
     :port                 => 587,
     :domain               => 'ugialt.net',
     :user_name            => 'info@ugialt.net',
-    :password             => 'pwd',
+    :password             => '<password>',
     :authentication       => 'plain',
     :enable_starttls_auto => true  }
 end
