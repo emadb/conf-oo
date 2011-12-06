@@ -8,6 +8,9 @@ class AttendeesController < ApplicationController
   end
 	
 	def new
+		if (Time.now < Time.new(2011, 12, 12, 11, 12))
+			redirect_to root_url
+		end
 		@attendee = Attendee.new
 		@attendee.name = current_user.name
 		@attendee.email = current_user.email
