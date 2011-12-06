@@ -29,7 +29,7 @@ class AttendeesController < ApplicationController
 					render :action => 'sold_out'
 				else
 					#send mail
-					#mail(@attendee)
+					AttendeeMail.welcome_email(@attendee)
 					render :action => 'confirm' 
 				end
 			else
