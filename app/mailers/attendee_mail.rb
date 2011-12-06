@@ -1,5 +1,5 @@
 class AttendeeMail < ActionMailer::Base
-  default from: "info@ugialt.net"
+  default from: ConfOo::Application.config.email_sender
 
   def welcome_email(user)
     @user = user
