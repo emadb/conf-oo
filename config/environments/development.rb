@@ -25,6 +25,8 @@ ConfOo::Application.configure do
   # Do not compress assets
   config.assets.compress = false
 
+  config.email_sender="info@ugialt.net"
+
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     :address              => "smtp.gmail.com",
