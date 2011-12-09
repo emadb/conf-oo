@@ -92,6 +92,13 @@ $(document).ready(function() {
 	});
 
 	$(".inline").colorbox({inline:true, width:"50%",opacity:0.4});
+
+    $.getJSON(
+            "attendees/available.json",
+            function(data){
+                $("#placesLeft").text(data);
+            }
+    );
 	
 /*	Elenco per stanza
 	$.getJSON(
@@ -140,7 +147,7 @@ $(document).ready(function() {
 });
 
 $(function () {
-    var registrationDay = new Date(2011,12-1,12,12,0,0);
+    var registrationDay = new Date(2011,12-1,12,12,12,0);
     $('#countdown').countdown(
         {
             until: registrationDay,
@@ -271,7 +278,7 @@ function AgendaViewModel()
       <div class="wrap" id="iscrizioneDopo">
       <hr style="position:relative; margin-top:-1px;">
       <h1>Iscriviti</h1>
-      <p>Le iscrizioni sono aperte, ma affrettati, i posti sono limitati:</p>
+      <p>Le iscrizioni sono aperte, e rimangono ancora <span id="placesLeft"></span> posti</p>
       <h2><a href="/attendees/new">Iscriviti!!</a></h2>
       <p><a href="#top" class="top">Torna in alto</a></p>
     </div>
