@@ -1,0 +1,451 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+ <meta charset="utf-8">
+<title>UGIALT.net Conference - Milano ~ 21 Gennaio 2012</title>
+<link href="css/reset.css" rel="stylesheet" type="text/css"/>
+
+<link href='http://fonts.googleapis.com/css?family=Terminal+Dosis:400,500,700,600,800,200,300' rel='stylesheet' type='text/css'>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/jquery-ui.js"></script>
+<script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'xxxxxx']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<script type='text/javascript' src='scrollTo/jquery.scrollTo-min.js'></script>
+<script type='text/javascript' src='underscore/underscore.js'></script>
+<script type='text/javascript' src='countdown/countdown.js'></script>
+<script type='text/javascript' src='scrollTo/jquery.localscroll-min.js'></script>
+<link media="screen" rel="stylesheet" href="colorbox/colorbox.css" />
+<link media="screen" rel="stylesheet" href="countdown/countdown.css" />
+<script src="colorbox/jquery.colorbox.js"></script>
+
+<link href="css/style.css" rel="stylesheet" type="text/css"/>
+
+<script type="text/javascript">
+
+
+$(document).ready(function() {
+
+	var current=1;
+	var nbr_case=19;
+
+	$(".slider_btn").click(function(){
+		var type_btn = $(this).attr("id");
+		var sliding=false;
+		if (!sliding){
+			sliding=true;
+			if(type_btn == "slider_suivant") {
+				if (current<nbr_case){
+					$('#slider').animate({
+						left: '-=480'
+					}, 800, function() {
+						// Animation complete.
+						sliding=false;
+					});
+					current++;
+				}
+			}
+			else {
+				if (current>1){
+					$('#slider').animate({
+						left: '+=480'
+					}, 800, function() {
+						// Animation complete.
+						sliding=false;
+					});
+					current--;
+				}
+			}
+		}
+	});
+
+	
+
+	$(window).scroll(function () { 
+      if ($(window).scrollTop() > 350) {
+         $('#menu_left').css('display','block');
+      }
+	  else {
+	  	 $('#menu_left').css('display','none');
+	  }
+    });
+	
+
+	$(window).resize(function() {
+		if($(window).width() < 1260) {
+    		$('#menu_left').css('display','none');
+		}
+		else {
+			$('#menu_left').css('display','block');
+		}
+	});
+
+	$(".inline").colorbox({inline:true, width:"50%",opacity:0.4});
+	
+/*	Elenco per stanza
+	$.getJSON(
+			"speeches.json",
+			function (data) {
+				var res = _.groupBy(data,'room');
+				$.each(res,
+					function (index, value) {
+						var obj = new AgendaViewModel();
+						obj.room=index;
+						obj.sessions = _.sortBy(value,function(obj){ return obj.from; });
+						$("#roomTemplate").tmpl(obj).appendTo("#slider");
+					}
+				);
+            });
+*/
+
+/*	Elenco sessioni     */
+	$.getJSON(
+			"speeches.json",
+			function (data) {
+				data = _.sortBy(data,function(obj){ return obj.from+obj.room; });
+                $("#speechTemplate").tmpl(data).appendTo("#slider");
+            });
+
+
+/* Elenco per ora
+	$.getJSON(
+			"speeches.json",
+			function (data) {
+				data = _.sortBy(data,function(obj){ return obj.from; });
+				var res = _.groupBy(data,function(obj){ return obj.from + " - " + obj.to; });
+				$.each(res,
+					function (index, value) {
+						var obj = new AgendaViewModel();
+						obj.time = index;
+						obj.sessions = _.sortBy(value,function(obj){ return obj.room; });
+						$("#timeTemplate").tmpl(obj).appendTo("#slider");
+					}
+				);
+				$("#detailsTemplate").tmpl(data).appendTo("#boxes");
+				$(".inline").colorbox({inline:true, width:"50%"});	
+            });
+             */
+		
+});
+
+$(function () {
+    var registrationDay = new Date(2011,12-1,12,12,0,0);
+    $('#countdown').countdown(
+        {
+            until: registrationDay,
+            timezone: +60,
+            significant: 4,
+            expiryUrl: '/attendees/new'
+        }
+    );
+
+    var now = new Date();
+    if(now > registrationDay){
+        $("#iscrizionePrima").hide();
+        $("#iscrizioneDopo").show();
+    }
+    else
+    {
+        $("#iscrizionePrima").show();
+        $("#iscrizioneDopo").hide();
+    }
+
+});
+
+
+function AgendaViewModel()
+{
+	
+}
+
+
+</script>
+
+<script id="speechTemplate" type="text/x-jquery-tmpl">
+	<div class="news" style="width:460px; margin:0 20px 0 0px; float:left">
+			<h2>${ title }</h2>
+			<h3 style="margin-bottom:0">by ${ speaker.name } <!--(${ room } - ${ from } - ${ to })--></h3>
+			<span class="px18"><img style="float: left; margin: 10px;" src="http://api.twitter.com/1/users/profile_image/${ speaker.twitter }">${ abstract }</span>
+			<div style="height:10px;"></div> 
+	</div>
+</script>
+
+
+<script id="detailsTemplate" type="text/x-jquery-tmpl">
+	<div id="aa${ _id }" style="margin:10px;">
+			<h2>${ title }</h2>
+			<h3 style="margin-bottom:0">by ${ speaker.name } (${ room } - ${ from } - ${ to })</h3>
+			<span class="px18"><img style="float: left; margin: 10px;" src="http://api.twitter.com/1/users/profile_image/${ speaker.twitter }">${ abstract }</span>
+	</div>
+</script>
+
+
+<script id="roomTemplate" type="text/x-jquery-tmpl">
+	<div class="news" style="width:460px; margin:0 20px 0 0px; float:left">
+			<h2>${ room }</h2>
+			{{tmpl(sessions) "#sessionTemplate"}}
+	</div>
+</script>
+
+<script id="sessionTemplate" type="text/x-jquery-tmpl">
+		<h3 style="display: inline-block; width:100px; margin-bottom:0">${ from } - ${ to }</h3>
+		<span class="px18"><a class='inline' href="#aa${ _id }">${ title }</a></span>
+		<div style="height:10px;"></div>
+</script>
+
+<script id="timeTemplate" type="text/x-jquery-tmpl">
+	<div class="news" style="width:460px; margin:0 20px 0 0px; float:left">
+			<h2>${ time }</h2>
+			{{tmpl(sessions) "#sessionTimeTemplate"}}
+	</div>
+</script>
+
+<script id="sessionTimeTemplate" type="text/html">
+		<h3 style="display: inline-block; width:100px; margin-bottom:0">${ room }</h3>
+		<span class="px18"><a class='inline' href="#aa${ _id }">${ title }</a></span>
+		<div style="height:10px;"></div>
+</script>
+
+
+</head>
+<body>
+
+<div id="menu_left">
+	<ul>
+        <li style="margin-bottom:5px;"><a href="#registrazione">Iscriviti</a></li>
+        <li style="margin-bottom:5px;"><a href="#agenda">Agenda</a></li>
+    	<li style="margin-bottom:5px;"><a href="#location">Location</a></li>
+        <li style="margin-bottom:5px;"><a href="#altnet">Cos'é ALT.NET</a></li>
+        <li style="margin-bottom:5px;"><a href="#sponsors">Sponsors</a></li>
+        <li style="margin-bottom:5px;"><a href="#contact">Contatti</a></li>
+    </ul>
+</div>
+
+<header>
+
+<a name="top" ></a>
+<a name="top_and_news" ></a>
+  <div id="header_top">
+
+    <div id="follow_us">
+         <a target="_new" href="http://twitter.com/ugialtnet"><img src="images/twitter.png" alt="twitter"></a>
+    </div>
+  </div>
+
+</header>
+
+<div id="content">
+  <div id="ombre"></div>
+  <div id="menu" style="width:960px; margin:0 auto;">
+      <ul>
+        <li><a href="#registrazione">Iscriviti</a></li>
+		<li><a href="#agenda">Agenda</a></li>
+		<li><a href="#location">Location</a></li>
+        <li><a href="#altnet">Cos'é ALT.NET</a></li>
+        <li><a href="#sponsors">Sponsors</a></li>
+        <li><a href="#contact">Contatti</a></li>
+      </ul>
+    </div>
+
+  <section id="registrazione">
+  <a name="registrazione" ></a>
+    <div class="wrap" id="iscrizionePrima">
+      <hr style="position:relative; margin-top:-1px;">
+      <h1>Iscriviti</h1>
+      <h3>Le iscrizioni apriranno tra</h3>
+        <div id="countdown"></div>
+      <p><a href="#top" class="top">Torna in alto</a></p>
+    </div>
+
+      <div class="wrap" id="iscrizioneDopo">
+      <hr style="position:relative; margin-top:-1px;">
+      <h1>Iscriviti</h1>
+      <p>Le iscrizioni sono aperte, ma affrettati, i posti sono limitati:</p>
+      <h2><a href="/attendees/new">Iscriviti!!</a></h2>
+      <p><a href="#top" class="top">Torna in alto</a></p>
+    </div>
+
+    </section>
+	
+<section id="agenda">
+
+  <a name="agenda" ></a>
+
+    <div class="wrap">
+
+      <hr style="position:relative; margin-top:-1px;">
+
+      <h1>Agenda</h1>
+
+      <p>L'agenda dettagliata sará disponibile al piú presto. Per ora potete vedere le sessioni che sono state votate.</p>
+       
+
+        <div id="slider_container" style=" overflow:hidden;">
+			<div id="slider" style=" width:8000px; overflow:auto; position:relative; left:0;"></div>
+	    </div>
+        <br><br>
+        <div id="slider_precedent" class="slider_btn" style=" display:inline-block;">
+			<img src="images/jours_precedent.png">
+        </div>
+
+        <div id="slider_suivant" class="slider_btn" style="display:inline-block; margin-left:843px;">
+			<img src="images/jours_suivant.png">
+        </div>
+<br>
+        <p><a href="#top" class="top">Torna in alto</a></p>
+
+    </div>
+
+    
+
+  </section>
+
+<section id="location">
+  <div class="wrap">
+
+    <hr>
+    
+    <a name="location" ></a>
+      <h1>Info pratiche</h1>
+      <div class="floatright" style="border:10px solid #009933;">
+	  <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Via+Lepetit+8,+Milano&amp;aq=&amp;sll=45.483184,9.204549&amp;sspn=0.007868,0.01929&amp;vpsrc=0&amp;ie=UTF8&amp;hq=&amp;hnear=Via+Roberto+Lepetit,+8,+20124+Milano,+Lombardia,+Italy&amp;t=m&amp;z=14&amp;ll=45.483184,9.204549&amp;output=embed"></iframe>
+      </div>
+      <h2>La Sede</h2>
+         
+      <p>La UGIALT.net conference si terrà presso la sede milanese di <a href="http://www.avanade.it">Avanade</a>, in via Lepetit 8/10 a Milano, a due passi dalla stazione centrale di Milano.</p>
+      <h3>Come arrivare alla UGIALT.net Conf</h3>
+	  <p>Raggiungere la sede della conferenza non è difficile.</p>
+			<p>Qui potete trovare le indicazioni stradali.</p>
+			<p>L'indirizzo esatto è Via Lepetit 8/10 - Milano, e se <a href="http://maps.google.com/maps?q=Via+Lepetit+8,+Milano&hl=en&ll=45.482807,9.204435&spn=0.001967,0.004823&sll=45.483184,9.204549&sspn=0.007868,0.01929&vpsrc=6&hnear=Via+Roberto+Lepetit,+8,+20124+Milano,+Lombardia,+Italy&t=h&z=18">guardate su Google Map</a> non è dove viene messo il pin, ma è l'edificio dal tetto azzurro a forma di H.</p>
+			<p>Se si arriva in macchina la cosa migliore è, da qualunque parte voi arriviate, seguire le indicazioni per Stazione Centrale. O, meglio ancora, seguite le indicazioni del vostro navigatore GPS. Se arrivate in macchina fate attenzione che il parcheggio è lungo le strade, è limitato, ed è a pagamento.</p>
+			<p>Per chi invece preferisce spostarsi in treno, arrivate a Milano Centrale: la sede dell'evento è <a href="http://maps.google.com/maps?saddr=Piazza+Duca+d%27Aosta&daddr=Via+Roberto+Lepetit&hl=en&ll=45.483936,9.204462&spn=0.003934,0.009645&sll=45.484876,9.20429&sspn=0.001967,0.004823&geocode=FdYMtgId_m-MAA%3BFaIDtgIdFHKMAA&vpsrc=6&dirflg=w&mra=dme&mrsp=0&sz=18&t=m&z=17">a poco più di 300 metri dall'uscita della stazione</a>.</p>
+
+      <h3>Data e ora</h3>
+
+      <p>Sabato 21 Gennaio 2012<br>
+        Inizio registrazione alle 9:00, chiusura lavori alle 18:00 circa
+		</p>
+		<p><a href="#top" class="top">Torna in alto</a></p>
+		<hr>
+      <h2>Servizi ai partecipanti</h2>
+	  <h3>Wi-fi</h3>
+	  <p>Come lo scorso anno sará disponibile connessione wi-fi gratuita per tutti i partecipanti.</p>
+	  <h3>Pranzo</h3>
+	  <p>Per chi volesse usufruire del pranzo abbiamo organizzato un pranzo "a buffet" con pizza al taglio e sushi  10 a persona comprensivi acqua minerale e qualche bibita.</p>
+		<p>Per motivi organizzativi sarà necessario prenotare il pranzo anticipatamente.</p>
+		<p>Per chi invece volesse sgranchirsi le gambe e fare quattro passi, attorno alla sede della conferenza si trovano numerosi bar e ristoranti oltre ad alcune focaccerie, tisanerie e kebabberie.</p>
+	  <h3>Cena</h3>
+		<p>Dopo la chiusura dei lavori é tradizione andare con chi lo volesse andare a cenare tutti insieme. Maggiori dettagli per le prenotazione arrivaranno piú vicini alla data della conferenza.</p>
+      <p><a href="#top" class="top">Torna in alto</a></p>
+
+ 
+
+  </div>
+     </section>
+
+  <section id="altnet">
+  <a name="altnet" ></a>
+    <div class="wrap">
+      <hr style="position:relative; margin-top:-1px;">
+      <h1>Cos'è ALT.NET?</h1>
+	  <h2>Cos'è una conferenza ALT.NET ?</h2>
+		<p>La filosofia ALT.NET si può definire come "la ricerca della felicità".</p>
+		<p>Seguire la filosofia ALT.NET equivale a seguire i propri gusti sul design delle applicazioni e usare la piattaforma .NET per supportare le proprie idee invece che doverle plasmare per adattarle al framework. Sebbene nessuna di queste cose sia un requisito per essere ALT.NET,la community abbraccia: Agile, Scrum, XP, Open Source Packages and Frameworks, Test Driven Development/Design, Behavior Driven Development/Design, Domain Driven Development/Design.</p>
+		<p>ALT.NET non significa "snobbare" la piattaforma e gli strumenti di Microsoft - significa potere decidere quando ha senso usarli, significa usarli potendo avere maggiore controllo ed avere l'opzione di andare in un'altra direzione senza dovere abbandonare il .NET Framework.</p>
+		<p>Adottare la filosofia ALT.NET, vuol dire essere liberi di usare gli strumenti che si preferiscono, cercandone sempre di migliori, vuol dire essere agili, vuol dire imparare, cercare sempre la qualità senza accontentarsi del codice generato dal wizard in una parola vuol dire divertirsi.</p>
+	  
+	  <hr style="position:relative; margin-top:-1px;">
+	  <h2>Perchè nasce UgiALT.Net?</h2>
+		<p>UgiAlt.NET nasce con lo scopo di diffondere ALT.NET in Italia. Anche se ci sono già molte community legate al mondo .NET, nessuna di queste è dedicata esclusivamente a questa nuova filosofia, per questo abbiamo deciso di crearne una nuova, fresca e alternativa e libera.</p>
+		<p>Questa community nasce principalmente online ma non mancano le occasioni per organizzare incontri veri e propri.</p>
+		<p>La community è aperta a tutti e tutti potranno contribuire. Assieme parleremo di framework open source e di come usarli al meglio, di metodologie agili, di software design.</p>
+		<p>La conferenza è un momento unico in cui incontrarsi di persona, condividere le esperienze e discutere insieme dei dubbi e nuove idee.</p>
+		<p>Insomma un momento che non puoi perdere!!!</p>
+	  <p><a href="#top" class="top">Torna in alto</a></p>
+    </div>
+  </section>
+
+  <section id="sponsors">
+
+  <a name="partenaires" ></a>
+
+    <div class="wrap">
+
+      <hr style="position:relative; margin-top:-1px;">
+
+      <h1>Sponsors</h1>
+
+      <h3>Un ringraziamento agli sponsors che ci supportano e che ci forniscono premi da distribuire ai partecipanti:</h3>
+
+      <div class="floatleft"><a target="_new" href="http://www.avanade.it"><img height="100" src="images/sponsors/avanade.png"></a></div>
+      <div style="clear:both;"></div><br>
+      <div class="floatleft"><a href="http://www.nhprof.com/"><img height="80" src="images/sponsors/nhprof.jpg"></a></div>
+      <div class="floatleft" style="margin-left:20px;"><a href="http://www.jetbrains.com/"><img height="80" src="images/sponsors/jetbrains.png"></a></div>
+      <div class="floatleft" style="margin-left:20px;"><a href="http://www.ndepend.com/"><img height="80" src="images/sponsors/NDependLogo.png"></a></div>
+      <div style="clear:both;"></div><br>
+      <div class="floatleft"><a href="http://www.balsamiq.com"><img height="60" src="images/sponsors/balsamiq.png"></a></div>
+      <div style="clear:both;"></div><br>
+      <div class="floatleft" style="margin-left:0px;"><a height="40" href="http://nimblepros.com/products/software-craftsmanship-2012-calendar.aspx"><img src="images/sponsors/software-craftsmanship-2012-calendar.png"></a></div>
+      <div style="clear:both;"></div>
+      <br>
+      <br>
+      <p><a href="#top" class="top">Torna in alto</a></p>
+
+    </div>
+
+   
+
+  </section>
+
+  <section id="contact">
+  <a name="contact" ></a>
+    <div class="wrap">
+      <hr style="position:relative; margin-top:-1px;">
+      <h1>Contatti</h1>
+      <h3>Organizzato da UGIALT.net</h3>
+      <p style="color:#FFFFFF;">
+		<a style="color: #FFF" href="mailto:info@ugialt.net">info@ugialt.net</a><br/>
+		<a style="color: #FFF" href="http://twitter.com/ugialtnet">@ugialtnet</a>
+      </p>
+      <p><a href="#top" class="top">Torna in alto</a></p>
+    </div>
+    </section>
+	
+</div>
+
+<footer>
+
+  <section id="footer">
+    <div id="footer_content">
+      <div class="wrap">
+        <div id="content_footer">
+          <ul>
+			<li><a href="#registrazione">Iscriviti</a></li>
+			<li><a href="#agenda">Agenda</a></li>
+			<li><a href="#location">Location</a></li>
+            <li><a href="#altnet">Cos'é ALT.NET</a></li>
+            <li><a href="#sponsors">Sponsors</a></li>
+            <li><a href="#contact">Contatti</a></li>
+          </ul>
+		</div>
+    </div>
+  </section>
+
+</footer>
+
+<div id="boxes" style='display:none'></div>
+
+</div></body>
+
+</html>
