@@ -1,7 +1,7 @@
 class AttendeesController < ApplicationController
 	before_filter :set_body_class
-	before_filter :authenticate_user!
-	before_filter :user_is_admin?, :except => [:new, :create]
+	before_filter :authenticate_user!, :except => [:available]
+	before_filter :user_is_admin?, :except => [:new, :create, :available]
 
 	def set_body_class
     @page_class = 'proposal'
@@ -17,6 +17,12 @@ class AttendeesController < ApplicationController
 		@attendee.twitter = current_user.nickname
 		@attendee.uid = current_user.uid
 		@attendee.provider = current_user.provider
+	end
+	def available
+		available = APP_CONFIG['max_attendees'] - Attendee.count
+		respond_to do |format|
+       format.json { render :json=> available.to_json }
+    end
 	end
 
 	def create
