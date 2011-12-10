@@ -48,7 +48,7 @@ $(document).ready(function() {
 			if(type_btn == "slider_suivant") {
 				if (current<nbr_case){
 					$('#slider').animate({
-						left: '-=445'
+						left: '-=450'
 					}, 800, function() {
 						// Animation complete.
 						sliding=false;
@@ -59,7 +59,7 @@ $(document).ready(function() {
 			else {
 				if (current>1){
 					$('#slider').animate({
-						left: '+=445'
+						left: '+=450'
 					}, 800, function() {
 						// Animation complete.
 						sliding=false;
@@ -214,11 +214,13 @@ function AgendaViewModel()
                 {{if speaker.twitter}}<a href="http://twitter.com/${ speaker.twitter }"><img src="assets/twitter.gif"></a>{{/if}}
                 {{if speaker.blog}}<a href="${ speaker.blog }"><img src="assets/rss.png"></a>{{/if}}
             </h3>
+            <p style="clear:left;">
             {{if speaker.bioUrl}}
-                <p>Per maggiori info:<br/><a target="_blank" href="${ speaker.bioUrl }">${ speaker.bioUrl }</a></p>
+                Per maggiori info:<br/><a target="_blank" href="${ speaker.bioUrl }">${ speaker.bioUrl }</a>
             {{else}}
-                <p>${ speaker.bio }</p>
+                ${ speaker.bio }
             {{/if}}
+            </p>
 </script>
 
 <script id="agendaByRoomTemplate" type="text/x-jquery-tmpl">
