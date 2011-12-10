@@ -48,7 +48,7 @@ $(document).ready(function() {
 			if(type_btn == "slider_suivant") {
 				if (current<nbr_case){
 					$('#slider').animate({
-						left: '-=480'
+						left: '-=445'
 					}, 800, function() {
 						// Animation complete.
 						sliding=false;
@@ -59,7 +59,7 @@ $(document).ready(function() {
 			else {
 				if (current>1){
 					$('#slider').animate({
-						left: '+=480'
+						left: '+=445'
 					}, 800, function() {
 						// Animation complete.
 						sliding=false;
@@ -322,7 +322,7 @@ function AgendaViewModel()
        
 
         <div id="slider_container" style=" overflow:hidden;">
-			<div id="slider" style=" width:8000px; overflow:auto; position:relative; left:0;"></div>
+			<div id="slider" style="width:9000px; overflow:auto; position:relative; left:0;"></div>
 	    </div>
         <br><br>
         <div id="slider_precedent" class="slider_btn" style=" display:inline-block;">
