@@ -288,7 +288,7 @@ footer {
 }
 
 .news {
-    border: 2px solid white;
+    /*border: 2px solid white;*/
     overflow: auto;
     height: 350px;
     padding: 5px;
