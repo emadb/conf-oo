@@ -110,18 +110,22 @@ $(document).ready(function() {
 						var obj = new AgendaViewModel();
 						obj.room=index;
 						obj.sessions = _.sortBy(value,function(obj){ return obj.from; });
-						$("#roomTemplate").tmpl(obj).appendTo("#slider");
+						$("#agendaByRoomTemplate").tmpl(obj).appendTo("#slider");
 					}
 				);
             });
 */
 
-/*	Elenco sessioni     */
+/*	Elenco sessioni        */
 	$.getJSON(
 			"speeches.json",
 			function (data) {
 				data = _.sortBy(data,function(obj){ return obj.from+obj.room; });
-                $("#speechTemplate").tmpl(data).appendTo("#slider");
+                data = $.each(data,function(index, value){
+                    if(value.speaker.bio.substring(0, 4) == "http")
+                        value.speaker.bioUrl=value.speaker.bio;
+                });
+                $("#sessionListTemplate").tmpl(data).appendTo("#slider");
             });
 
 
@@ -136,13 +140,13 @@ $(document).ready(function() {
 						var obj = new AgendaViewModel();
 						obj.time = index;
 						obj.sessions = _.sortBy(value,function(obj){ return obj.room; });
-						$("#timeTemplate").tmpl(obj).appendTo("#slider");
+						$("#agendaByTimeTemplate").tmpl(obj).appendTo("#slider");
 					}
 				);
-				$("#detailsTemplate").tmpl(data).appendTo("#boxes");
+				$("#sessionDetailTemplate").tmpl(data).appendTo("#boxes");
 				$(".inline").colorbox({inline:true, width:"50%"});	
             });
-             */
+        */
 		
 });
 
@@ -179,46 +183,65 @@ function AgendaViewModel()
 
 </script>
 
-<script id="speechTemplate" type="text/x-jquery-tmpl">
-	<div class="news" style="width:460px; margin:0 20px 0 0px; float:left">
-			<h2>${ title }</h2>
-			<h3 style="margin-bottom:0">by ${ speaker.name } <!--(${ room } - ${ from } - ${ to })--></h3>
-			<span class="px18"><img style="float: left; margin: 10px;" src="http://api.twitter.com/1/users/profile_image/${ speaker.twitter }">${ abstract }</span>
+<script id="sessionListTemplate" type="text/x-jquery-tmpl">
+	<div class="news" style="width:420px; margin:0 20px 0 0px; float:left">
+        {{tmpl "#speechTemplate"}}
 			<div style="height:10px;"></div> 
 	</div>
 </script>
 
 
-<script id="detailsTemplate" type="text/x-jquery-tmpl">
-	<div id="aa${ _id }" style="margin:10px;">
-			<h2>${ title }</h2>
-			<h3 style="margin-bottom:0">by ${ speaker.name } (${ room } - ${ from } - ${ to })</h3>
-			<span class="px18"><img style="float: left; margin: 10px;" src="http://api.twitter.com/1/users/profile_image/${ speaker.twitter }">${ abstract }</span>
+<script id="sessionDetailTemplate" type="text/x-jquery-tmpl">
+	<div class="news" id="aa${ _id }" style="margin:10px;">
+            {{tmpl "#speechTemplate"}}
 	</div>
 </script>
 
+<script id="speechTemplate" type="text/x-jquery-tmpl">
+    		<h2>${ title }</h2>
+			<h3 style="margin-bottom:5px">by ${ speaker.name }
+                {{if from}}
+                    (${ room } - ${ from } - ${ to })
+                {{/if}}
+            </h3>
+			<p>${ abstract }</p>
+            <hr>
+            {{if speaker.twitter}}
+                <img style="float: left; margin: 5px;" src="http://api.twitter.com/1/users/profile_image/${ speaker.twitter }">
+            {{/if}}
+            <h3>
+                ${ speaker.name }
+                {{if speaker.twitter}}<a href="http://twitter.com/${ speaker.twitter }"><img src="assets/twitter.gif"></a>{{/if}}
+                {{if speaker.blog}}<a href="${ speaker.blog }"><img src="assets/rss.png"></a>{{/if}}
+            </h3>
+            {{if speaker.bioUrl}}
+                <p>Per maggiori info:<br/><a target="_blank" href="${ speaker.bioUrl }">${ speaker.bioUrl }</a></p>
+            {{else}}
+                <p>${ speaker.bio }</p>
+            {{/if}}
+</script>
 
-<script id="roomTemplate" type="text/x-jquery-tmpl">
+<script id="agendaByRoomTemplate" type="text/x-jquery-tmpl">
 	<div class="news" style="width:460px; margin:0 20px 0 0px; float:left">
 			<h2>${ room }</h2>
-			{{tmpl(sessions) "#sessionTemplate"}}
+			{{tmpl(sessions) "#agendaByRoomSessionTemplate"}}
 	</div>
 </script>
 
-<script id="sessionTemplate" type="text/x-jquery-tmpl">
+<script id="agendaByRoomSessionTemplate" type="text/x-jquery-tmpl">
 		<h3 style="display: inline-block; width:100px; margin-bottom:0">${ from } - ${ to }</h3>
 		<span class="px18"><a class='inline' href="#aa${ _id }">${ title }</a></span>
 		<div style="height:10px;"></div>
 </script>
 
-<script id="timeTemplate" type="text/x-jquery-tmpl">
+<script id="agendaByTimeTemplate" type="text/x-jquery-tmpl">
 	<div class="news" style="width:460px; margin:0 20px 0 0px; float:left">
 			<h2>${ time }</h2>
-			{{tmpl(sessions) "#sessionTimeTemplate"}}
+			{{tmpl(sessions) "#agendaByTimeSessionTemplate"}}
 	</div>
 </script>
 
-<script id="sessionTimeTemplate" type="text/html">
+<script id="agendaByTimeSessionTemplate" type="text/html">
 		<h3 style="display: inline-block; width:100px; margin-bottom:0">${ room }</h3>
 		<span class="px18"><a class='inline' href="#aa${ _id }">${ title }</a></span>
 		<div style="height:10px;"></div>
