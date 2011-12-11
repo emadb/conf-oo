@@ -21,11 +21,14 @@
     .field
       %label
         t-shirt*
-      = f.select( :t_shirt, {"XL" => "XL", "L" => "L", "M" => "M", "S" => "S"})
+      = f.select( :t_shirt, {"Scegli..." => "no", "XL" => "XL", "L" => "L", "M" => "M", "S" => "S"})
     .field
-      = f.label :lunch
+      %label
+        lunch**
       = f.select( :lunch, {'Si' => true, 'No' => false})
     .notes
       * la t-shirt verrà consegnata ai primi 120 che si registreranno il giorno della conferenza!
+      %br
+      ** per il pranzo, ricorda di versare 10€ dal bottone donazione che trovarai nella prossima pagina
   .actions
     = f.submit 'Save'
