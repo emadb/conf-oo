@@ -13,7 +13,7 @@
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'xxxxxx']);
+  _gaq.push(['_setAccount', 'UA-156881-10']);
   _gaq.push(['_trackPageview']);
 
   (function() {
@@ -38,7 +38,7 @@
 $(document).ready(function() {
 
 	var current=1;
-	var nbr_case=18;
+
 
 	$(".slider_btn").click(function(){
 		var type_btn = $(this).attr("id");
@@ -101,9 +101,11 @@ $(document).ready(function() {
     );
 	
 /*	Elenco per stanza
+    var nbr_case=3;
 	$.getJSON(
 			"speeches.json",
 			function (data) {
+                data = FixBio(data);
 				var res = _.groupBy(data,'room');
 				$.each(res,
 					function (index, value) {
@@ -113,26 +115,28 @@ $(document).ready(function() {
 						$("#agendaByRoomTemplate").tmpl(obj).appendTo("#slider");
 					}
 				);
+                $("#sessionDetailTemplate").tmpl(data).appendTo("#boxes");
+				$(".inline").colorbox({inline:true, width:"50%"});
             });
-*/
+                */
 
-/*	Elenco sessioni        */
+/*	Elenco sessioni       */
+    var nbr_case=18;
 	$.getJSON(
 			"speeches.json",
 			function (data) {
 				data = _.sortBy(data,function(obj){ return obj.from+obj.room; });
-                data = $.each(data,function(index, value){
-                    if(value.speaker.bio.substring(0, 4) == "http")
-                        value.speaker.bioUrl=value.speaker.bio;
-                });
+                data = FixBio(data);
                 $("#sessionListTemplate").tmpl(data).appendTo("#slider");
             });
 
 
 /* Elenco per ora
+    var nbr_case=4;
 	$.getJSON(
 			"speeches.json",
 			function (data) {
+                data = FixBio(data);
 				data = _.sortBy(data,function(obj){ return obj.from; });
 				var res = _.groupBy(data,function(obj){ return obj.from + " - " + obj.to; });
 				$.each(res,
@@ -146,7 +150,7 @@ $(document).ready(function() {
 				$("#sessionDetailTemplate").tmpl(data).appendTo("#boxes");
 				$(".inline").colorbox({inline:true, width:"50%"});	
             });
-        */
+           */
 		
 });
 
@@ -180,6 +184,14 @@ function AgendaViewModel()
 	
 }
 
+function FixBio(data)
+{
+   return $.each(data,function(index, value){
+        if(value.speaker.bio.substring(0, 4) == "http")
+            value.speaker.bioUrl=value.speaker.bio;
+    });
+}
+
 
 </script>
 
@@ -198,8 +210,8 @@ function AgendaViewModel()
 </script>
 
 <script id="speechTemplate" type="text/x-jquery-tmpl">
-    		<h2>${ title }</h2>
-			<h3 style="margin-bottom:5px">by ${ speaker.name }
+    		<h2 style="margin-bottom:5px;">${ title }</h2>
+			<h3 style="margin-bottom:5px; margin-top:5px;">by ${ speaker.name }
                 {{if from}}
                     (${ room } - ${ from } - ${ to })
                 {{/if}}
@@ -224,29 +236,29 @@ function AgendaViewModel()
 </script>
 
 <script id="agendaByRoomTemplate" type="text/x-jquery-tmpl">
-	<div class="news" style="width:460px; margin:0 20px 0 0px; float:left">
+	<div class="news" style="width:420px; margin:0 20px 0 0px; float:left">
 			<h2>${ room }</h2>
 			{{tmpl(sessions) "#agendaByRoomSessionTemplate"}}
 	</div>
 </script>
 
 <script id="agendaByRoomSessionTemplate" type="text/x-jquery-tmpl">
-		<h3 style="display: inline-block; width:100px; margin-bottom:0">${ from } - ${ to }</h3>
-		<span class="px18"><a class='inline' href="#aa${ _id }">${ title }</a></span>
-		<div style="height:10px;"></div>
+		<h3 style="color: #fff; display: inline-block; width:100px; float:left; margin-bottom:30px; margin-top:0;">${ from } - ${ to }</h3>
+		<span class="px18"><a class='inline' href="#aa${ _id }">${ title }</a><br>${speaker.name}</span>
+		<div style="height:10px; clear: both;"></div>
 </script>
 
 <script id="agendaByTimeTemplate" type="text/x-jquery-tmpl">
-	<div class="news" style="width:460px; margin:0 20px 0 0px; float:left">
+	<div class="news" style="width:420px; margin:0 20px 0 0px; float:left">
 			<h2>${ time }</h2>
 			{{tmpl(sessions) "#agendaByTimeSessionTemplate"}}
 	</div>
 </script>
 
 <script id="agendaByTimeSessionTemplate" type="text/html">
-		<h3 style="display: inline-block; width:100px; margin-bottom:0">${ room }</h3>
-		<span class="px18"><a class='inline' href="#aa${ _id }">${ title }</a></span>
-		<div style="height:10px;"></div>
+		<h3 style="color: #fff; display: inline-block; width:100px; float:left; margin-bottom:30px; margin-top:0;">${ room }</h3>
+		<span class="px18"><a class='inline' href="#aa${ _id }">${ title }</a><br>${speaker.name}</span>
+		<div style="height:10px;clear: both;"></div>
 </script>
 
 
@@ -323,8 +335,8 @@ function AgendaViewModel()
       <p>L'agenda dettagliata sará disponibile al piú presto. Per ora potete vedere le sessioni che sono state votate.</p>
        
 
-        <div id="slider_container" style=" overflow:hidden;">
-			<div id="slider" style="width:9000px; overflow:auto; position:relative; left:0;"></div>
+        <div id="slider_container" style="overflow:hidden; background-color: #6ea82c; border: 1px solid #6ba32a;">
+			<div id="slider" style="width:9000px;  overflow:auto; position:relative; left:0;"></div>
 	    </div>
         <br><br>
         <div id="slider_precedent" class="slider_btn" style=" display:inline-block;">
@@ -350,7 +362,7 @@ function AgendaViewModel()
     
     <a name="location" ></a>
       <h1>Info pratiche</h1>
-      <div class="floatright" style="border:10px solid #009933;">
+      <div class="floatright" style="border:10px solid #6ba32a;">
 	  <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Via+Lepetit+8,+Milano&amp;aq=&amp;sll=45.483184,9.204549&amp;sspn=0.007868,0.01929&amp;vpsrc=0&amp;ie=UTF8&amp;hq=&amp;hnear=Via+Roberto+Lepetit,+8,+20124+Milano,+Lombardia,+Italy&amp;t=m&amp;z=14&amp;ll=45.483184,9.204549&amp;output=embed"></iframe>
       </div>
       <h2>La Sede</h2>
@@ -410,7 +422,7 @@ function AgendaViewModel()
 
   <section id="sponsors">
 
-  <a name="partenaires" ></a>
+  <a name="sponsors" ></a>
 
     <div class="wrap">
 
@@ -418,7 +430,7 @@ function AgendaViewModel()
 
       <h1>Sponsors</h1>
 
-      <h3>Un ringraziamento agli sponsors che ci supportano e che ci forniscono premi da distribuire ai partecipanti:</h3>
+      <h3 style="color: #fff">Un ringraziamento agli sponsors che ci supportano e che ci forniscono premi da distribuire ai partecipanti:</h3>
 
       <div class="floatleft"><a target="_new" href="http://www.avanade.it"><img height="100" src="images/sponsors/avanade.png"></a></div>
       <div style="clear:both;"></div><br>
@@ -455,26 +467,6 @@ function AgendaViewModel()
     </section>
 	
 </div>
-
-<footer>
-
-  <section id="footer">
-    <div id="footer_content">
-      <div class="wrap">
-        <div id="content_footer">
-          <ul>
-			<li><a href="#registrazione">Iscriviti</a></li>
-			<li><a href="#agenda">Agenda</a></li>
-			<li><a href="#location">Location</a></li>
-            <li><a href="#altnet">Cos'é ALT.NET</a></li>
-            <li><a href="#sponsors">Sponsors</a></li>
-            <li><a href="#contact">Contatti</a></li>
-          </ul>
-		</div>
-    </div>
-  </section>
-
-</footer>
 
 <div id="boxes" style='display:none'></div>
 
