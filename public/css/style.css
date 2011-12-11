@@ -1,9 +1,8 @@
 /*
 
 Verde: #71AD2D
-Magenta: #970F00
 Giallo: #FFC719
-Blu: #017ABB
+Blu: #026499
 
 */
 
@@ -28,8 +27,8 @@ a{
 }
     
 h1{ margin:30px 0 30px 0; color:#FFC719; font-size: 36px; font-weight: 700; font-family: 'Terminal Dosis', sans-serif; }
-h2{ margin:20px 0 20px 0; color:#017ABB; font-size: 24px; font-weight: 700; font-family: 'Terminal Dosis', sans-serif; }
-h3{ margin:20px 0 20px 0; color:#970F00; font-size: 18px; font-weight: 700; font-family: 'Terminal Dosis', sans-serif; }
+h2{ margin:20px 0 20px 0; color:#026499; font-size: 24px; font-weight: 700; font-family: 'Terminal Dosis', sans-serif; }
+h3{ margin:20px 0 20px 0; color:#026499; font-style:italic;  font-size: 18px; font-weight: 700; font-family: 'Terminal Dosis', sans-serif; }
 h4{ margin:5px 0 5px 0; color:#FFFFFF; font-size: 14px; font-weight: 700; font-family: 'Terminal Dosis', sans-serif; }
 
 
@@ -122,7 +121,7 @@ footer{
 	text-decoration: none;
 	font-family: 'Terminal Dosis', sans-serif;
 	font-size: 22px;
-	color: #970F00;
+	color: #FFC719;
 	font-weight: 700;
 	text-shadow:0 1px 1px #000066;
 }
@@ -135,7 +134,7 @@ footer{
 	text-decoration: none;
 	font-family: 'Terminal Dosis', sans-serif;
 	font-size: 16px;
-	color: #970F00;
+	color: #FFC719;
 	font-weight: 700;
 	text-shadow:0 1px 1px #000066;
 }
@@ -159,14 +158,10 @@ footer{
 
 hr {
 	color:#849dc1;
-	background-color:#5273a2;
+	background-color:#4c7e37;
 	height: 1px;
 	border: 0;
 	box-shadow:0 1px 0px #2f5181;
-}
-
-img[alt="infos pratiques"], img[alt="lieu"] {
-	border:10px solid #193b72;
 }
 
 #location {
@@ -202,15 +197,6 @@ img[alt="infos pratiques"], img[alt="lieu"] {
 	width:100%;
 	margin-top:1px;
 	background-color: rgba(0,0,0,.63); 
-	padding-bottom:30px;
-}
-
-#press {
-	position:relative;
-	left:0px;
-	width:100%;
-	margin-top:1px;
-	background-color: rgba(0,0,0,.55); 
 	padding-bottom:30px;
 }
 
@@ -300,4 +286,5 @@ footer {
 }
 .news h3 {
     margin-bottom: 5px;
+    color: #e8d135;
 }
