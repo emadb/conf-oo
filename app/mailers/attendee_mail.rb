@@ -3,6 +3,6 @@ class AttendeeMail < ActionMailer::Base
 
   def welcome_email(user)
     @user = user
-    mail(:to => user.email, :subject => "Conferma iscrizione UGIALT.net conference")
+    mail(:to => user.email, :subject => "Conferma iscrizione UGIALT.net conference").deliver
   end
 end
