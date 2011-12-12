@@ -53,4 +53,34 @@ class AttendeesController < ApplicationController
 		end
 
 	end
+
+  def edit
+    @attendee = Attendee.find(params[:id])
+  end
+
+
+  def update
+    @attendee = Attendee.find(params[:id])
+
+    respond_to do |format|
+      if @attendee.update_attributes(params[:attendee])
+        format.html { redirect_to attendees_path, notice: 'Attendee was successfully updated.' }
+        format.json { head :ok }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @attendee.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def destroy
+    @attendee = Attendee.find(params[:id])
+    @attendee.destroy
+
+    respond_to do |format|
+      format.html { redirect_to attendees_url }
+      format.json { head :ok }
+    end
+  end
+
 end
