@@ -36,4 +36,5 @@ ConfOo::Application.configure do
     :password             => '<password>',
     :authentication       => 'plain',
     :enable_starttls_auto => true  }
+    
 end

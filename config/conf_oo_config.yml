@@ -1,7 +1,8 @@
 development:
   open_registration_date: 2011-12-12 11:12:0
   max_attendees: 150
-
+	mail_sender: 'info@ugialt.net'
+	mail_password: '<password>'
 test:
   open_registration_date: 2011-12-12 11:12:0
   max_attendees: 150
@@ -9,3 +10,5 @@ test:
 production:
   open_registration_date: 2011-12-12 11:12:0
   max_attendees: 150
+  mail_sender: 'info@ugialt.net'
+  mail_password: 'B43978'
