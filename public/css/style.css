@@ -288,3 +288,10 @@ footer {
     margin-bottom: 5px;
     color: #e8d135;
 }
+
+.paypal
+{
+	float: left;
+ 	margin-left: 30%;
+  margin-top: 240px;
+}
