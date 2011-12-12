@@ -1,0 +1,35 @@
+%section
+	%h2
+		Elenco iscritti
+	%table
+		%tr
+			%th
+				
+			%th
+				Nome
+			%th
+				email	
+			%th
+				twitter
+			%th
+				t_shirt
+			%th
+				lunch
+			%th
+				wait_list
+		- @attendees.each_with_index do |a, i|
+			%tr
+				%td
+					= i + 1
+				%td
+					= a.name
+				%td
+					= a.email
+				%td 
+					= a.twitter
+				%td
+					= a.t_shirt
+				%td
+					= a.lunch
+				%td 
+					= a.is_in_wait_list
