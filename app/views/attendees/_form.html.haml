@@ -30,5 +30,18 @@
       * la t-shirt verrà consegnata ai primi 120 che si registreranno il giorno della conferenza!
       %br
       ** per il pranzo, ricorda di versare 10€ dal bottone donazione che trovarai nella prossima pagina
+    - if current_user.is_admin?
+      .field
+        %label
+          is in wait list
+        = f.select(:is_in_wait_list, {'Si' => true, 'No' => false})
+      .field
+        %label
+          Donation
+        = f.text_field :donation
+      .field
+        %label
+          Lunch paid
+        = f.select(:lunch_paid, {'Si' => true, 'No' => false})
   .actions
     = f.submit 'Save'

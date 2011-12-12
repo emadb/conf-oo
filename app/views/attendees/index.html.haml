@@ -16,7 +16,12 @@
 			%th
 				lunch
 			%th
+				lunch_paid
+			%th
 				wait_list
+			%th
+				donation
+
 		- @attendees.each_with_index do |a, i|
 			%tr
 				%td
@@ -31,5 +36,9 @@
 					= a.t_shirt
 				%td
 					= a.lunch
+				%td
+					= a.lunch_paid
 				%td 
 					= a.is_in_wait_list
+				%td
+					= a.donation
