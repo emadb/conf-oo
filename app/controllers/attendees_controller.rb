@@ -6,6 +6,10 @@ class AttendeesController < ApplicationController
 	def set_body_class
     @page_class = 'proposal'
   end
+
+  def index
+  	@attendees = Attendee.all.asc(:name)
+  end
 	
 	def new
 		if (Time.now < APP_CONFIG['open_registration_date'])
