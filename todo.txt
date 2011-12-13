@@ -1,0 +1,12 @@
+TODO
+- Visualizzare in HP donazioni raccolte
+- Visualizzare pasti pagati e ordinati
+- Creare dashboard per admin:
+	- numero di persone in waitlist
+ 	- numero di pranzi
+ 	- numero di pranzi pagati
+ 	- donazioni
+ 	- num magliette per taglia
+- possibilità di inviare la mail di conferma on demand (utile x quando approveremo gente dalla waitlist)
+- gestione delle chiavi con variabili di env
+- redirect verso versioni mobile
