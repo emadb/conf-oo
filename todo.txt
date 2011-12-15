@@ -1,6 +1,4 @@
 TODO
-- Visualizzare in HP donazioni raccolte
-- Visualizzare pasti pagati e ordinati
 - Creare dashboard per admin:
 	- numero di persone in waitlist
  	- numero di pranzi

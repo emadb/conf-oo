@@ -291,7 +291,10 @@ footer {
 
 .paypal
 {
-	float: left;
- 	margin-left: 30%;
-  margin-top: 240px;
+    width:250px;
+    text-align: center;
+    border: 2px solid  #e8d135;
+    padding: 4px;
+    margin: 5px auto;
+    background-color: rgba(0, 0, 0, 0.09);
 }

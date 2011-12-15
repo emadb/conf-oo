@@ -23,9 +23,19 @@ class AttendeesController < ApplicationController
 		@attendee.provider = current_user.provider
 	end
 	def available
-		available = APP_CONFIG['max_attendees'] - Attendee.count
-		respond_to do |format|
-       format.json { render :json=> available.to_json }
+
+    _dashboard = {
+     :available => APP_CONFIG['max_attendees'] - Attendee.count,
+     :lunches => Attendee.count(conditions: { lunch: true }),
+     :paid => Attendee.count(conditions: { lunch_paid: true }),
+     :paid => Attendee.count(conditions: { lunch_paid: true }),
+     :donations => Attendee.all.reduce(0) do |sum, value|
+      sum + value.donation
+      end
+    }
+
+    respond_to do |format|
+       format.json { render :json=> _dashboard.to_json }
     end
 	end
 
