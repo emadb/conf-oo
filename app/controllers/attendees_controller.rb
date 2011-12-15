@@ -29,7 +29,7 @@ class AttendeesController < ApplicationController
      lunches: Attendee.count(conditions: { lunch: true }),
      paid: Attendee.count(conditions: { lunch_paid: true }),
      donations: Attendee.all.collect{ |a| a.donation }.inject do |sum, value|
-      	sum + value
+      	sum + value unless value.nil?
       end
     }
 
