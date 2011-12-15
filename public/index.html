@@ -96,7 +96,19 @@ $(document).ready(function() {
     $.getJSON(
             "attendees/available.json",
             function(data){
-                $("#placesLeft").text(data);
+                if(data.available>0){
+                    $("#placesLeft").text(data.available);
+                    $("#iscrizioneAperta").show();
+                    $("#iscrizioneChiusa").hide();
+                }
+                else
+                {
+                    $("#iscrizioneChiusa").show();
+                    $("#iscrizioneAperta").hide();
+                }
+                  $("#amountDonazioni").text(data.donations);
+                  $("#pranziPrenotati").text(data.lunches);
+                  $("#pranziPagati").text(data.paid);
             }
     );
 	
@@ -154,29 +166,7 @@ $(document).ready(function() {
 		
 });
 
-$(function () {
-    var registrationDay = new Date(2011,12-1,12,12,12,0);
-    $('#countdown').countdown(
-        {
-            until: registrationDay,
-            timezone: +60,
-            significant: 4,
-            expiryUrl: '/attendees/new'
-        }
-    );
 
-    var now = new Date();
-    if(now > registrationDay){
-        $("#iscrizionePrima").hide();
-        $("#iscrizioneDopo").show();
-    }
-    else
-    {
-        $("#iscrizionePrima").show();
-        $("#iscrizioneDopo").hide();
-    }
-
-});
 
 
 function AgendaViewModel()
@@ -286,15 +276,7 @@ function FixBio(data)
          <a target="_new" href="http://twitter.com/ugialtnet"><img src="images/twitter.png" alt="twitter"></a>
     </div>
 
-    <div class="paypal">
-<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-<input type="hidden" name="cmd" value="_s-xclick">
-<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
-">
-<input type="image" src="https://www.paypalobjects.com/it_IT/IT/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - Il sistema di pagamento online più facile e sicuro!">
-<img alt="" border="0" src="https://www.paypalobjects.com/it_IT/i/scr/pixel.gif" width="1" height="1">
-</form>
-</div>
+
   </div>
 
 </header>
@@ -312,21 +294,35 @@ function FixBio(data)
       </ul>
     </div>
 
+                             <section>
 
+        <div class="wrap">
+        <p>La conferenza è gratuita ma questo non significa che non ci siano spese: ti chiediamo un piccolo contributo per permetterci di organizzare al meglio la giornata. Al momento sono stati donati <b style='color:#e8d135'><span id="amountDonazioni" ></span>€</b></p>
+        <p>Inoltre, se hai prenotato il pranzo ti ricordiamo che non è gratuito, ma è necessario versare, prima dell'evento, la cifra di 10€ tramite il pulsante "Donazioni" qui sotto. Per ora su <b style='color:#e8d135'><span id="pranziPrenotati"></span></b> pranzi prenotati, solo <b style='color:#e8d135'><span id="pranziPagati"></span></b> sono stati pagati</p>
+<div class="paypal">
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+">
+<input type="image" src="https://www.paypalobjects.com/it_IT/IT/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - Il sistema di pagamento online più facile e sicuro!">
+<img alt="" border="0" src="https://www.paypalobjects.com/it_IT/i/scr/pixel.gif" width="1" height="1">
+</form>
+
+</div>
+
+        </div>
+        </section>
   <section id="registrazione">
   <a name="registrazione" ></a>
-    <div class="wrap" id="iscrizionePrima">
+      <div class="wrap">
       <hr style="position:relative; margin-top:-1px;">
-      <h1>Iscriviti</h1>
-      <h3>Le iscrizioni apriranno tra</h3>
-        <div id="countdown"></div>
-      <p><a href="#top" class="top">Torna in alto</a></p>
-    </div>
 
-      <div class="wrap" id="iscrizioneDopo">
-      <hr style="position:relative; margin-top:-1px;">
+
+
       <h1>Iscriviti</h1>
-      <p>Le iscrizioni sono aperte, e rimangono ancora <span id="placesLeft"></span> posti</p>
+
+        <p id="iscrizioneAperta" style='display:none'>Le iscrizioni sono aperte, e rimangono ancora <span id="placesLeft"></span> posti</p>
+        <p id="iscrizioneChiusa" style='display:none'>SOLD OUT!! Tutti i posti sono terminati. Puoi però metterti in lista d'attesa e verrai contattato nel caso si liberi un posto</p>
       <h2><a href="/attendees/new">Iscriviti!!</a></h2>
       <p><a href="#top" class="top">Torna in alto</a></p>
     </div>
