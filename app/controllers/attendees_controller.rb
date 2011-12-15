@@ -28,11 +28,7 @@ class AttendeesController < ApplicationController
      available: APP_CONFIG['max_attendees'] - Attendee.count,
      lunches: Attendee.count(conditions: { lunch: true }),
      paid: Attendee.count(conditions: { lunch_paid: true }),
-     donations: Attendee.all.collect{ |a| a.donation }.inject do |sum, value|
-     		unless value.nil?
-      		sum + value
-      	end
-      end
+     donations: Attendee.all.collect{ |a| a.donation }.select{ |a| !a.nil? }.inject {|s,v| s+v.to_i}
     }
 
     respond_to do |format|
