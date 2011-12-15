@@ -6,5 +6,5 @@ TODO
  	- donazioni
  	- num magliette per taglia
 - possibilità di inviare la mail on demand (utile x quando approveremo gente dalla waitlist)
-- gestione delle chiavi con variabili di env
+# gestione delle chiavi con variabili di env
 - redirect verso versioni mobile
