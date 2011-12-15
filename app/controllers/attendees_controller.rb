@@ -23,12 +23,14 @@ class AttendeesController < ApplicationController
 		@attendee.provider = current_user.provider
 	end
 	def available
+		donation = Attendee.all.collect{ |a| a.donation }.select{ |a| !a.nil? }.inject {|s,v| s+v.to_i}
 
     dashboard = {
-     available: APP_CONFIG['max_attendees'] - Attendee.count,
-     lunches: Attendee.count(conditions: { lunch: true }),
-     paid: Attendee.count(conditions: { lunch_paid: true }),
-     donations: Attendee.all.collect{ |a| a.donation }.select{ |a| !a.nil? }.inject {|s,v| s+v.to_i}
+    	available: APP_CONFIG['max_attendees'] - Attendee.count,
+    	lunches: Attendee.count(conditions: { lunch: true }),
+    	paid: Attendee.count(conditions: { lunch_paid: true }),
+    	donations: donation,
+    	donation_per_person: donation.to_i / Attendee.count
     }
 
     respond_to do |format|
