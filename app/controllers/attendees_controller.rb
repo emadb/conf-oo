@@ -24,17 +24,17 @@ class AttendeesController < ApplicationController
 	end
 	def available
 
-    _dashboard = {
-     :available => APP_CONFIG['max_attendees'] - Attendee.count,
-     :lunches => Attendee.count(conditions: { lunch: true }),
-     :paid => Attendee.count(conditions: { lunch_paid: true }),
-     :donations => Attendee.all.reduce(0) do |sum, value|
-      sum + value.donation
+    dashboard = {
+     available: APP_CONFIG['max_attendees'] - Attendee.count,
+     lunches: Attendee.count(conditions: { lunch: true }),
+     paid: Attendee.count(conditions: { lunch_paid: true }),
+     donations: Attendee.all.collect{ |a| a.donation }.inject do |sum, value|
+      	sum + value
       end
     }
 
     respond_to do |format|
-       format.json { render :json=> _dashboard.to_json }
+       format.json { render :json=> dashboard.to_json }
     end
 	end
 

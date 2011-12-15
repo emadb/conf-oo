@@ -32,8 +32,8 @@ ConfOo::Application.configure do
     :address              => "smtp.gmail.com",
     :port                 => 587,
     :domain               => 'ugialt.net',
-    :user_name            => 'info@ugialt.net',
-    :password             => '<password>',
+    :user_name            => ENV['mail_user_name'],
+    :password             => ENV['mail_password'],
     :authentication       => 'plain',
     :enable_starttls_auto => true  }
     
