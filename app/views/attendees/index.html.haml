@@ -21,6 +21,8 @@
 				wait_list
 			%th
 				donation
+			%th
+				delete
 
 		- @attendees.each_with_index do |a, i|
 			%tr
@@ -42,3 +44,5 @@
 					= a.is_in_wait_list
 				%td
 					= a.donation
+				%td
+					= link_to "Delete", attendee_path(a), :method => :delete, :confirm => "Are you sure?"
