@@ -24,6 +24,7 @@ ConfOo::Application.routes.draw do
   match 'polls/results', :to => 'polls#results'
 
   match 'attendees/available', :to => 'attendees#available'
+  match 'attendees/query', :to => 'attendees#query'
 
   resources :proposals
   resources :speeches

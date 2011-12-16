@@ -92,4 +92,7 @@ class AttendeesController < ApplicationController
     end
   end
 
+  def query
+  	@attendees = eval(params[:query])	
+  end
 end
