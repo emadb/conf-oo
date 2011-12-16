@@ -2,11 +2,11 @@
 	%h2
 		Elenco iscritti
 	%div#query
-		%form{ action: 'attendees/query', method: 'post' }
+		%form{ action: '/attendees/query', method: 'post' }
 			%label
 				query
 			%div
-				%textarea{ name: 'query', style: 'border: solid 1px'}
+				%textarea{ name: 'query', style: 'border:solid 1px'}
 			%input{ type: 'submit'}
 			
 	%table
