@@ -115,9 +115,9 @@ $(document).ready(function() {
 /*	Elenco per stanza
     var nbr_case=3;
 	$.getJSON(
-			"speeches.json",
+			"_speeches.json",
 			function (data) {
-                data = FixBio(data);
+                data = FixModel(data);
 				var res = _.groupBy(data,'room');
 				$.each(res,
 					function (index, value) {
@@ -130,25 +130,25 @@ $(document).ready(function() {
                 $("#sessionDetailTemplate").tmpl(data).appendTo("#boxes");
 				$(".inline").colorbox({inline:true, width:"50%"});
             });
-                */
+                   */
 
-/*	Elenco sessioni       */
+/*	Elenco sessioni
     var nbr_case=18;
 	$.getJSON(
-			"speeches.json",
+			"_speeches.json",
 			function (data) {
 				data = _.sortBy(data,function(obj){ return obj.from+obj.room; });
-                data = FixBio(data);
+                data = FixModel(data);
                 $("#sessionListTemplate").tmpl(data).appendTo("#slider");
-            });
+            });   */
 
 
-/* Elenco per ora
+/* Elenco per ora       */
     var nbr_case=4;
 	$.getJSON(
-			"speeches.json",
+			"_speeches.json",
 			function (data) {
-                data = FixBio(data);
+                data = FixModel(data);
 				data = _.sortBy(data,function(obj){ return obj.from; });
 				var res = _.groupBy(data,function(obj){ return obj.from + " - " + obj.to; });
 				$.each(res,
@@ -162,7 +162,7 @@ $(document).ready(function() {
 				$("#sessionDetailTemplate").tmpl(data).appendTo("#boxes");
 				$(".inline").colorbox({inline:true, width:"50%"});	
             });
-           */
+
 		
 });
 
@@ -174,13 +174,16 @@ function AgendaViewModel()
 	
 }
 
-function FixBio(data)
+function FixModel(data)
 {
    return $.each(data,function(index, value){
         if(value.speaker.bio.substring(0, 4) == "http")
             value.speaker.bioUrl=value.speaker.bio;
+        value.from=value["from(4i)"]+":"+value["from(5i)"];
+        value.to=value["to(4i)"]+":"+value["to(5i)"];
     });
 }
+
 
 
 </script>
@@ -347,11 +350,11 @@ function FixBio(data)
 	    </div>
         <br><br>
         <div id="slider_precedent" class="slider_btn" style=" display:inline-block;">
-			<img src="images/jours_precedent.png">
+			<img src="images/jours_avant_l.png">
         </div>
 
         <div id="slider_suivant" class="slider_btn" style="display:inline-block; margin-left:843px;">
-			<img src="images/jours_suivant.png">
+			<img src="images/jours_suivant_l.png">
         </div>
 <br>
         <p><a href="#top" class="top">Torna in alto</a></p>
