@@ -26,10 +26,13 @@ class SpeechesController < ApplicationController
 
   def new
     @speech = Speech.new
+    @speech.speaker = Speaker.new
   end
 
   def edit
     @speech = Speech.find(params[:id])
+    logger.info '---------------------------------'
+    logger.info @speech.to_json
   end
 
   def create
