@@ -144,7 +144,7 @@ $(document).ready(function() {
 
 
 /* Elenco per ora       */
-    var nbr_case=4;
+    var nbr_case=8;
 	$.getJSON(
 			"speeches.json",
 			function (data) {
@@ -179,8 +179,18 @@ function FixModel(data)
    return $.each(data,function(index, value){
         if(value.speaker.bio.substring(0, 4) == "http")
             value.speaker.bioUrl=value.speaker.bio;
-        value.from=value["from(4i)"]+":"+value["from(5i)"];
-        value.to=value["to(4i)"]+":"+value["to(5i)"];
+        if(value.from == undefined){
+            value.from=value["from(4i)"]+":"+value["from(5i)"];
+            value.to=value["to(4i)"]+":"+value["to(5i)"];
+        }
+        else {
+            var from = new Date(value.from);
+            var to = new Date(value.to);
+            value.from = from.getHours()-1+":"+from.getMinutes();
+            value.to = to.getHours()-1+":"+to.getMinutes();
+        }
+       if(value.speaker.name=="-")
+            value.nolink=true;
     });
 }
 
@@ -244,16 +254,21 @@ function FixModel(data)
 <script id="agendaByTimeTemplate" type="text/x-jquery-tmpl">
 	<div class="news" style="width:420px; margin:0 20px 0 0px; float:left">
 			<h2>${ time }</h2>
-			{{tmpl(sessions) "#agendaByTimeSessionTemplate"}}
+             {{tmpl(sessions) "#agendaByTimeSessionTemplate"}}
 	</div>
 </script>
 
-<script id="agendaByTimeSessionTemplate" type="text/html">
+<script id="agendaByTimeSessionTemplate" type="text/x-jquery-tmpl">
 		<h3 style="color: #fff; display: inline-block; width:100px; float:left; margin-bottom:30px; margin-top:0;">${ room }</h3>
-		<span class="px18"><a class='inline' href="#aa${ _id }">${ title }</a><br>${speaker.name}</span>
+		<span class="px18">
+            {{if nolink}}
+                  ${ title }
+            {{else}}
+                <a class='inline' href="#aa${ _id }">${ title }</a><br>${speaker.name}
+            {{/if}}
+            </span>
 		<div style="height:10px;clear: both;"></div>
 </script>
-
 
 </head>
 <body>
