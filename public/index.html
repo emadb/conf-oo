@@ -188,12 +188,14 @@ function FixModel(data)
             var to = new Date(value.to);
             var fromMin =  from.getMinutes();
             var toMin =  to.getMinutes();
+            var toMinStr = "";
+            var fromMinStr = "";
             if(toMin<10)
-                    toMin="0"+ toMin;
+                    toMinStr="0"+ toMin;
             if(fromMin<10)
-                    fromMin="0"+ fromMin;
-            value.from = from.getHours()-1+":"+fromMin;
-            value.to = to.getHours()-1+":"+toMin;
+                    fromMinStr="0"+ fromMin;
+            value.from = from.getHours()-1+":"+fromMinStr;
+            value.to = to.getHours()-1+":"+toMinStr;
         }
        if(value.speaker.name=="-")
             value.nolink=true;
