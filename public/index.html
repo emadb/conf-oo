@@ -188,9 +188,9 @@ function FixModel(data)
             var to = new Date(value.to);
             var fromMin =  from.getMinutes();
             var toMin =  to.getMinutes();
-            if(toMin.length==1)
+            if(toMin<10)
                     toMin="0"+ toMin;
-            if(fromMin.length==1)
+            if(fromMin<10)
                     fromMin="0"+ fromMin;
             value.from = from.getHours()-1+":"+fromMin;
             value.to = to.getHours()-1+":"+toMin;
