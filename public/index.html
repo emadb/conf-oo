@@ -186,8 +186,14 @@ function FixModel(data)
         else {
             var from = new Date(value.from);
             var to = new Date(value.to);
-            value.from = from.getHours()-1+":"+from.getMinutes();
-            value.to = to.getHours()-1+":"+to.getMinutes();
+            var fromMin =  from.getMinutes();
+            var toMin =  to.getMinutes();
+            if(toMin.length==1)
+                    toMin="0"+ toMin;
+            if(fromMin.length==1)
+                    fromMin="0"+ fromMin;
+            value.from = from.getHours()-1+":"+fromMin;
+            value.to = to.getHours()-1+":"+toMin;
         }
        if(value.speaker.name=="-")
             value.nolink=true;
