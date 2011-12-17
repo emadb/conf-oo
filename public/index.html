@@ -115,7 +115,7 @@ $(document).ready(function() {
 /*	Elenco per stanza
     var nbr_case=3;
 	$.getJSON(
-			"_speeches.json",
+			"speeches.json",
 			function (data) {
                 data = FixModel(data);
 				var res = _.groupBy(data,'room');
@@ -135,7 +135,7 @@ $(document).ready(function() {
 /*	Elenco sessioni
     var nbr_case=18;
 	$.getJSON(
-			"_speeches.json",
+			"speeches.json",
 			function (data) {
 				data = _.sortBy(data,function(obj){ return obj.from+obj.room; });
                 data = FixModel(data);
@@ -146,7 +146,7 @@ $(document).ready(function() {
 /* Elenco per ora       */
     var nbr_case=4;
 	$.getJSON(
-			"_speeches.json",
+			"speeches.json",
 			function (data) {
                 data = FixModel(data);
 				data = _.sortBy(data,function(obj){ return obj.from; });
