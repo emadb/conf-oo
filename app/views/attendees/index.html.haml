@@ -2,11 +2,22 @@
 	%h2
 		Elenco iscritti
 	%div#query
-		%form{ action: 'attendees/query', method: 'post' }
-			%label
-				query
-			%div
-				%textarea{ name: 'query', style: 'border: solid 1px'}
+		%form{ action: '/attendees/query', method: 'post' }
+			%fieldset
+				.field
+					%label query
+					%textarea{ name: 'query'}
+						= @query
+				.field
+					%label send_mail
+					%input{type: 'checkbox', name: 'send_mail', id:'send_mail'}
+				.field.mail
+					%label subject
+					%input{type: 'text', name: 'subject'}
+				.field.mail
+					%label body
+					%textarea{name: 'body'}
+
 			%input{ type: 'submit'}
 			
 	%table

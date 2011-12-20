@@ -68,6 +68,7 @@ class AttendeesController < ApplicationController
   end
 
 
+
   def update
     @attendee = Attendee.find(params[:id])
 
@@ -93,6 +94,11 @@ class AttendeesController < ApplicationController
   end
 
   def query
+    @query = params[:query]
   	@attendees = eval(params[:query])	
+    if params[:send_mail] != nil
+      AttendeeMail.send_generic_mail(@attendees, params[:subject], params[:body])
+    end
+    render :template => "attendees/index"
   end
 end
