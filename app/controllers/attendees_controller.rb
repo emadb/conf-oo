@@ -23,7 +23,7 @@ class AttendeesController < ApplicationController
 		@attendee.provider = current_user.provider
 	end
 	def available
-		donation = Attendee.all.collect{ |a| a.donation }.select{ |a| !a.nil? }.inject {|s,v| s+v.to_i}
+		donation = Attendee.all.collect{ |a| a.donation }.select{ |a| !a.nil? }.inject(0) {|s,v| s+v.to_i}
 
     dashboard = {
     	available: APP_CONFIG['max_attendees'] - Attendee.count,
