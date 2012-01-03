@@ -26,7 +26,7 @@ class AttendeesController < ApplicationController
 		donation = Attendee.all.collect{ |a| a.donation }.select{ |a| !a.nil? }.inject(0) {|s,v| s+v.to_i}
 
     dashboard = {
-    	available: APP_CONFIG['max_attendees'] - Attendee.count,
+    	available: APP_CONFIG['max_attendees'] - Attendee.count - Attendee.count(conditions: { exclude: true }),
     	lunches: Attendee.count(conditions: { lunch: true }),
     	paid: Attendee.count(conditions: { lunch_paid: true }),
     	donations: donation,
