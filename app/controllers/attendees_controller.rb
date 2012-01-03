@@ -27,8 +27,8 @@ class AttendeesController < ApplicationController
 
     dashboard = {
     	available: APP_CONFIG['max_attendees'] - (Attendee.count - Attendee.count(conditions: { exclude: true })),
-    	lunches: Attendee.count(conditions: { lunch: true }),
-    	paid: Attendee.count(conditions: { lunch_paid: true }),
+    	lunches: Attendee.count(conditions: { lunch: true, is_in_wait_list: false }),
+    	paid: Attendee.count(conditions: { lunch_paid: true, is_in_wait_list: false }),
     	donations: donation,
     	donation_per_person: donation.to_i / Attendee.count
     }
