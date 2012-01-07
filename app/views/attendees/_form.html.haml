@@ -43,5 +43,13 @@
         %label
           Lunch paid
         = f.select(:lunch_paid, {'Si' => true, 'No' => false})
+      .field
+        %label
+          Notes
+        = f.text_field :notes
+      .field
+        %label
+          Exclude
+        = f.select(:exclude, {'Si' => true, 'No' => false})
   .actions
     = f.submit 'Save'

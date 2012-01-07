@@ -9,6 +9,9 @@
 					%textarea{ name: 'query'}
 						= @query
 				.field
+					%label export csv
+					%input{type: 'checkbox', name: 'export_csv', id:'export_csv'}
+				.field
 					%label send_mail
 					%input{type: 'checkbox', name: 'send_mail', id:'send_mail'}
 				.field.mail

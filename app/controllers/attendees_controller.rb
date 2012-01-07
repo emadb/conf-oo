@@ -1,7 +1,9 @@
+require 'csv'
+
 class AttendeesController < ApplicationController
 	before_filter :set_body_class
 	before_filter :authenticate_user!, :except => [:available]
-	before_filter :user_is_admin?, :except => [:new, :create, :available]
+	before_filter :user_is_admin?, :except => [:available]
 
 	def set_body_class
     @page_class = 'proposal'
@@ -99,6 +101,48 @@ class AttendeesController < ApplicationController
     if params[:send_mail] != nil
       AttendeeMail.send_generic_mail(@attendees, params[:subject], params[:body])
     end
-    render :template => "attendees/index"
+    if params[:export_csv] != nil
+      dump_csv @attendees 
+    else
+      render :template => "attendees/index"
+    end
+    
+  end
+
+
+  def dump_csv (attendees)
+    logger.info '************************'
+    logger.info attendees
+    logger.info '************************'
+    @outfile = "attendees_" + Time.now.strftime("%m-%d-%Y") + ".csv"
+    
+    csv_data = CSV.generate(:col_sep => ';') do |csv|
+      csv << [
+      "name",
+      "email",
+      "t_shirt",
+      "lunch",
+      "lunch_paid",
+      "waitlist",
+      "donation",
+      "notes"
+      ]
+      attendees.each do |user|
+        csv << [
+        user.name,
+        user.email,
+        user.t_shirt,
+        user.lunch,
+        user.lunch_paid,
+        user.is_in_wait_list,
+        user.donation,
+        user.notes
+        ]
+      end
+    end
+
+    send_data csv_data,
+      :type => 'text/csv; charset=iso-8859-1; header=present',
+      :disposition => "attachment; filename=#{@outfile}"
   end
 end
