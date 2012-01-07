@@ -96,52 +96,11 @@ $(document).ready(function() {
     $.getJSON(
             "attendees/available.json",
             function(data){
-                if(data.available>0){
-                    $("#placesLeft").text(data.available);
-                    $("#iscrizioneAperta").show();
-                    $("#iscrizioneChiusa").hide();
-                }
-                else
-                {
-                    $("#iscrizioneChiusa").show();
-                    $("#iscrizioneAperta").hide();
-                }
                   $("#amountDonazioni").text(data.donations);
                   $("#pranziPrenotati").text(data.lunches);
                   $("#pranziPagati").text(data.paid);
             }
     );
-	
-/*	Elenco per stanza
-    var nbr_case=3;
-	$.getJSON(
-			"speeches.json",
-			function (data) {
-                data = FixModel(data);
-				var res = _.groupBy(data,'room');
-				$.each(res,
-					function (index, value) {
-						var obj = new AgendaViewModel();
-						obj.room=index;
-						obj.sessions = _.sortBy(value,function(obj){ return obj.from; });
-						$("#agendaByRoomTemplate").tmpl(obj).appendTo("#slider");
-					}
-				);
-                $("#sessionDetailTemplate").tmpl(data).appendTo("#boxes");
-				$(".inline").colorbox({inline:true, width:"50%"});
-            });
-                   */
-
-/*	Elenco sessioni
-    var nbr_case=18;
-	$.getJSON(
-			"speeches.json",
-			function (data) {
-				data = _.sortBy(data,function(obj){ return obj.from+obj.room; });
-                data = FixModel(data);
-                $("#sessionListTemplate").tmpl(data).appendTo("#slider");
-            });   */
-
 
 /* Elenco per ora       */
     var nbr_case=8;
@@ -347,8 +306,8 @@ function FixModel(data)
 
       <h1>Iscriviti</h1>
 
-        <p id="iscrizioneAperta" style='display:none'>Le iscrizioni sono aperte, e rimangono ancora <span id="placesLeft"></span> posti</p>
-        <p id="iscrizioneChiusa" style='display:none'>SOLD OUT!! Tutti i posti sono terminati. Puoi però metterti in lista d'attesa e verrai contattato nel caso si liberi un posto</p>
+        <p>SOLD OUT!! Tutti i 150 posti disponibili sono esauriti, e così pure come i 50 posti in lista d'attesa.<br/>
+        Ci dispiace ma non possiamo accettare altre iscrizioni. Sarà per il prossimo anno.</p>
       <p><a href="#top" class="top">Torna in alto</a></p>
     </div>
 
