@@ -125,7 +125,8 @@ class AttendeesController < ApplicationController
       "lunch_paid",
       "waitlist",
       "donation",
-      "notes"
+      "notes",
+      "exclude"
       ]
       attendees.each do |user|
         csv << [
@@ -136,7 +137,8 @@ class AttendeesController < ApplicationController
         user.lunch_paid,
         user.is_in_wait_list,
         user.donation,
-        user.notes
+        user.note,
+        user.exclude
         ]
       end
     end

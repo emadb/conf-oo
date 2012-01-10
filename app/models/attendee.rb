@@ -13,7 +13,7 @@ class Attendee
   field :donation
   field :lunch_paid, :type => Boolean, :default => false
 
-  field :notes
+  field :note
   field :exclude, :type => Boolean, :default => false
 
   def is_new
