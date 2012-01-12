@@ -1,0 +1,165 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+	<title>UGIALT.NET Conf</title> 
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.css" />
+    <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+    <script type="text/javascript" src="/mobile/jqm/jqmobile-settings.js"></script>
+
+    <script src="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.js"></script>
+	<script type="text/javascript" src="../ko/knockout-2.0.0.js"></script>
+	<script type="text/javascript" src="../ko/ko-mobile-bindings.js"></script>
+
+    <script type='text/javascript' src='../underscore/underscore-min.js'></script>
+    <script type="text/javascript" src="/mobile/jqm/agendaviewmodel.js"></script>
+	
+	<script>
+	$(document).ready(function() {
+		ko.applyBindings(new AgendaViewModel());
+	});
+	</script>
+	
+</head> 
+<body> 
+
+<div data-role="page" id="home">
+
+	<div data-role="header">
+		<h1>UGIALT.NET Conf</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">	
+
+		<ul id="upcomingSpeeches" data-role="listview" data-inset="true">
+			<li data-role="list-divider">Prossime sessioni</li>
+            <li>Mancano <span data-bind="text: daysToConference"></span> giorni</li>
+		</ul>
+
+		<ul data-role="listview" data-inset="true" >
+			<li data-role="list-divider">La Conferenza</li>
+			<li><a href="#agenda">Agenda</a></li>
+			<li><a href="#location">Location</a></li>
+			<li><a href="#speaker">Speaker</a></li>
+			<li><a href="#ugialtnet">UGIALT.NET</a></li>
+			<li><a href="#sponsor">Sponsor</a></li>
+		</ul>
+	
+	</div><!-- /content -->
+
+</div><!-- /page -->
+
+
+<div data-role="page" id="agenda">
+
+	<div data-role="header">
+		<h1>Agenda</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">	
+		<ul id="timeslotList" data-role="listview" data-inset="true" data-bind="foreach: slots" >
+            <li><a data-bind="text: $data, click: $root.goToSessionList"></a></li>
+		</ul>
+	
+	</div><!-- /content -->
+
+</div><!-- /page -->
+
+<div data-role="page" id="sessions" data-bind="mobileWith: selectedSessionList">
+
+	<div data-role="header">
+        <h1 data-bind="text: name"></h1>
+	</div><!-- /header -->
+
+	<div data-role="content" >
+		<ul id="sessionList" data-role="listview" data-inset="true" data-bind="foreach: list, mobileList: list" >
+			<li><a data-bind="text: room + ' - ' + title, click: $root.goToSession"></a></li>
+		</ul>
+	</div><!-- /content -->
+
+</div><!-- /page -->
+
+<div data-role="page" id="sessionDetail" data-bind="mobileWith: selectedSession">
+
+	<div data-role="header">
+        <h1 data-bind="text: title"></h1>
+	</div><!-- /header -->
+
+	<div data-role="content">
+    <h2 data-bind="text: title"></h2>
+    <h3 data-bind="text: speaker.name"></h3>
+    <p data-bind="text: abstract"></p>
+	
+	</div><!-- /content -->
+
+</div><!-- /page -->
+
+<div data-role="page" id="speaker">
+
+	<div data-role="header">
+		<h1>Elenco Speaker</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">	
+		<ul id="speakerList" data-role="listview" data-inset="true" data-bind="foreach: speakers" >
+			<li><a data-bind="text: name, click: $root.goToSpeaker"></a></li>
+		</ul>
+	
+	</div><!-- /content -->
+
+</div><!-- /page -->
+
+<div data-role="page" id="speakerDetail" data-bind="mobileWith: selectedSpeaker">
+	<div data-role="header">
+		<h1 data-bind="text: name"></h1>
+	</div><!-- /header -->
+	<div data-role="content">
+        <h2 data-bind="text: name"></h2>
+        <img style="width: 73px; height: 73px; float: left; margin: 0 5px; border: 1px solid #000000" data-bind="attr: { src: 'https://api.twitter.com/1/users/profile_image?screen_name='+twitter+'&size=bigger'}">
+        <p data-bind="text: bio"></p>
+	</div><!-- /content -->
+</div><!-- /page -->
+
+<div data-role="page" id="location">
+
+	<div data-role="header">
+		<h1>Location</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">	
+	<p></p>
+	
+	</div><!-- /content -->
+
+</div><!-- /page -->
+
+<div data-role="page" id="ugialtnet">
+
+	<div data-role="header">
+		<h1>UGIALT.net</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">	
+	<p></p>
+	
+	</div><!-- /content -->
+
+</div><!-- /page -->
+
+<div data-role="page" id="sponsor">
+
+	<div data-role="header">
+		<h1>Sponsor</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">	
+	<p></p>
+	
+	</div><!-- /content -->
+
+</div><!-- /page -->
+
+</body>
+</html>
