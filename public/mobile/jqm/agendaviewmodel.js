@@ -36,6 +36,7 @@
                 return value.timeSlot == slot;
             });
             list = _.sortBy(list, function(value) {return value.room});
+            list = _.reject(list, function(value){return value.title==""})
             var obj = new Object();
             obj.name = slot;
             obj.list = ko.observable(list);;
@@ -51,7 +52,7 @@
 
 
 		$.getJSON(
-			"/speeches.json",
+			"speeches.json",
 			function (data) {
 				data = FixModel(data);
 				self.sessions(data);

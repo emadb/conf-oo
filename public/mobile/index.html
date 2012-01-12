@@ -106,7 +106,7 @@
 
 	<div data-role="content">
     <h2 data-bind="text: title"></h2>
-    <h3 data-bind="text: speaker.name"></h3>
+    <h3 data-bind="visible: speaker.name!='-', text: speaker.name"></h3>
     <p data-bind="text: abstract"></p>
 	
 	</div><!-- /content -->
