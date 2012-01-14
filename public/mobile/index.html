@@ -109,7 +109,10 @@
     <h2 class="title" data-bind="text: title"></h2>
     <h3 data-bind="visible: speaker.name!='-', text: speaker.name"></h3>
     <p data-bind="text: abstract"></p>
-	
+
+		<ul data-role="listview" data-inset="true" data-bind="with: speaker" >
+			<li><a data-bind="text: name, click: $root.goToSpeaker"></a></li>
+		</ul>
 	</div><!-- /content -->
 
 </div><!-- /page -->
@@ -143,8 +146,8 @@
         <p data-bind="if: bioUrl==''"><span data-bind="text: bio"></span></p>
         <div style="clear:both;"></div>
 
-        <a data-role="button" target="_blank" data-bind="visible: twitter!='', attr: { href: 'http://twitter.com/'+twitter }">Seguilo su twitter</a>
-        <a data-role="button" target="_blank" data-bind="visible: blog!='', attr: { href: blog }">Leggi il suo blog</a>
+        <a data-role="button" target="_blank" data-bind="visible: twitter!='', attr: { href: 'http://twitter.com/'+twitter }">Twitter</a>
+        <a data-role="button" target="_blank" data-bind="visible: blog!='', attr: { href: blog }">Blog</a>
 
 	</div><!-- /content -->
 </div><!-- /page -->
