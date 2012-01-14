@@ -10,6 +10,10 @@
 		self.selectedSpeaker =  ko.observable();
 		self.selectedSessionList = ko.observable();
 
+        self.nextSessions = ko.compute(function() {
+
+        });
+
 
         var today=new Date();
         var conference = new Date(2012,0,21);
@@ -52,7 +56,7 @@
 
 
 		$.getJSON(
-			"/_speeches.json",
+			"/speeches.json",
 			function (data) {
 				data = FixModel(data);
 				self.sessions(data);
@@ -94,6 +98,12 @@
 				value.nolink=true;
            else
                 value.nolink=false;
+           if(value.hashtag == undefined){
+               value.hashtag="";
+           }
+
+           this.twitterMessage=ComputeTwitterMessage(this);
+           this.twitterUrl=ComputeTwitterUrl(this.twitterMessage);
 		});
 	}
 
@@ -111,4 +121,17 @@
         list = _.reject(list, function(value) {return value.name  == "-";})
         list = _.sortBy(list, function(value){return value.name});
         return list;
+    }
+
+    function ComputeTwitterMessage(session){
+        if(session.hashtag!=undefined){
+            if(session.speaker.twitter!="")
+                return "Sono a #"+session.hashtag+" by @" + session.speaker.twitter;
+            else
+                return "Sono a #"+session.hashtag;
+        }
+    }
+
+    function ComputeTwitterUrl(message){
+            return "https://twitter.com/intent/tweet?text="+encodeURIComponent(message+" #uan12");
     }

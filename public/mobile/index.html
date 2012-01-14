@@ -113,9 +113,9 @@
 		</ul>
          <!-- /ko -->
     <p data-bind="text: abstract"></p>
-
-    <a data-role="button" target="_blank" data-bind="attr: { href: 'https://twitter.com/intent/tweet?text=Sto%20ascoltando%20%40'+speaker.twitter+'%20%23'+hashtag+'%20%23uan12' }">Twitta la sessione che segui</a>
-
+          <!-- ko ifnot: hashtag=='' -->
+    <a data-role="button" target="_blank" data-bind="attr: { href: twitterUrl }"><span data-bind="text: twitterMessage"></span></a>
+                 <!-- /ko -->
 
 
 	</div><!-- /content -->
