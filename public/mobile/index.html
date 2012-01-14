@@ -20,7 +20,7 @@
 
     <script type='text/javascript' src='../underscore/underscore-min.js'></script>
     <script type="text/javascript" src="/mobile/jqm/agendaviewmodel.js"></script>
-	
+
 	<script>
 	$(document).ready(function() {
 		ko.applyBindings(new AgendaViewModel());
@@ -107,12 +107,17 @@
 
 	<div data-role="content">
     <h2 class="title" data-bind="text: title"></h2>
-    <h3 data-bind="visible: speaker.name!='-', text: speaker.name"></h3>
-    <p data-bind="text: abstract"></p>
-
+            <!-- ko if: nolink!=true -->
 		<ul data-role="listview" data-inset="true" data-bind="with: speaker" >
 			<li><a data-bind="text: name, click: $root.goToSpeaker"></a></li>
 		</ul>
+         <!-- /ko -->
+    <p data-bind="text: abstract"></p>
+
+    <a data-role="button" target="_blank" data-bind="attr: { href: 'https://twitter.com/intent/tweet?text=Sto%20ascoltando%20%40'+speaker.twitter+'%20%23'+hashtag+'%20%23uan12' }">Twitta la sessione che segui</a>
+
+
+
 	</div><!-- /content -->
 
 </div><!-- /page -->

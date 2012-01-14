@@ -6,6 +6,7 @@ class Speech
   field :to, :type => Time
   field :room
   field :title
+  field :hashtag
   field :abstract
   field :proposal_id
 end

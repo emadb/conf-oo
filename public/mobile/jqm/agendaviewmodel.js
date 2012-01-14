@@ -92,6 +92,8 @@
            value.timeSlot=value.from +" - "+value.to;
 		   if(value.speaker.name=="-")
 				value.nolink=true;
+           else
+                value.nolink=false;
 		});
 	}
 
