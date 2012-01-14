@@ -10,9 +10,6 @@
 		self.selectedSpeaker =  ko.observable();
 		self.selectedSessionList = ko.observable();
 
-        self.nextSessions = ko.compute(function() {
-
-        });
 
 
         var today=new Date();
