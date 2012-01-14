@@ -69,6 +69,8 @@
 	   return $.each(data,function(index, value){
 			if(value.speaker.bio.substring(0, 4) == "http")
 				value.speaker.bioUrl=value.speaker.bio;
+            else
+                 value.speaker.bioUrl="";
 			if(value.from == undefined){
 				value.from=value["from(4i)"]+":"+value["from(5i)"];
 				value.to=value["to(4i)"]+":"+value["to(5i)"];

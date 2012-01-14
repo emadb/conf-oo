@@ -135,8 +135,12 @@
 	</div><!-- /header -->
 	<div data-role="content">
         <h2 class="title" data-bind="text: name"></h2>
-        <img style="width: 73px; height: 73px; float: left; margin: 0 5px; border: 1px solid #000000" data-bind="visible: twitter!='',attr: { src: 'https://api.twitter.com/1/users/profile_image?screen_name='+twitter+'&size=bigger'}">
-        <p data-bind="text: bio"></p>
+        <!-- ko if: twitter!='' -->
+        <img style="width: 73px; height: 73px; float: left; margin: 0 5px; border: 1px solid #000000" data-bind=" attr: { src: 'https://api.twitter.com/1/users/profile_image?screen_name='+twitter+'&size=bigger'}">
+        <!-- /ko -->
+
+        <p data-bind="ifnot: bioUrl==''">Per maggiori info: <a target="_blank" data-bind="text: bioUrl, attr: { href: bioUrl }"></a></p>
+        <p data-bind="if: bioUrl==''"><span data-bind="text: bio"></span></p>
         <div style="clear:both;"></div>
 
         <a data-role="button" target="_blank" data-bind="visible: twitter!='', attr: { href: 'http://twitter.com/'+twitter }">Seguilo su twitter</a>
