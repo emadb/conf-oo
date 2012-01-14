@@ -9,7 +9,7 @@
 <link rel="apple-touch-icon" sizes="72x72" href="/images/touch-icon-ipad.png" />
 <link rel="apple-touch-icon" sizes="114x114" href="/images/touch-icon-iphone4.png" />
 
-    <link rel="stylesheet" href="/css/themes/ugialtnet.css" />
+    <link rel="stylesheet" href="/css/themes/ugialtnet.min.css" />
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0/jquery.mobile.structure-1.0.min.css" />
     <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
     <script type="text/javascript" src="/mobile/jqm/jqmobile-settings.js"></script>
@@ -106,7 +106,7 @@
 	</div><!-- /header -->
 
 	<div data-role="content">
-    <h2 data-bind="text: title"></h2>
+    <h2 class="title" data-bind="text: title"></h2>
     <h3 data-bind="visible: speaker.name!='-', text: speaker.name"></h3>
     <p data-bind="text: abstract"></p>
 	
@@ -131,12 +131,17 @@
 
 <div data-role="page" id="speakerDetail" data-bind="mobileWith: selectedSpeaker">
 	<div data-role="header">
-		<h1 data-bind="text: name"></h1>
+		<h1  data-bind="text: name"></h1>
 	</div><!-- /header -->
 	<div data-role="content">
-        <h2 data-bind="text: name"></h2>
-        <img style="width: 73px; height: 73px; float: left; margin: 0 5px; border: 1px solid #000000" data-bind="attr: { src: 'https://api.twitter.com/1/users/profile_image?screen_name='+twitter+'&size=bigger'}">
+        <h2 class="title" data-bind="text: name"></h2>
+        <img style="width: 73px; height: 73px; float: left; margin: 0 5px; border: 1px solid #000000" data-bind="visible: twitter!='',attr: { src: 'https://api.twitter.com/1/users/profile_image?screen_name='+twitter+'&size=bigger'}">
         <p data-bind="text: bio"></p>
+        <div style="clear:both;"></div>
+
+        <a data-role="button" target="_blank" data-bind="visible: twitter!='', attr: { href: 'http://twitter.com/'+twitter }">Seguilo su twitter</a>
+        <a data-role="button" target="_blank" data-bind="visible: blog!='', attr: { href: blog }">Leggi il suo blog</a>
+
 	</div><!-- /content -->
 </div><!-- /page -->
 
@@ -158,7 +163,7 @@
 			<p>Per chi invece preferisce spostarsi in treno, arrivate a Milano Centrale: la sede dell'evento è <a href="http://maps.google.com/maps?saddr=Piazza+Duca+d%27Aosta&daddr=Via+Roberto+Lepetit&hl=en&ll=45.483936,9.204462&spn=0.003934,0.009645&sll=45.484876,9.20429&sspn=0.001967,0.004823&geocode=FdYMtgId_m-MAA%3BFaIDtgIdFHKMAA&vpsrc=6&dirflg=w&mra=dme&mrsp=0&sz=18&t=m&z=17">a poco più di 300 metri dall'uscita della stazione</a>.</p>
 
            <div style="border:10px solid #6ba32a;">
-	  <iframe width="300" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Via+Lepetit+8,+Milano&amp;aq=&amp;sll=45.483184,9.204549&amp;sspn=0.007868,0.01929&amp;vpsrc=0&amp;ie=UTF8&amp;hq=&amp;hnear=Via+Roberto+Lepetit,+8,+20124+Milano,+Lombardia,+Italy&amp;t=m&amp;z=14&amp;ll=45.483184,9.204549&amp;output=embed"></iframe>
+               <iframe width="300" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Via+Lepetit+8,+Milano&amp;aq=&amp;sll=45.483184,9.204549&amp;sspn=0.007868,0.01929&amp;vpsrc=0&amp;ie=UTF8&amp;hq=&amp;hnear=Via+Roberto+Lepetit,+8,+20124+Milano,+Lombardia,+Italy&amp;t=m&amp;view=map&amp;ll=45.483183,9.204569&amp;spn=0.018053,0.025663&amp;z=14&amp;iwloc=A&amp;output=embed"></iframe>
       </div>
       <h3>Data e ora</h3>
       <p>Sabato 21 Gennaio 2012<br>
