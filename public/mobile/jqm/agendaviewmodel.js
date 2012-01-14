@@ -52,7 +52,7 @@
 
 
 		$.getJSON(
-			"speeches.json",
+			"/_speeches.json",
 			function (data) {
 				data = FixModel(data);
 				self.sessions(data);
