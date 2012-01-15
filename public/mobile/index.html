@@ -21,6 +21,12 @@
     <script type='text/javascript' src='../underscore/underscore-min.js'></script>
     <script type="text/javascript" src="/mobile/jqm/agendaviewmodel.js"></script>
 
+        <style>
+            .title{
+                color: rgba(14,90,161,1);
+            }
+        </style>
+
 	<script>
 	$(document).ready(function() {
 		ko.applyBindings(new AgendaViewModel());
@@ -49,14 +55,48 @@
 		<h1>UGIALT.NET Conf</h1>
 	</div><!-- /header -->
 
-	<div data-role="content">	
+	<div data-role="content">
 
-		<ul id="upcomingSpeeches" data-role="listview" data-inset="true">
-			<li data-role="list-divider">Prossime sessioni</li>
-            <li>Mancano <span data-bind="text: daysToConference"></span> giorni</li>
-		</ul>
+        <!-- ko if: hoursToConference>8 -->
+        <ul data-role="listview" data-inset="true">
+            <li>Mancano <span data-bind="text: Math.ceil(hoursToConference/24)"></span> giorni alla UGIALT.net Conf</li>
+        </ul>
+        <!-- /ko -->
+        <!-- ko if: hoursToConference<-9 -->
+        <ul data-role="listview" data-inset="true">
+            <li>La UGIALT.net Conference è terminata.<br/>Arrivederci alla prossima edizione</li>
+        </ul>
+        <!-- /ko -->
 
-		<ul  data-role="listview" data-inset="true" >
+        <!-- ko if: hoursToConference<9 && hoursToConference>-10  -->
+
+        <ul id="upcomingSpeeches" data-role="listview" data-inset="true" data-bind="visible: currentSessions().length > 0 || nextSessions().length > 0, mobileNewList: nextSessions">
+
+             <li data-role="list-divider">Sessioni Correnti</li>
+             <!-- ko if: currentSessions().length == 0 -->
+             <li>Nulla in corso</li>
+             <!-- /ko -->
+            <!-- ko foreach: currentSessions -->
+            <li><a data-bind="click: $root.goToSession">
+                <h3 class="title" data-bind="text: title"></h3>
+                <p data-bind="text: room + ' - ' + timeSlot""></p>
+            </a></li>
+            <!-- /ko -->
+             <li data-role="list-divider">Prossime Sessioni</li>
+             <!-- ko if: nextSessions().length == 0 -->
+             <li>La ugialt.net conf è terminata</li>
+             <!-- /ko -->
+             <!-- ko foreach: nextSessions -->
+            <li><a data-bind="click: $root.goToSession">
+                <h3 class="title" data-bind="text: title"></h3>
+                <p data-bind="text: room + ' - ' + timeSlot""></p>
+            </a></li>
+             <!-- /ko -->
+        </ul>
+
+       <!-- /ko -->
+
+		<ul data-role="listview" data-inset="true" >
 			<li data-role="list-divider">La Conferenza</li>
 			<li><a href="#agenda">Agenda</a></li>
 			<li><a href="#location">Location</a></li>
@@ -77,7 +117,7 @@
 	</div><!-- /header -->
 
 	<div data-role="content">	
-		<ul id="timeslotList" data-role="listview" data-inset="true" data-bind="foreach: slots" >
+		<ul id="timeslotList" data-role="listview" data-inset="true" data-bind="foreach: slots, mobileList: slots" >
             <li><a data-bind="text: $data, click: $root.goToSessionList"></a></li>
 		</ul>
 	
@@ -93,7 +133,11 @@
 
 	<div data-role="content" >
 		<ul id="sessionList" data-role="listview" data-inset="true" data-bind="foreach: list, mobileList: list" >
-			<li><a data-bind="text: room + ' - ' + title, click: $root.goToSession"></a></li>
+            <li><a data-bind="click: $root.goToSession">
+                <h3 class="title" data-bind="text: title"></h3>
+                <p data-bind="if: speaker.name!='-'"><strong data-bind="text: speaker.name"></strong></p>
+                <p data-bind="text: room"></p>
+            </a></li>
 		</ul>
 	</div><!-- /content -->
 
@@ -106,8 +150,9 @@
 	</div><!-- /header -->
 
 	<div data-role="content">
-    <h2 class="title" data-bind="text: title"></h2>
-            <!-- ko if: nolink!=true -->
+    <h2 data-bind="text: title"></h2>
+    <h4 data-bind="text: room + ' - ' + timeSlot"></h4>
+        <!-- ko if: nolink!=true -->
 		<ul data-role="listview" data-inset="true" data-bind="with: speaker" >
 			<li><a data-bind="text: name, click: $root.goToSpeaker"></a></li>
 		</ul>
@@ -129,8 +174,11 @@
 	</div><!-- /header -->
 
 	<div data-role="content">	
-		<ul id="speakerList" data-role="listview" data-inset="true" data-bind="foreach: speakers" >
-			<li><a data-bind="text: name, click: $root.goToSpeaker"></a></li>
+		<ul id="speakerList" data-role="listview" data-filter="true" data-inset="true" data-bind="foreach: speakers, mobileList: speakers" >
+			<li><a data-bind="click: $root.goToSpeaker">
+                <img style="width: 73px; height: 73px; float: left; margin: 0 5px; border: 1px solid #000000" data-bind=" attr: { src: 'https://api.twitter.com/1/users/profile_image?screen_name='+twitter+'&size=bigger'}">
+                <h3 data-bind="text: name"></h3>
+			</a></li>
 		</ul>
 	
 	</div><!-- /content -->
@@ -142,7 +190,7 @@
 		<h1  data-bind="text: name"></h1>
 	</div><!-- /header -->
 	<div data-role="content">
-        <h2 class="title" data-bind="text: name"></h2>
+        <h2 data-bind="text: name"></h2>
         <!-- ko if: twitter!='' -->
         <img style="width: 73px; height: 73px; float: left; margin: 0 5px; border: 1px solid #000000" data-bind=" attr: { src: 'https://api.twitter.com/1/users/profile_image?screen_name='+twitter+'&size=bigger'}">
         <!-- /ko -->

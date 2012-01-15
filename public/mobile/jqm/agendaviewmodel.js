@@ -1,4 +1,9 @@
-	function AgendaViewModel()
+	function GetDate()
+    {
+        return new Date();
+    }
+
+    function AgendaViewModel()
 	{
 		//Data
 		var self = this;
@@ -10,18 +15,14 @@
 		self.selectedSpeaker =  ko.observable();
 		self.selectedSessionList = ko.observable();
 
+        self.nextSessions = ko.observableArray();
+        self.currentSessions = ko.observableArray();
 
+        var today=GetDate();
+        var conference = new Date(2012,0,21,8,30,0);
+        self.hoursToConference = parseInt((conference-today)/(3600*1000));
 
-        var today=new Date();
-        var conference = new Date(2012,0,21);
-        self.daysToConference = parseInt((conference-today)/(24*3600*1000));
-
-
-		
 		// Operations
-
-
-
 
         self.goToSpeaker = function(speaker)
         {
@@ -32,17 +33,16 @@
         self.goToSessionList = function(slot)
         {
             var orig = self.sessions();
-            orig = _.sortBy(orig, function(value) {return value.timeSlot});
             var list = ko.utils.arrayFilter(orig, function(value) {
                 return value.timeSlot == slot;
             });
-            list = _.sortBy(list, function(value) {return value.room});
             list = _.reject(list, function(value){return value.title==""})
             var obj = new Object();
             obj.name = slot;
             obj.list = ko.observable(list);;
             self.selectedSessionList(obj);
             $.mobile.changePage("#sessions");
+
         };
 
         self.goToSession = function(session)
@@ -55,13 +55,19 @@
 		$.getJSON(
 			"/speeches.json",
 			function (data) {
-				data = FixModel(data);
-				self.sessions(data);
+				self.sessions(ExtractSessions(data));
 				self.speakers(ExtractSpeakers(data));
 				self.slots(ExtractSlots(data));
+
+                UpdateCurrentSessions(self);
+                UpdateNextSessions(self);
+
+                setInterval(function(){
+                    UpdateCurrentSessions(self);
+                    UpdateNextSessions(self);
+                },60000);
+
 			});
-
-
 	}
 
 
@@ -72,25 +78,16 @@
 				value.speaker.bioUrl=value.speaker.bio;
             else
                  value.speaker.bioUrl="";
-			if(value.from == undefined){
-				value.from=value["from(4i)"]+":"+value["from(5i)"];
-				value.to=value["to(4i)"]+":"+value["to(5i)"];
-			}
-			else {
-				var from = new Date(value.from);
-				var to = new Date(value.to);
-				var fromMin =  from.getMinutes();
-				var toMin =  to.getMinutes();
-				var toMinStr = toMin+"";
-				var fromMinStr = fromMin+"";
-				if(toMin<10)
-						toMinStr="0"+ toMin;
-				if(fromMin<10)
-						fromMinStr="0"+ fromMin;
-				value.from = from.getHours()-1+":"+fromMinStr;
-				value.to = to.getHours()-1+":"+toMinStr;
-			}
-           value.timeSlot=value.from +" - "+value.to;
+
+            var from = new Date(value.from);
+            var to = new Date(value.to);
+            from.setFullYear(2012,0,21);
+            to.setFullYear(2012,0,21);
+
+           value.from = from;
+           value.to = to;
+
+           value.timeSlot=GetShortTime(from) +" - "+GetShortTime(to);
 		   if(value.speaker.name=="-")
 				value.nolink=true;
            else
@@ -103,6 +100,19 @@
            this.twitterUrl=ComputeTwitterUrl(this.twitterMessage);
 		});
 	}
+
+    function GetShortTime(date){
+        var min =  date.getMinutes();
+        var minStr = min+"";
+        if(min<10)
+            minStr="0"+min;
+        return date.getHours()-1+":"+minStr;
+    }
+
+    function ExtractSessions(data){
+        data = FixModel(data);
+        return _.sortBy(data, function(value) {return value.timeSlot+value.room});
+    }
 
     function ExtractSlots(data)
     {
@@ -118,6 +128,27 @@
         list = _.reject(list, function(value) {return value.name  == "-";})
         list = _.sortBy(list, function(value){return value.name});
         return list;
+    }
+
+    function UpdateCurrentSessions(model){
+        var now=GetDate();
+        now.setHours(now.getHours()+1)
+        var list = model.sessions();
+        list = _.filter(list, function(value){
+             return value.from<now && value.to>now && value.title!="";
+        });
+        model.currentSessions(list);
+    }
+
+    function UpdateNextSessions(model){
+        var now=GetDate();
+        now.setHours(now.getHours()+1);
+        var list = model.sessions();
+        list = _.filter(list, function(value){
+             return value.from>now && value.title!="";
+        });
+        list = _.groupBy(list, 'timeSlot');
+        model.nextSessions(_.toArray(list)[0]);
     }
 
     function ComputeTwitterMessage(session){

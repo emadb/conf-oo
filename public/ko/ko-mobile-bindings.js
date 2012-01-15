@@ -10,7 +10,18 @@
 ko.bindingHandlers['mobileList'] = {
     'update': function (element, valueAccessor) {
         setTimeout(function () { //To make sure the refresh fires after the DOM is updated
+            $(element).listview('refresh');
+        }, 0);
+    }
+}
+
+ko.bindingHandlers['mobileNewList'] = {
+    'update': function (element, valueAccessor) {
+        setTimeout(function () { //To make sure the refresh fires after the DOM is updated
             $(element).listview();
+                    setTimeout(function () { //To make sure the refresh fires after the DOM is updated
+            $(element).listview('refresh');
+        }, 0);
         }, 0);
     }
 }
