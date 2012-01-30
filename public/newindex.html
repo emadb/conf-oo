@@ -1,0 +1,414 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+ <meta charset="utf-8">
+<title>UGIALT.net Conference - Milano ~ 21 Gennaio 2012</title>
+<link href="css/reset.css" rel="stylesheet" type="text/css"/>
+
+<link href='http://fonts.googleapis.com/css?family=Terminal+Dosis:400,500,700,600,800,200,300' rel='stylesheet' type='text/css'>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/jquery-ui.js"></script>
+<script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-156881-10']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<script type='text/javascript' src='scrollTo/jquery.scrollTo-min.js'></script>
+<script type='text/javascript' src='underscore/underscore-min.js'></script>
+<script type='text/javascript' src='countdown/countdown.js'></script>
+<script type='text/javascript' src='scrollTo/jquery.localscroll-min.js'></script>
+
+<script>
+    var mobile = (/iphone|ipad|ipod|iemobile|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase()));
+    if (mobile) {
+        document.location = "http://ugialt.net/mobile";
+    }
+</script>
+
+<link media="screen" rel="stylesheet" href="colorbox/colorbox.css" />
+<link media="screen" rel="stylesheet" href="countdown/countdown.css" />
+<script src="colorbox/jquery.colorbox.js"></script>
+
+<link href="css/style.css" rel="stylesheet" type="text/css"/>
+
+<script type="text/javascript">
+
+
+$(document).ready(function() {
+
+	var current=1;
+    var nbr_case=8;
+
+	$(".slider_btn").click(function(){
+		var type_btn = $(this).attr("id");
+		var sliding=false;
+		if (!sliding){
+			sliding=true;
+			if(type_btn == "slider_suivant") {
+				if (current<nbr_case){
+					$('#slider').animate({
+						left: '-=450'
+					}, 800, function() {
+						// Animation complete.
+						sliding=false;
+					});
+					current++;
+				}
+			}
+			else {
+				if (current>1){
+					$('#slider').animate({
+						left: '+=450'
+					}, 800, function() {
+						// Animation complete.
+						sliding=false;
+					});
+					current--;
+				}
+			}
+		}
+	});
+
+
+
+	$(window).scroll(function () {
+      if ($(window).scrollTop() > 350) {
+         $('#menu_left').css('display','block');
+      }
+	  else {
+	  	 $('#menu_left').css('display','none');
+	  }
+    });
+
+
+	$(window).resize(function() {
+		if($(window).width() < 1260) {
+    		$('#menu_left').css('display','none');
+		}
+		else {
+			$('#menu_left').css('display','block');
+		}
+	});
+
+});
+   </script>
+
+
+
+</head>
+<body>
+
+<div id="menu_left">
+	<ul>
+        <li style="margin-bottom:5px;"><a href="#eraugialtnet">Era ugialtnet</a></li>
+        <li style="margin-bottom:5px;"><a href="#agenda">Ultima Conferenze</a></li>
+        <li style="margin-bottom:5px;"><a href="#sponsors">Sponsors</a></li>
+    </ul>
+</div>
+
+<header>
+
+<a name="top" ></a>
+<a name="top_and_news" ></a>
+  <div id="header_top">
+
+    <div id="follow_us">
+         <a target="_new" href="http://twitter.com/ugialtnet"><img src="images/twitter.png" alt="twitter"></a>
+    </div>
+
+
+  </div>
+
+</header>
+
+<div id="content">
+  <div id="ombre"></div>
+  <div id="menu" style="width:960px; margin:0 auto;">
+      <ul>
+        <li><a href="#eraugialtnet">Era ugialtnet</a></li>
+		<li><a href="#agenda">Ultima Conferenza</a></li>
+        <li><a href="#sponsors">Sponsors</a></li>
+      </ul>
+    </div>
+
+
+  <section id="eraugialtnet">
+  <a name="eraugialtnet" ></a>
+      <div class="wrap">
+
+          <div style="text-align: center;"  id="__ss_11271253"> <strong style="display:block;margin:12px 0 4px"><a href="http://www.slideshare.net/simonech/ugialtnet" title="UGIALT.net Keynote" target="_blank">UGIALT.net Keynote</a></strong>
+              <iframe src="http://www.slideshare.net/slideshow/embed_code/11271253" width="425" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+          </div>
+
+
+      <p><a href="#top" class="top">Torna in alto</a></p>
+    </div>
+
+    </section>
+
+<section id="agenda">
+
+  <a name="agenda" ></a>
+
+    <div class="wrap">
+      <hr style="position:relative; margin-top:-1px;">
+      <h1>Agenda</h1>
+        <div style="overflow:hidden; background-color: #6ea82c; border: 1px solid #6ba32a;" id="slider_container">
+            <div style="width: 9000px; overflow: auto; position: relative;" id="slider">
+                <div style="width:420px; margin:0 20px 0 0px; float:left" class="news"><h2>10:00 - 10:20</h2>
+
+                    <h3 style="color: #fff; display: inline-block; width:100px; float:left; margin-bottom:30px; margin-top:0;">
+                        Sala Blu</h3>   <span class="px18">                                <span
+                            style="color: #E8D135;font-size: 18px;" class="inline cboxElement">Keynote</span>                          </span>
+
+                    <div style="height:10px;clear: both;"></div>
+                    <h3 style="color: #fff; display: inline-block; width:100px; float:left; margin-bottom:30px; margin-top:0;">
+                        Sala Gialla</h3>   <span class="px18">                                <span
+                            style="color: #E8D135;font-size: 18px;" class="inline cboxElement"></span>                          </span>
+
+                    <div style="height:10px;clear: both;"></div>
+                    <h3 style="color: #fff; display: inline-block; width:100px; float:left; margin-bottom:30px; margin-top:0;">
+                        Sala Magenta</h3>   <span class="px18">                                <span
+                            style="color: #E8D135;font-size: 18px;" class="inline cboxElement"></span>                          </span>
+
+                    <div style="height:10px;clear: both;"></div>
+                    <h3 style="color: #fff; display: inline-block; width:100px; float:left; margin-bottom:30px; margin-top:0;">
+                        Sala Verde</h3>   <span class="px18">                                <span
+                            style="color: #E8D135;font-size: 18px;" class="inline cboxElement"></span>                          </span>
+
+                    <div style="height:10px;clear: both;"></div>
+                </div>
+                <div style="width:420px; margin:0 20px 0 0px; float:left" class="news"><h2>10:30 - 11:30</h2>
+
+                    <h3 style="color: #fff; display: inline-block; width:100px; float:left; margin-bottom:30px; margin-top:0;">
+                        Sala Blu</h3>   <span class="px18">                              <a
+                            href="#aa4ee39b81bbb0410001000001" class="inline cboxElement">Come implementare un server
+                        per giochi on line in real time</a><br>Massimiliano Mantione                          </span>
+
+                    <div style="height:10px;clear: both;"></div>
+                    <h3 style="color: #fff; display: inline-block; width:100px; float:left; margin-bottom:30px; margin-top:0;">
+                        Sala Gialla</h3>   <span class="px18">                              <a
+                            href="#aa4ee31df8da5fba0001000013" class="inline cboxElement">Sviluppare applicazioni web
+                        mobile con Asp.Net MVC, HTML5 e jQuery
+                        Mobile</a><br>Michele Aponte                          </span>
+
+                    <div style="height:10px;clear: both;"></div>
+                    <h3 style="color: #fff; display: inline-block; width:100px; float:left; margin-bottom:30px; margin-top:0;">
+                        Sala Magenta</h3>   <span class="px18">                              <a
+                            href="#aa4ee3247eda5fba0001000028" class="inline cboxElement">Oltre lo schermo: la user
+                        experience delle "cose"</a><br>Daniela Panfili                          </span>
+
+                    <div style="height:10px;clear: both;"></div>
+                    <h3 style="color: #fff; display: inline-block; width:100px; float:left; margin-bottom:30px; margin-top:0;">
+                        Sala Verde</h3>   <span class="px18">                              <a
+                            href="#aa4ee4e189e1fc9b0001000003" class="inline cboxElement">TDD everywhere</a><br>Matteo Migliore                          </span>
+
+                    <div style="height:10px;clear: both;"></div>
+                </div>
+                <div style="width:420px; margin:0 20px 0 0px; float:left" class="news"><h2>11:45 - 12:45</h2>
+
+                    <h3 style="color: #fff; display: inline-block; width:100px; float:left; margin-bottom:30px; margin-top:0;">
+                        Sala Blu</h3>   <span class="px18">                              <a
+                            href="#aa4ee4e05fe1fc9b0001000001" class="inline cboxElement">Perché a fare i preventivi
+                        facciamo così schifo?</a><br>Cristiano Rastelli                          </span>
+
+                    <div style="height:10px;clear: both;"></div>
+                    <h3 style="color: #fff; display: inline-block; width:100px; float:left; margin-bottom:30px; margin-top:0;">
+                        Sala Gialla</h3>   <span class="px18">                                <span
+                            style="color: #E8D135;font-size: 18px;" class="inline cboxElement"></span>                          </span>
+
+                    <div style="height:10px;clear: both;"></div>
+                    <h3 style="color: #fff; display: inline-block; width:100px; float:left; margin-bottom:30px; margin-top:0;">
+                        Sala Magenta</h3>   <span class="px18">                              <a
+                            href="#aa4ee31e71da5fba000100001d" class="inline cboxElement">Building awesome games with
+                        WebGL and Node.js</a><br>Rob Ashton                          </span>
+
+                    <div style="height:10px;clear: both;"></div>
+                    <h3 style="color: #fff; display: inline-block; width:100px; float:left; margin-bottom:30px; margin-top:0;">
+                        Sala Verde</h3>   <span class="px18">                              <a
+                            href="#aa4ee31d7cda5fba0001000009" class="inline cboxElement">WinRT e il futuro dello
+                        sviluppo per Windows</a><br>Lorenzo Barbieri                          </span>
+
+                    <div style="height:10px;clear: both;"></div>
+                </div>
+                <div style="width:420px; margin:0 20px 0 0px; float:left" class="news"><h2>13:00 - 14:00</h2>
+
+                    <h3 style="color: #fff; display: inline-block; width:100px; float:left; margin-bottom:30px; margin-top:0;">
+                        Sala Blu</h3>   <span class="px18">                                <span
+                            style="color: #E8D135;font-size: 18px;" class="inline cboxElement"></span>                          </span>
+
+                    <div style="height:10px;clear: both;"></div>
+                    <h3 style="color: #fff; display: inline-block; width:100px; float:left; margin-bottom:30px; margin-top:0;">
+                        Sala Gialla</h3>   <span class="px18">                                <span
+                            style="color: #E8D135;font-size: 18px;" class="inline cboxElement">Pranzo</span>                          </span>
+
+                    <div style="height:10px;clear: both;"></div>
+                    <h3 style="color: #fff; display: inline-block; width:100px; float:left; margin-bottom:30px; margin-top:0;">
+                        Sala Magenta</h3>   <span class="px18">                                <span
+                            style="color: #E8D135;font-size: 18px;" class="inline cboxElement"></span>                          </span>
+
+                    <div style="height:10px;clear: both;"></div>
+                    <h3 style="color: #fff; display: inline-block; width:100px; float:left; margin-bottom:30px; margin-top:0;">
+                        Sala Verde</h3>   <span class="px18">                                <span
+                            style="color: #E8D135;font-size: 18px;" class="inline cboxElement"></span>                          </span>
+
+                    <div style="height:10px;clear: both;"></div>
+                </div>
+                <div style="width:420px; margin:0 20px 0 0px; float:left" class="news"><h2>14:15 - 15:15</h2>
+
+                    <h3 style="color: #fff; display: inline-block; width:100px; float:left; margin-bottom:30px; margin-top:0;">
+                        Sala Blu</h3>   <span class="px18">                              <a
+                            href="#aa4ee31d38da5fba0001000005" class="inline cboxElement">Organize your chickens: NuGet
+                        for the enterprise</a><br>Xavier Decoster                          </span>
+
+                    <div style="height:10px;clear: both;"></div>
+                    <h3 style="color: #fff; display: inline-block; width:100px; float:left; margin-bottom:30px; margin-top:0;">
+                        Sala Gialla</h3>   <span class="px18">                              <a
+                            href="#aa4ee31e42da5fba0001000019" class="inline cboxElement">Roslyn: un compilatore per
+                        amico</a><br>Alessandro Melchiori                          </span>
+
+                    <div style="height:10px;clear: both;"></div>
+                    <h3 style="color: #fff; display: inline-block; width:100px; float:left; margin-bottom:30px; margin-top:0;">
+                        Sala Magenta</h3>   <span class="px18">                              <a
+                            href="#aa4ee31e88da5fba000100001f" class="inline cboxElement">I Love Async!</a><br>Antonio Liccardi, Emanuele Garofalo                          </span>
+
+                    <div style="height:10px;clear: both;"></div>
+                    <h3 style="color: #fff; display: inline-block; width:100px; float:left; margin-bottom:30px; margin-top:0;">
+                        Sala Verde</h3>   <span class="px18">                              <a
+                            href="#aa4ee31e0cda5fba0001000015" class="inline cboxElement">Git Happens!</a><br>Alessandro Cinelli                          </span>
+
+                    <div style="height:10px;clear: both;"></div>
+                </div>
+                <div style="width:420px; margin:0 20px 0 0px; float:left" class="news"><h2>15:15 - 15:45</h2>
+
+                    <h3 style="color: #fff; display: inline-block; width:100px; float:left; margin-bottom:30px; margin-top:0;">
+                        Corridoio</h3>   <span class="px18">                                <span
+                            style="color: #E8D135;font-size: 18px;" class="inline cboxElement">Coffee Break</span>                          </span>
+
+                    <div style="height:10px;clear: both;"></div>
+                </div>
+                <div style="width:420px; margin:0 20px 0 0px; float:left" class="news"><h2>15:45 - 16:45</h2>
+
+                    <h3 style="color: #fff; display: inline-block; width:100px; float:left; margin-bottom:30px; margin-top:0;">
+                        Sala Blu</h3>   <span class="px18">                              <a
+                            href="#aa4ee31d52da5fba0001000007" class="inline cboxElement">SignalR. Code, not toothpaste.
+                        Using SignalR for realtime client/server communication</a><br>Maarten Balliauw                          </span>
+
+                    <div style="height:10px;clear: both;"></div>
+                    <h3 style="color: #fff; display: inline-block; width:100px; float:left; margin-bottom:30px; margin-top:0;">
+                        Sala Gialla</h3>   <span class="px18">                              <a
+                            href="#aa4ee31e2bda5fba0001000017" class="inline cboxElement">Layered Expression Trees feat.
+                        CQRS</a><br>Andrea Saltarello                          </span>
+
+                    <div style="height:10px;clear: both;"></div>
+                    <h3 style="color: #fff; display: inline-block; width:100px; float:left; margin-bottom:30px; margin-top:0;">
+                        Sala Magenta</h3>   <span class="px18">                              <a
+                            href="#aa4ee4e1c0e1fc9b0001000005" class="inline cboxElement">Java Viene da Marte, Ruby da
+                        Venere </a><br>Paolo Perrotta                          </span>
+
+                    <div style="height:10px;clear: both;"></div>
+                    <h3 style="color: #fff; display: inline-block; width:100px; float:left; margin-bottom:30px; margin-top:0;">
+                        Sala Verde</h3>   <span class="px18">                              <a
+                            href="#aa4ee31db0da5fba000100000d" class="inline cboxElement">Using RavenDB in the
+                        wild</a><br>Mauro Servienti                          </span>
+
+                    <div style="height:10px;clear: both;"></div>
+                </div>
+                <div style="width:420px; margin:0 20px 0 0px; float:left" class="news"><h2>17:00 - 18:00</h2>
+
+                    <h3 style="color: #fff; display: inline-block; width:100px; float:left; margin-bottom:30px; margin-top:0;">
+                        Sala Blu</h3>   <span class="px18">                              <a
+                            href="#aa4ee31d94da5fba000100000b" class="inline cboxElement">oData può rappresentare il
+                        futuro del DataLayer?</a><br>Raffaele Rialdi                          </span>
+
+                    <div style="height:10px;clear: both;"></div>
+                    <h3 style="color: #fff; display: inline-block; width:100px; float:left; margin-bottom:30px; margin-top:0;">
+                        Sala Gialla</h3>   <span class="px18">                              <a
+                            href="#aa4ee31ebdda5fba0001000021" class="inline cboxElement">OOP vs COP - Classi contro
+                        oggetti</a><br>Gianluca Padovani                          </span>
+
+                    <div style="height:10px;clear: both;"></div>
+                    <h3 style="color: #fff; display: inline-block; width:100px; float:left; margin-bottom:30px; margin-top:0;">
+                        Sala Magenta</h3>   <span class="px18">                              <a
+                            href="#aa4ee31d27da5fba0001000003" class="inline cboxElement">OpenSpace</a><br>Tutti                          </span>
+
+                    <div style="height:10px;clear: both;"></div>
+                    <h3 style="color: #fff; display: inline-block; width:100px; float:left; margin-bottom:30px; margin-top:0;">
+                        Sala Verde</h3>   <span class="px18">                              <a
+                            href="#aa4ee4e1d3e1fc9b0001000007" class="inline cboxElement">ASP.NET MVC, Javascript MVVM e
+                        WCF REST Services: web to the max</a><br>Roberto Messora                          </span>
+
+                    <div style="height:10px;clear: both;"></div>
+                </div>
+                <div style="width:420px; margin:0 20px 0 0px; float:left" class="news"><h2>18:00 - 18:30</h2>
+
+                    <h3 style="color: #fff; display: inline-block; width:100px; float:left; margin-bottom:30px; margin-top:0;">
+                        Sala Blu</h3>   <span class="px18">                                <span
+                            style="color: #E8D135;font-size: 18px;" class="inline cboxElement">Chiusura ed Estrazione Premi</span>                          </span>
+
+                    <div style="height:10px;clear: both;"></div>
+                </div>
+            </div>
+	    </div>
+        <br><br>
+        <div style=" display:inline-block;" class="slider_btn" id="slider_precedent">
+			<img src="images/jours_avant_l.png">
+        </div>
+        <div style="display:inline-block; margin-left:843px;" class="slider_btn" id="slider_suivant">
+			<img src="images/jours_suivant_l.png">
+        </div>
+
+    </div>
+
+ </section>
+
+
+
+
+
+  <section id="sponsors">
+
+  <a name="sponsors" ></a>
+
+    <div class="wrap">
+
+      <hr style="position:relative; margin-top:-1px;">
+
+      <h1>Sponsors</h1>
+
+      <h3 style="color: #fff">Un ringraziamento agli sponsors che ci hanno continuamente supportato nelle 8 conferenze organizzate:</h3>
+
+      <div class="floatleft"><a target="_new" href="http://www.avanade.it"><img height="100" src="images/sponsors/avanade.png"></a></div>
+      <div class="floatleft" style="margin-left:20px;"><a target="_new" href="http://www.umbraco.com"><img height="100" src="images/sponsors/umbraco.jpg"></a></div>
+
+      <div style="clear:both;"></div><br>
+      <div class="floatleft"><a href="http://www.nhprof.com/"><img height="80" src="images/sponsors/nhprof.jpg"></a></div>
+
+      <div class="floatleft" style="margin-left:20px;"><a href="http://www.jetbrains.com/"><img height="80" src="images/sponsors/jetbrains.png"></a></div>
+      <div class="floatleft" style="margin-left:20px;"><a href="http://www.ndepend.com/"><img height="80" src="images/sponsors/NDependLogo.png"></a></div>
+      <div style="clear:both;"></div><br>
+      <div class="floatleft"><a href="http://www.balsamiq.com"><img height="60" src="images/sponsors/balsamiq.png"></a></div>
+      <div class="floatleft" style="margin-left:20px;"><a href="http://www.wrox.com/WileyCDA/"><img height="60" src="images/sponsors/New_WROX_Logo_color.gif"></a></div>
+      <div class="floatleft" style="margin-left:20px;"><a href="http://tekpub.com/"><img height="50" src="images/sponsors/tpublogo_white.png" style="background:black; padding:5px;"></a></div>
+      <div style="clear:both;"></div><br>
+      <br>
+      <br>
+      <p><a href="#top" class="top">Torna in alto</a></p>
+
+    </div>
+  </section>
+
+</div>
+
+</div></body>
+
+</html>
